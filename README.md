@@ -1,6 +1,5 @@
 # 📚 RSC Chain GitBook
 
-> **Documentación completa de la blockchain más avanzada del mundo**
 
 ## 🚀 ¿Qué es este GitBook?
 
@@ -232,3 +231,4 @@ Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más detal
 ---
 
 **RSC Chain - El futuro de la blockchain está aquí** 🚀✨
+
