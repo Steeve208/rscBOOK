@@ -1,6 +1,6 @@
 {
   "title": "RSC Chain - Ultra Advanced Blockchain",
-  "description": "Documentación completa de RSC",
+  "description": "Documentación completa de RSC Chain con IA integrada",
   "author": "RSC Chain Team",
   "language": "es",
   "structure": {
@@ -14,36 +14,18 @@
     "sharing",
     "fontsettings",
     "livereload",
-    "copy-code-button",
-    "expandable-chapters",
     "back-to-top-button",
-    "github",
-    "splitter",
-    "toc",
-    "anchor-navigation-ex",
-    "code",
-    "prism",
-    "prism-themes",
-    "theme-api",
-    "theme-default-extend"
+    "github"
   ],
   "pluginsConfig": {
     "theme-default": {
-      "showLevel": true
+      "showLevel": true,
+      "styles": {
+        "website": "assets/css/custom.css"
+      }
     },
     "github": {
-      "url": "https://github.com/rsc-chain/rsc-chain"
-    },
-    "prism": {
-      "css": [
-        "prismjs/themes/prism-tomorrow.css"
-      ]
-    },
-    "theme-api": {
-      "theme": "dark"
-    },
-    "copy-code-button": {
-      "title": "Copiar código"
+      "url": "https://github.com/Steeve208/rscBOOK"
     }
   },
   "variables": {
