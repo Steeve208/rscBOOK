@@ -4,67 +4,67 @@
 
 ## 🚀 Inicio Rápido
 
-* [🎯 Inicio Rápido](quick-start.md)
-* [📋 Requisitos del Sistema](requirements.md)
-* [⚙️ Instalación](installation.md)
-* [🔧 Configuración](configuration.md)
+* [🎯 Inicio Rápido](docs/quick-start.md)
+* [📋 Requisitos del Sistema](docs/requirements.md)
+* [⚙️ Instalación](docs/installation.md)
+* [🔧 Configuración](docs/configuration.md)
 
 ## 🏗️ Arquitectura
 
-* [🏛️ Visión General](architecture.md)
+* [🏛️ Visión General](docs/architecture.md)
 
 ## 🤖 Inteligencia Artificial
 
-* [🧠 Visión General](ai.md)
+* [🧠 Visión General](docs/ai.md)
 
 ## 🔐 Seguridad
 
-* [🛡️ Visión General](security.md)
+* [🛡️ Visión General](docs/security.md)
 
 ## ⚡ Consenso
 
-* [⚡ Visión General](consensus.md)
+* [⚡ Visión General](docs/consensus.md)
 
 ## 🌐 Red P2P
 
-* [🌐 Visión General](p2p.md)
+* [🌐 Visión General](docs/p2p.md)
 
 ## 💾 Almacenamiento
 
-* [💾 Visión General](storage.md)
+* [💾 Visión General](docs/storage.md)
 
 ## 🛠️ API
 
-* [🛠️ Visión General](api.md)
+* [🛠️ Visión General](docs/api.md)
 
 ## 📊 Monitoreo
 
-* [📊 Visión General](monitoring.md)
+* [📊 Visión General](docs/monitoring.md)
 
 ## 🔧 Desarrollo
 
-* [🔧 Visión General](development.md)
+* [🔧 Visión General](docs/development.md)
 
 ## 📖 Guías
 
-* [📖 Guías de Desarrollo](guides.md)
+* [📖 Guías de Desarrollo](docs/guides.md)
 
 ## 🔗 Integración
 
-* [🔗 Visión General](integration.md)
+* [🔗 Visión General](docs/integration.md)
 
 ## 📚 Referencia
 
-* [📚 Visión General](reference.md)
+* [📚 Visión General](docs/reference.md)
 
 ## 💼 Casos de Uso
 
-* [💼 Visión General](use-cases.md)
+* [💼 Visión General](docs/use-cases.md)
 
 ## 🤝 Contribuir
 
-* [🤝 Visión General](contributing.md)
+* [🤝 Visión General](docs/contributing.md)
 
 ## ⚖️ Legal
 
-* [⚖️ Aspectos Legales](Legal.md)
+* [⚖️ Aspectos Legales](docs/Legal.md)
