@@ -1,11 +1,75 @@
-<!-- Include custom JavaScript for 3D interactions -->
-<script src="{{ "assets/js/3d-interactions.js"|resolveFile }}"></script>
-
-<!-- Initialize 3D interactions -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof RSCChain3DInteractions !== 'undefined') {
-        new RSCChain3DInteractions();
-    }
-});
-</script>
+<!DOCTYPE html>
+<html lang="{{ config.language }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ config.title|d("GitBook", true) }}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="{% block description %}{{ page.description }}{% endblock %}">
+    <meta name="generator" content="GitBook {{ gitbook.version }}">
+    <meta name="author" content="{{ config.author }}">
+    
+    <!-- GitBook default styles -->
+    <link rel="stylesheet" href="{{ "gitbook/style.css"|resolveFile }}">
+    
+    <!-- Custom CSS - Professional Black & White Theme -->
+    <link rel="stylesheet" href="{{ "assets/css/custom.css"|resolveFile }}">
+    
+    <!-- MathJax Configuration -->
+    <script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="book">
+        <div class="book-summary">
+            {% block nav %}{% endblock %}
+        </div>
+        
+        <div class="book-body">
+            {% block body %}{% endblock %}
+        </div>
+        
+        <div class="book-footer">
+            {% block footer %}{% endblock %}
+        </div>
+    </div>
+    
+    <!-- GitBook Scripts -->
+    <script src="{{ "gitbook/app.js"|resolveFile }}"></script>
+    {% for resource in plugins.resources.js %}
+        {% if resource.url %}
+        <script src="{{ resource.url }}"></script>
+        {% else %}
+        <script src="{{ resource.path|resolveFile }}"></script>
+        {% endif %}
+    {% endfor %}
+    
+    <!-- Custom JavaScript for 3D Interactions -->
+    <script src="{{ "assets/js/3d-interactions.js"|resolveFile }}"></script>
+    
+    <!-- Initialize 3D interactions -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof RSCChain3DInteractions !== 'undefined') {
+            new RSCChain3DInteractions();
+        }
+    });
+    </script>
+    
+    {% block javascript %}{% endblock %}
+</body>
+</html>

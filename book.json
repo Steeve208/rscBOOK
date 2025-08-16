@@ -26,10 +26,7 @@
   ],
   "pluginsConfig": {
     "theme-default": {
-      "showLevel": true,
-      "styles": {
-        "website": "assets/css/custom.css"
-      }
+      "showLevel": true
     },
     "github": {
       "url": "https://github.com/Steeve208/rscBOOK"
@@ -49,5 +46,8 @@
   "variables": {
     "version": "3.0.0",
     "releaseDate": "2024-12-19"
+  },
+  "styles": {
+    "website": "assets/css/custom.css"
   }
 }
