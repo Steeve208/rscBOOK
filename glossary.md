@@ -1,240 +1,99 @@
-# 📖 Glosario
+# 📖 Glossary
 
-> **Términos técnicos y conceptos de RSC Chain**
+> **Technical terms and concepts of RSC Chain**
 
 ## A
 
 ### **AI (Artificial Intelligence)**
-Inteligencia Artificial integrada en cada componente de RSC Chain para optimización automática y toma de decisiones inteligente.
+Artificial Intelligence integrated into every component of RSC Chain for automatic optimization and intelligent decision making.
 
 ### **Autoencoder**
-Red neuronal que aprende a comprimir y reconstruir datos, utilizada para detección de anomalías en RSC Chain.
+Neural network that learns to compress and reconstruct data, used for anomaly detection in RSC Chain.
 
-### **Aprendizaje Federado**
-Técnica de machine learning que permite entrenar modelos sin compartir datos sensibles, manteniendo la privacidad.
+### **Federated Learning**
+Machine learning technique that allows training models without sharing sensitive data, maintaining privacy.
 
 ## B
 
 ### **Blockchain**
-Cadena de bloques distribuida que registra transacciones de forma inmutable y descentralizada.
+Distributed chain of blocks that records transactions in an immutable and decentralized manner.
 
 ### **Bloom Filter**
-Estructura de datos probabilística utilizada para verificar rápidamente si un elemento pertenece a un conjunto.
+Probabilistic data structure used to quickly verify if an element belongs to a set.
 
 ### **Byzantine Fault Tolerance (BFT)**
-Capacidad de un sistema distribuido para funcionar correctamente incluso cuando algunos nodos fallan o actúan maliciosamente.
+Ability of a distributed system to function correctly even when some nodes fail or act maliciously.
 
 ## C
 
-### **Consenso**
-Mecanismo por el cual los nodos de la red acuerdan el estado de la blockchain.
+### **Consensus**
+Mechanism by which network nodes agree on the state of the blockchain.
 
-### **Consenso Híbrido**
-Sistema que combina múltiples mecanismos de consenso (PoW, PoS, VRF) para mayor seguridad y eficiencia.
+### **Hybrid Consensus**
+System that combines multiple consensus mechanisms (PoW, PoS, VRF) for greater security and efficiency.
 
-### **Criptografía Post-Cuántica**
-Algoritmos criptográficos resistentes a ataques de computación cuántica.
+### **Post-Quantum Cryptography**
+Cryptographic algorithms resistant to quantum computing attacks.
 
 ### **ConvNet (Convolutional Neural Network)**
-Red neuronal convolucional utilizada para análisis de patrones espaciales en transacciones.
+Convolutional neural network used for analysis of spatial patterns in transactions.
 
 ## D
 
 ### **DHT (Distributed Hash Table)**
-Tabla hash distribuida que permite búsquedas eficientes en redes P2P.
+Distributed hash table that enables efficient searches in P2P networks.
 
 ### **DDoS (Distributed Denial of Service)**
-Ataque que intenta interrumpir el servicio de una red inundándola con tráfico malicioso.
+Attack that attempts to disrupt a network's service by flooding it with malicious traffic.
 
 ### **Deep Learning**
-Subconjunto del machine learning que utiliza redes neuronales con múltiples capas.
+Subset of machine learning that uses neural networks with multiple layers.
 
 ## E
 
 ### **Epoch**
-Período de tiempo durante el cual se mantiene un conjunto específico de validadores en el consenso PoS.
+Time period during which a specific set of validators is maintained in PoS consensus.
 
 ### **Ethereum Virtual Machine (EVM)**
-Máquina virtual que ejecuta smart contracts en la blockchain.
+Virtual machine that executes smart contracts on the blockchain.
 
 ## F
 
 ### **Federated Learning**
-Técnica de machine learning que permite entrenar modelos de forma distribuida sin compartir datos.
+Machine learning technique that allows training models in a distributed manner without sharing data.
 
-### **Finalidad**
-Garantía de que una transacción nunca será revertida una vez confirmada.
+### **Finality**
+Guarantee that a transaction will never be reversed once confirmed.
 
 ### **Firewall L7**
-Sistema de seguridad que filtra tráfico a nivel de aplicación (capa 7 del modelo OSI).
+Security system that filters traffic at the application level (OSI model layer 7).
 
 ## G
 
 ### **Gossip Protocol**
-Protocolo de comunicación que propaga mensajes de forma epidémica en redes distribuidas.
+Communication protocol that propagates messages epidemically in distributed networks.
 
 ### **GNN (Graph Neural Network)**
-Red neuronal especializada en el procesamiento de datos estructurados como grafos.
+Neural network specialized in processing structured data such as graphs.
 
 ### **Gas**
-Unidad de medida del costo computacional de ejecutar operaciones en la blockchain.
+Unit of measurement for the computational cost of executing operations on the blockchain.
 
 ## H
 
 ### **Hash**
-Función matemática que convierte datos de entrada en una cadena de caracteres de longitud fija.
+Mathematical function that converts input data into a fixed-length character string.
 
 ### **Hot Wallet**
-Wallet conectada a Internet para transacciones frecuentes.
+Wallet connected to the Internet for frequent transactions.
 
 ### **Hybrid Consensus**
-Sistema de consenso que combina múltiples mecanismos para mayor robustez.
+Consensus system that combines multiple mechanisms for greater robustness.
 
 ## I
 
 ### **Isolation Forest**
-Algoritmo de detección de anomalías basado en el principio de aislamiento.
+Anomaly detection algorithm based on the isolation principle.
 
-### **Interoperabilidad**
-Capacidad de diferentes blockchains para comunicarse y compartir datos.
-
-## K
-
-### **Kademlia**
-Protocolo de red P2P que implementa una tabla hash distribuida (DHT).
-
-### **Key Pair**
-Par de claves criptográficas (pública y privada) utilizadas para firmar transacciones.
-
-## L
-
-### **LSTM (Long Short-Term Memory)**
-Tipo de red neuronal recurrente especializada en el procesamiento de secuencias temporales.
-
-### **Light Node**
-Nodo que no almacena toda la blockchain, solo los datos necesarios para su funcionamiento.
-
-## M
-
-### **Mempool**
-Área de memoria donde se almacenan transacciones pendientes antes de ser incluidas en un bloque.
-
-### **Merkle Tree**
-Estructura de datos que permite verificar eficientemente la integridad de grandes conjuntos de datos.
-
-### **Mining**
-Proceso de validación de transacciones y creación de nuevos bloques en sistemas PoW.
-
-## N
-
-### **Node**
-Computadora que participa en la red blockchain ejecutando el software de RSC Chain.
-
-### **Nonce**
-Número único que se incluye en cada transacción para evitar ataques de replay.
-
-## O
-
-### **One-Class SVM**
-Algoritmo de machine learning para detección de anomalías que aprende solo del comportamiento normal.
-
-### **Oracle**
-Sistema que proporciona datos externos a la blockchain.
-
-## P
-
-### **Peer**
-Nodo en la red P2P que se comunica directamente con otros nodos.
-
-### **PoS (Proof of Stake)**
-Mecanismo de consenso donde los validadores son seleccionados basándose en la cantidad de tokens que poseen.
-
-### **PoW (Proof of Work)**
-Mecanismo de consenso donde los mineros compiten para resolver problemas matemáticos complejos.
-
-### **Post-Quantum Cryptography**
-Algoritmos criptográficos diseñados para ser resistentes a ataques de computación cuántica.
-
-## Q
-
-### **QUIC**
-Protocolo de transporte desarrollado por Google que mejora el rendimiento de conexiones web.
-
-### **Quantum Computing**
-Tipo de computación que utiliza fenómenos cuánticos para procesar información.
-
-## R
-
-### **RocksDB**
-Motor de base de datos de alto rendimiento desarrollado por Facebook.
-
-### **Ring Signature**
-Técnica criptográfica que permite firmar mensajes de forma anónima dentro de un grupo.
-
-## S
-
-### **Sharding**
-Técnica que divide la blockchain en múltiples fragmentos para mejorar la escalabilidad.
-
-### **Slashing**
-Penalización aplicada a validadores que actúan maliciosamente en sistemas PoS.
-
-### **Smart Contract**
-Código autoejecutable que se ejecuta en la blockchain cuando se cumplen ciertas condiciones.
-
-### **Staking**
-Proceso de bloquear tokens para participar en el consenso PoS y ganar recompensas.
-
-## T
-
-### **TPS (Transactions Per Second)**
-Número de transacciones que la blockchain puede procesar por segundo.
-
-### **Transformer**
-Arquitectura de red neuronal que utiliza mecanismos de atención para procesar secuencias.
-
-## U
-
-### **UTXO (Unspent Transaction Output)**
-Modelo de contabilidad donde las transacciones gastan salidas no utilizadas de transacciones anteriores.
-
-## V
-
-### **Validator**
-Nodo que participa en el consenso PoS validando transacciones y creando bloques.
-
-### **VRF (Verifiable Random Function)**
-Función que genera números aleatorios verificables criptográficamente.
-
-## W
-
-### **Wallet**
-Software que permite a los usuarios gestionar sus claves criptográficas y realizar transacciones.
-
-### **WebSocket**
-Protocolo de comunicación que permite comunicación bidireccional en tiempo real.
-
-## X
-
-### **XSS (Cross-Site Scripting)**
-Tipo de vulnerabilidad de seguridad que permite inyectar código malicioso en aplicaciones web.
-
-## Y
-
-### **Yield Farming**
-Estrategia de inversión que busca maximizar el retorno de inversión en protocolos DeFi.
-
-## Z
-
-### **Zero-Knowledge Proof**
-Técnica criptográfica que permite probar que algo es verdadero sin revelar información adicional.
-
-### **zk-SNARK**
-Tipo de prueba de conocimiento cero que permite verificar transacciones sin revelar detalles.
-
-### **zk-STARK**
-Prueba de conocimiento cero que no requiere configuración de confianza inicial.
-
----
-
-**RSC Chain - Glosario de la blockchain del futuro** 🚀✨
+### **Interoperability**
+Ability of different blockchains to communicate and share data.

@@ -1,14 +1,14 @@
-# 💾 Almacenamiento Avanzado
+# 💾 Advanced Storage
 
-> **El sistema de almacenamiento más eficiente del mundo blockchain**
+> **The world's most efficient blockchain storage system**
 
-## 🌟 Visión General
+## 🌟 Overview
 
-RSC Chain implementa un **sistema de almacenamiento revolucionario** que combina las mejores tecnologías de bases de datos con inteligencia artificial para crear el almacenamiento más eficiente, rápido y escalable del mundo blockchain. Nuestro sistema integra **RocksDB optimizado**, **caché TTL inteligente**, **compresión avanzada** y **respaldos automáticos**.
+RSC Chain implements a **revolutionary storage system** that combines the best database technologies with artificial intelligence to create the most efficient, fast, and scalable storage in the blockchain world. Our system integrates **optimized RocksDB**, **intelligent TTL cache**, **advanced compression**, and **automatic backups**.
 
-## 🏗️ Arquitectura de Almacenamiento
+## 🏗️ Storage Architecture
 
-### **Capa de Almacenamiento Multi-Nivel**
+### **Multi-Level Storage Layer**
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -48,13 +48,13 @@ RSC Chain implementa un **sistema de almacenamiento revolucionario** que combina
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-## 🗄️ RocksDB Optimizado
+## 🗄️ Optimized RocksDB
 
-### **Configuración Avanzada**
+### **Advanced Configuration**
 
 #### **RocksDB Configuration**
 ```rust
-// Configuración optimizada de RocksDB
+// Optimized RocksDB configuration
 pub struct RocksDBConfig {
     pub max_background_jobs: i32,
     pub write_buffer_size: usize,
@@ -86,7 +86,7 @@ impl RocksDBConfig {
 
 #### **Column Families**
 ```rust
-// Definición de column families
+// Column families definition
 pub struct ColumnFamilies {
     pub blocks: String,
     pub transactions: String,
@@ -150,11 +150,11 @@ impl ColumnFamilies {
 }
 ```
 
-### **Operaciones Optimizadas**
+### **Optimized Operations**
 
 #### **Batch Operations**
 ```rust
-// Operaciones en lote optimizadas
+// Optimized batch operations
 pub struct BatchOperations {
     pub db: Arc<RocksDB>,
     pub batch_size: usize,
@@ -212,13 +212,13 @@ impl BatchOperations {
 }
 ```
 
-## ⚡ Caché TTL Inteligente
+## ⚡ Intelligent TTL Cache
 
 ### **Predictive Caching**
 
 #### **Intelligent Cache**
 ```rust
-// Caché inteligente con predicción
+// Intelligent cache with prediction
 pub struct IntelligentCache {
     pub cache: HashMap<CacheKey, CacheEntry>,
     pub access_patterns: AccessPatternAnalyzer,
@@ -234,18 +234,18 @@ impl IntelligentCache {
             access_patterns: AccessPatternAnalyzer::new(),
             eviction_policy: EvictionPolicy::LRU,
             max_size,
-            ttl_default: Duration::from_secs(300), // 5 minutos
+            ttl_default: Duration::from_secs(300), // 5 minutes
         }
     }
     
     pub fn get(&mut self, key: &CacheKey) -> Option<&CacheValue> {
         if let Some(entry) = self.cache.get_mut(key) {
-            // Actualizar estadísticas de acceso
+            // Update access statistics
             self.access_patterns.record_access(key);
             entry.last_accessed = Instant::now();
             entry.access_count += 1;
             
-            // Verificar TTL
+            // Check TTL
             if entry.is_expired() {
                 self.cache.remove(key);
                 return None;
@@ -258,7 +258,7 @@ impl IntelligentCache {
     }
     
     pub fn put(&mut self, key: CacheKey, value: CacheValue, ttl: Option<Duration>) -> Result<(), Error> {
-        // Verificar si necesitamos evicción
+        // Check if eviction is needed
         if self.cache.len() >= self.max_size {
             self.evict_entries()?;
         }
@@ -285,7 +285,7 @@ impl IntelligentCache {
     }
     
     fn evict_predictive(&mut self) -> Result<(), Error> {
-        // Usar IA para predecir qué entradas no se usarán
+        // Use AI to predict which entries will not be used
         let predictions = self.access_patterns.predict_future_access();
         
         for (key, probability) in predictions {
@@ -305,7 +305,7 @@ impl IntelligentCache {
 
 #### **Access Pattern Analysis**
 ```rust
-// Análisis de patrones de acceso
+// Access pattern analysis
 pub struct AccessPatternAnalyzer {
     pub access_history: VecDeque<AccessRecord>,
     pub pattern_model: NeuralNetwork,
@@ -318,10 +318,10 @@ impl AccessPatternAnalyzer {
             access_history: VecDeque::with_capacity(10000),
             pattern_model: NeuralNetwork::new(),
             time_windows: vec![
-                Duration::from_secs(60),   // 1 minuto
-                Duration::from_secs(300),  // 5 minutos
-                Duration::from_secs(900),  // 15 minutos
-                Duration::from_secs(3600), // 1 hora
+                Duration::from_secs(60),   // 1 minute
+                Duration::from_secs(300),  // 5 minutes
+                Duration::from_secs(900),  // 15 minutes
+                Duration::from_secs(3600), // 1 hour
             ],
         }
     }
@@ -334,12 +334,12 @@ impl AccessPatternAnalyzer {
         
         self.access_history.push_back(record);
         
-        // Mantener solo los últimos 10,000 registros
+        // Keep only the last 10,000 records
         if self.access_history.len() > 10000 {
             self.access_history.pop_front();
         }
         
-        // Entrenar modelo periódicamente
+        // Train model periodically
         if self.access_history.len() % 1000 == 0 {
             self.train_model();
         }
@@ -365,7 +365,7 @@ impl AccessPatternAnalyzer {
             features.push(access_count as f64);
         }
         
-        // Agregar características adicionales
+        // Add additional features
         features.push(self.get_time_of_day());
         features.push(self.get_day_of_week());
         features.push(self.get_access_frequency(key));
@@ -375,13 +375,13 @@ impl AccessPatternAnalyzer {
 }
 ```
 
-## 🗜️ Compresión Avanzada
+## 🗜️ Advanced Compression
 
 ### **Multi-Level Compression**
 
 #### **Compression Engine**
 ```rust
-// Motor de compresión avanzado
+// Advanced compression engine
 pub struct CompressionEngine {
     pub algorithms: HashMap<CompressionType, Box<dyn CompressionAlgorithm>>,
     pub dictionary: CompressionDictionary,
@@ -408,13 +408,13 @@ impl CompressionEngine {
         let compression_type = compression_type.unwrap_or_else(|| self.select_best_algorithm(data));
         
         if let Some(algorithm) = self.algorithms.get(&compression_type) {
-            // Aplicar compresión de diccionario si es beneficioso
+            // Apply dictionary compression if beneficial
             let dictionary_compressed = self.dictionary.compress_if_beneficial(data);
             
-            // Comprimir con el algoritmo seleccionado
+            // Compress with the selected algorithm
             let compressed = algorithm.compress(&dictionary_compressed)?;
             
-            // Aplicar compresión adaptativa si es necesario
+            // Apply adaptive compression if needed
             let final_compressed = self.adaptive_compression.optimize(&compressed)?;
             
             Ok(final_compressed)
@@ -425,13 +425,13 @@ impl CompressionEngine {
     
     pub fn decompress(&mut self, compressed_data: &[u8], compression_type: CompressionType) -> Result<Vec<u8>, Error> {
         if let Some(algorithm) = self.algorithms.get(&compression_type) {
-            // Descomprimir con compresión adaptativa
+            // Decompress with adaptive compression
             let decompressed_adaptive = self.adaptive_compression.deoptimize(compressed_data)?;
             
-            // Descomprimir con el algoritmo
+            // Decompress with the algorithm
             let decompressed = algorithm.decompress(&decompressed_adaptive)?;
             
-            // Descomprimir diccionario si fue aplicado
+            // Decompress dictionary if applied
             let final_decompressed = self.dictionary.decompress_if_applied(&decompressed);
             
             Ok(final_decompressed)
@@ -441,11 +441,11 @@ impl CompressionEngine {
     }
     
     fn select_best_algorithm(&self, data: &[u8]) -> CompressionType {
-        // Usar IA para seleccionar el mejor algoritmo
+        // Use AI to select the best algorithm
         let features = self.extract_compression_features(data);
         let predictions = self.predict_compression_ratios(&features);
         
-        // Seleccionar algoritmo con mejor ratio de compresión/velocidad
+        // Select algorithm with the best compression/speed ratio
         predictions.iter()
             .max_by(|a, b| {
                 let score_a = a.compression_ratio / a.compression_time;
@@ -460,7 +460,7 @@ impl CompressionEngine {
 
 #### **Dictionary Compression**
 ```rust
-// Compresión de diccionario
+// Dictionary compression
 pub struct CompressionDictionary {
     pub dictionary: HashMap<Vec<u8>, u32>,
     pub frequency_map: HashMap<Vec<u8>, u32>,
@@ -477,10 +477,10 @@ impl CompressionDictionary {
     }
     
     pub fn compress_if_beneficial(&mut self, data: &[u8]) -> Vec<u8> {
-        // Analizar patrones en los datos
+        // Analyze patterns in data
         let patterns = self.extract_patterns(data);
         
-        // Construir diccionario si es beneficioso
+        // Build dictionary if beneficial
         if self.would_benefit_from_dictionary(data, &patterns) {
             self.build_dictionary(&patterns);
             self.apply_dictionary_compression(data)
@@ -493,7 +493,7 @@ impl CompressionDictionary {
         let mut patterns = Vec::new();
         let mut pattern_map = HashMap::new();
         
-        // Buscar patrones de diferentes tamaños
+        // Search for patterns of different sizes
         for window_size in [4, 8, 16, 32, 64] {
             for window in data.windows(window_size) {
                 let count = pattern_map.entry(window.to_vec()).or_insert(0);
@@ -501,9 +501,9 @@ impl CompressionDictionary {
             }
         }
         
-        // Convertir a patrones ordenados por frecuencia
+        // Convert to patterns ordered by frequency
         for (pattern, frequency) in pattern_map {
-            if frequency > 2 { // Solo patrones que aparecen más de 2 veces
+            if frequency > 2 { // Only patterns that appear more than 2 times
                 patterns.push(Pattern {
                     data: pattern,
                     frequency,
@@ -521,20 +521,20 @@ impl CompressionDictionary {
             .map(|p| p.data.len() * p.frequency as usize)
             .sum();
         
-        let dictionary_overhead = patterns.len() * 64; // Estimación del overhead
+        let dictionary_overhead = patterns.len() * 64; // Estimation of overhead
         
         total_pattern_size > dictionary_overhead * 2
     }
 }
 ```
 
-## 💾 Respaldos Automáticos
+## 💾 Automatic Backups
 
 ### **Incremental Backups**
 
 #### **Backup System**
 ```rust
-// Sistema de respaldos automáticos
+// Automatic backup system
 pub struct BackupSystem {
     pub backup_config: BackupConfig,
     pub storage_backend: Box<dyn StorageBackend>,
@@ -553,22 +553,22 @@ impl BackupSystem {
     }
     
     pub async fn create_backup(&mut self) -> Result<BackupMetadata, Error> {
-        // Crear snapshot del estado actual
+        // Create snapshot of current state
         let snapshot = self.create_snapshot().await?;
         
-        // Comprimir snapshot
+        // Compress snapshot
         let compressed_snapshot = self.compress_snapshot(&snapshot)?;
         
-        // Encriptar backup
+        // Encrypt backup
         let encrypted_backup = self.encryption.encrypt(&compressed_snapshot)?;
         
-        // Subir a storage backend
+        // Upload to storage backend
         let backup_id = self.storage_backend.upload(&encrypted_backup).await?;
         
-        // Verificar integridad
+        // Verify integrity
         self.verification.verify_backup(&backup_id, &encrypted_backup).await?;
         
-        // Crear metadata
+        // Create metadata
         let metadata = BackupMetadata {
             id: backup_id,
             timestamp: SystemTime::now(),
@@ -581,19 +581,19 @@ impl BackupSystem {
     }
     
     pub async fn restore_backup(&mut self, backup_id: &str) -> Result<(), Error> {
-        // Descargar backup
+        // Download backup
         let encrypted_backup = self.storage_backend.download(backup_id).await?;
         
-        // Verificar integridad
+        // Verify integrity
         self.verification.verify_backup(backup_id, &encrypted_backup).await?;
         
-        // Desencriptar
+        // Decrypt
         let compressed_backup = self.encryption.decrypt(&encrypted_backup)?;
         
-        // Descomprimir
+        // Decompress
         let snapshot = self.decompress_snapshot(&compressed_backup)?;
         
-        // Restaurar estado
+        // Restore state
         self.restore_snapshot(&snapshot).await?;
         
         Ok(())
@@ -602,15 +602,15 @@ impl BackupSystem {
     async fn create_snapshot(&self) -> Result<Vec<u8>, Error> {
         let mut snapshot = Vec::new();
         
-        // Serializar estado de la blockchain
+        // Serialize blockchain state
         let blockchain_state = self.serialize_blockchain_state().await?;
         snapshot.extend_from_slice(&blockchain_state);
         
-        // Serializar transacciones pendientes
+        // Serialize pending transactions
         let pending_transactions = self.serialize_pending_transactions().await?;
         snapshot.extend_from_slice(&pending_transactions);
         
-        // Serializar configuración
+        // Serialize configuration
         let config = self.serialize_configuration().await?;
         snapshot.extend_from_slice(&config);
         
@@ -621,7 +621,7 @@ impl BackupSystem {
 
 #### **Distributed Backups**
 ```rust
-// Respaldos distribuidos
+// Distributed backups
 pub struct DistributedBackup {
     pub nodes: Vec<BackupNode>,
     pub replication_factor: usize,
@@ -630,10 +630,10 @@ pub struct DistributedBackup {
 
 impl DistributedBackup {
     pub async fn create_distributed_backup(&mut self, data: &[u8]) -> Result<Vec<BackupId>, Error> {
-        // Dividir datos en chunks
+        // Split data into chunks
         let chunks = self.split_data(data);
         
-        // Crear respaldos distribuidos
+        // Create distributed backups
         let mut backup_ids = Vec::new();
         
         for chunk in chunks {
@@ -641,7 +641,7 @@ impl DistributedBackup {
             backup_ids.extend(chunk_backup_ids);
         }
         
-        // Verificar consistencia
+        // Verify consistency
         self.consistency_checker.verify_distributed_backup(&backup_ids).await?;
         
         Ok(backup_ids)
@@ -650,10 +650,10 @@ impl DistributedBackup {
     async fn backup_chunk_distributed(&self, chunk: &[u8]) -> Result<Vec<BackupId>, Error> {
         let mut backup_ids = Vec::new();
         
-        // Seleccionar nodos para replicación
+        // Select nodes for replication
         let selected_nodes = self.select_backup_nodes(self.replication_factor);
         
-        // Crear backup en cada nodo
+        // Create backup on each node
         for node in selected_nodes {
             let backup_id = node.create_backup(chunk).await?;
             backup_ids.push(backup_id);
@@ -663,12 +663,12 @@ impl DistributedBackup {
     }
     
     fn select_backup_nodes(&self, count: usize) -> Vec<&BackupNode> {
-        // Seleccionar nodos basado en disponibilidad y capacidad
+        // Select nodes based on availability and capacity
         let mut available_nodes: Vec<&BackupNode> = self.nodes.iter()
             .filter(|node| node.is_available())
             .collect();
         
-        // Ordenar por capacidad y confiabilidad
+        // Sort by capacity and reliability
         available_nodes.sort_by(|a, b| {
             let score_a = a.capacity_score() * a.reliability_score();
             let score_b = b.capacity_score() * b.reliability_score();
@@ -680,13 +680,13 @@ impl DistributedBackup {
 }
 ```
 
-## 🔍 Índices Inteligentes
+## 🔍 Intelligent Indexes
 
 ### **Multi-Index System**
 
 #### **Index Manager**
 ```rust
-// Gestor de índices inteligente
+// Intelligent index manager
 pub struct IndexManager {
     pub indexes: HashMap<String, Box<dyn Index>>,
     pub query_optimizer: QueryOptimizer,
@@ -715,10 +715,10 @@ impl IndexManager {
     }
     
     pub fn query(&self, query: &Query) -> Result<Vec<Record>, Error> {
-        // Optimizar query
+        // Optimize query
         let optimized_query = self.query_optimizer.optimize(query, &self.indexes)?;
         
-        // Ejecutar query usando índices apropiados
+        // Execute query using appropriate indexes
         let results = self.execute_optimized_query(&optimized_query)?;
         
         Ok(results)
@@ -735,7 +735,7 @@ impl IndexManager {
 
 #### **B+ Tree Index**
 ```rust
-// Índice B+ Tree optimizado
+// Optimized B+ Tree index
 pub struct BTreeIndex {
     pub root: Option<Box<BTreeNode>>,
     pub order: usize,
@@ -746,7 +746,7 @@ impl BTreeIndex {
     pub fn new(key_columns: Vec<String>) -> Self {
         BTreeIndex {
             root: None,
-            order: 100, // Orden del árbol
+            order: 100, // Tree order
             key_columns,
         }
     }
@@ -766,7 +766,7 @@ impl BTreeIndex {
             
             root.insert(key, value, self.order)?;
         } else {
-            // Crear nuevo nodo raíz
+            // Create new root node
             let mut new_root = BTreeNode::new_leaf();
             new_root.insert(key, value, self.order)?;
             self.root = Some(Box::new(new_root));
@@ -793,13 +793,13 @@ impl BTreeIndex {
 }
 ```
 
-## 🧹 Pruning Inteligente
+## 🧹 Intelligent Pruning
 
 ### **State Pruning**
 
 #### **Smart Pruning**
 ```rust
-// Sistema de pruning inteligente
+// Intelligent pruning system
 pub struct SmartPruning {
     pub pruning_config: PruningConfig,
     pub state_analyzer: StateAnalyzer,
@@ -816,19 +816,19 @@ impl SmartPruning {
     }
     
     pub async fn prune_state(&mut self) -> Result<PruningResult, Error> {
-        // Analizar estado actual
+        // Analyze current state
         let state_analysis = self.state_analyzer.analyze_state().await?;
         
-        // Determinar qué datos pueden ser eliminados
+        // Determine which data can be deleted
         let pruning_candidates = self.identify_pruning_candidates(&state_analysis)?;
         
-        // Verificar que el pruning es seguro
+        // Verify pruning safety
         self.verify_pruning_safety(&pruning_candidates).await?;
         
-        // Ejecutar pruning
+        // Execute pruning
         let pruning_result = self.pruning_executor.execute_pruning(&pruning_candidates).await?;
         
-        // Verificar integridad después del pruning
+        // Verify integrity after pruning
         self.verify_post_pruning_integrity().await?;
         
         Ok(pruning_result)
@@ -837,21 +837,21 @@ impl SmartPruning {
     fn identify_pruning_candidates(&self, analysis: &StateAnalysis) -> Result<Vec<PruningCandidate>, Error> {
         let mut candidates = Vec::new();
         
-        // Identificar bloques antiguos que pueden ser eliminados
+        // Identify old blocks that can be deleted
         for block in &analysis.old_blocks {
             if self.can_prune_block(block) {
                 candidates.push(PruningCandidate::Block(block.hash.clone()));
             }
         }
         
-        // Identificar transacciones confirmadas que pueden ser eliminadas
+        // Identify confirmed transactions that can be deleted
         for tx in &analysis.confirmed_transactions {
             if self.can_prune_transaction(tx) {
                 candidates.push(PruningCandidate::Transaction(tx.hash.clone()));
             }
         }
         
-        // Identificar estado obsoleto
+        // Identify obsolete state
         for state_key in &analysis.obsolete_state {
             if self.can_prune_state(state_key) {
                 candidates.push(PruningCandidate::State(state_key.clone()));
@@ -862,13 +862,13 @@ impl SmartPruning {
     }
     
     fn can_prune_block(&self, block: &Block) -> bool {
-        // Verificar que el bloque está suficientemente confirmado
+        // Verify that the block is sufficiently confirmed
         let confirmation_depth = self.get_confirmation_depth(block);
         
-        // Verificar que no hay referencias activas
+        // Verify that there are no active references
         let has_active_references = self.has_active_references(block);
         
-        // Verificar que está dentro del período de pruning
+        // Verify that it is within the pruning period
         let is_within_pruning_period = self.is_within_pruning_period(block);
         
         confirmation_depth >= self.pruning_config.min_confirmation_depth &&
@@ -878,13 +878,13 @@ impl SmartPruning {
 }
 ```
 
-## 🤖 Optimización con IA
+## 🤖 AI-Powered Optimization
 
 ### **AI-Powered Storage**
 
 #### **Storage Optimization**
 ```rust
-// Optimización de almacenamiento con IA
+// Storage optimization with AI
 pub struct StorageOptimizer {
     pub access_pattern_model: NeuralNetwork,
     pub compression_model: NeuralNetwork,
@@ -893,16 +893,16 @@ pub struct StorageOptimizer {
 
 impl StorageOptimizer {
     pub fn optimize_storage(&mut self) -> Result<OptimizationResult, Error> {
-        // Analizar patrones de acceso
+        // Analyze access patterns
         let access_patterns = self.analyze_access_patterns()?;
         
-        // Optimizar compresión
+        // Optimize compression
         let compression_optimization = self.optimize_compression(&access_patterns)?;
         
-        // Optimizar índices
+        // Optimize indexes
         let index_optimization = self.optimize_indexes(&access_patterns)?;
         
-        // Aplicar optimizaciones
+        // Apply optimizations
         self.apply_optimizations(&compression_optimization, &index_optimization)?;
         
         Ok(OptimizationResult {
@@ -937,13 +937,13 @@ impl StorageOptimizer {
 }
 ```
 
-## 📊 Analytics de Almacenamiento
+## 📊 Storage Analytics
 
 ### **Storage Metrics**
 
 #### **Performance Monitoring**
 ```rust
-// Monitoreo de rendimiento de almacenamiento
+// Storage performance monitoring
 pub struct StorageMonitor {
     pub metrics: StorageMetrics,
     pub performance_analyzer: PerformanceAnalyzer,
@@ -999,42 +999,42 @@ impl StorageMonitor {
 }
 ```
 
-## 🚀 Futuro del Almacenamiento
+## 🚀 Future of Storage
 
-### **Roadmap de Almacenamiento**
+### **Storage Roadmap**
 
-#### **Fase 1: Fundación** ✅
-- RocksDB optimizado
-- Caché TTL básico
-- Compresión estándar
-- Respaldos automáticos
+#### **Phase 1: Foundation** ✅
+- Optimized RocksDB
+- Basic TTL cache
+- Standard compression
+- Automatic backups
 
-#### **Fase 2: Avanzado** 🚧
-- IA integrada
-- Compresión adaptativa
-- Índices inteligentes
-- Pruning inteligente
+#### **Phase 2: Advanced** ��
+- AI integration
+- Adaptive compression
+- Intelligent indexes
+- Intelligent pruning
 
-#### **Fase 3: Revolucionario** 📋
-- Almacenamiento cuántico
-- Consciencia de datos
-- Auto-optimización
-- Almacenamiento universal
+#### **Phase 3: Revolutionary** 📋
+- Quantum storage
+- Data consciousness
+- Auto-optimization
+- Universal storage
 
-### **Innovaciones Futuras**
+### **Future Innovations**
 
-#### **Almacenamiento Cuántico**
-- **Memoria cuántica**
-- **Compresión cuántica**
-- **Índices cuánticos**
-- **Búsqueda cuántica**
+#### **Quantum Storage**
+- **Quantum memory**
+- **Quantum compression**
+- **Quantum indexes**
+- **Quantum search**
 
-#### **Consciencia de Datos**
-- **Auto-organización**
-- **Auto-compresión**
-- **Auto-indexación**
-- **Auto-optimización**
+#### **Data Consciousness**
+- **Auto-organization**
+- **Auto-compression**
+- **Auto-indexing**
+- **Auto-optimization**
 
 ---
 
-**RSC Chain Storage - Donde la eficiencia encuentra la inteligencia** 🚀✨
+**RSC Chain Storage - Where efficiency meets intelligence** 🚀✨

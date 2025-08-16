@@ -1,14 +1,14 @@
-# 🌐 Red P2P Avanzada
+# 🌐 Advanced P2P Network
 
-> **La red peer-to-peer más inteligente del mundo blockchain**
+> **The world's most intelligent blockchain peer-to-peer network**
 
-## 🌟 Visión General
+## 🌟 Overview
 
-RSC Chain implementa una **red P2P revolucionaria** que combina las mejores tecnologías de networking distribuido con inteligencia artificial para crear la red más eficiente, segura y escalable del mundo blockchain. Nuestra red integra **Kademlia DHT**, **protocolo Gossip**, **QUIC/Noise** y **análisis geográfico inteligente**.
+RSC Chain implements a **revolutionary P2P network** that combines the best distributed networking technologies with artificial intelligence to create the most efficient, secure, and scalable network in the blockchain world. Our network integrates **Kademlia DHT**, **Gossip protocol**, **QUIC/Noise**, and **intelligent geographic analysis**.
 
-## 🏗️ Arquitectura de Red
+## 🏗️ Network Architecture
 
-### **Capa de Red Multi-Protocolo**
+### **Multi-Protocol Network Layer**
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -40,11 +40,11 @@ RSC Chain implementa una **red P2P revolucionaria** que combina las mejores tecn
 
 ## 🔍 Kademlia DHT
 
-### **Implementación Kademlia**
+### **Kademlia Implementation**
 
-#### **Estructura de Nodos**
+#### **Node Structure**
 ```rust
-// Implementación de nodo Kademlia
+// Kademlia node implementation
 pub struct KademliaNode {
     pub node_id: NodeId,
     pub address: SocketAddr,
@@ -57,7 +57,7 @@ impl KademliaNode {
         KademliaNode {
             node_id,
             address,
-            buckets: vec![KBucket::new(); 160], // 160 bits para SHA-1
+            buckets: vec![KBucket::new(); 160], // 160 bits for SHA-1
             routing_table: RoutingTable::new(),
         }
     }
@@ -65,7 +65,7 @@ impl KademliaNode {
     pub fn find_node(&self, target_id: NodeId) -> Vec<NodeInfo> {
         let mut closest_nodes = self.routing_table.get_closest_nodes(target_id, 20);
         
-        // Ordenar por distancia XOR
+        // Sort by XOR distance
         closest_nodes.sort_by(|a, b| {
             let dist_a = a.node_id ^ target_id;
             let dist_b = b.node_id ^ target_id;
@@ -99,7 +99,7 @@ impl KademliaNode {
 
 #### **KBucket Implementation**
 ```rust
-// Implementación de KBucket
+// KBucket implementation
 pub struct KBucket {
     pub nodes: Vec<NodeInfo>,
     pub last_seen: HashMap<NodeId, Instant>,
@@ -111,33 +111,33 @@ impl KBucket {
         KBucket {
             nodes: Vec::new(),
             last_seen: HashMap::new(),
-            max_size: 20, // Tamaño estándar de Kademlia
+            max_size: 20, // Standard Kademlia size
         }
     }
     
     pub fn add_node(&mut self, node: NodeInfo) -> bool {
-        // Verificar si el nodo ya existe
+        // Check if node already exists
         if let Some(index) = self.nodes.iter().position(|n| n.node_id == node.node_id) {
-            // Mover al final (LRU)
+            // Move to end (LRU)
             let node = self.nodes.remove(index);
             self.nodes.push(node);
             self.last_seen.insert(node.node_id, Instant::now());
             return true;
         }
         
-        // Si el bucket está lleno, verificar nodos inactivos
+        // If bucket is full, check inactive nodes
         if self.nodes.len() >= self.max_size {
             if let Some(inactive_node) = self.find_inactive_node() {
-                // Reemplazar nodo inactivo
+                // Replace inactive node
                 let index = self.nodes.iter().position(|n| n.node_id == inactive_node.node_id).unwrap();
                 self.nodes[index] = node;
                 self.last_seen.insert(node.node_id, Instant::now());
                 return true;
             }
-            return false; // No se puede agregar
+            return false; // Cannot add
         }
         
-        // Agregar nuevo nodo
+        // Add new node
         self.nodes.push(node.clone());
         self.last_seen.insert(node.node_id, Instant::now());
         true
@@ -145,7 +145,7 @@ impl KBucket {
     
     fn find_inactive_node(&self) -> Option<&NodeInfo> {
         let now = Instant::now();
-        let timeout = Duration::from_secs(3600); // 1 hora
+        let timeout = Duration::from_secs(3600); // 1 hour
         
         self.nodes.iter().find(|node| {
             if let Some(last_seen) = self.last_seen.get(&node.node_id) {
@@ -162,7 +162,7 @@ impl KBucket {
 
 #### **Bootstrap Process**
 ```rust
-// Proceso de bootstrap
+// Bootstrap process
 pub struct Bootstrap {
     pub bootstrap_nodes: Vec<SocketAddr>,
     pub node: KademliaNode,
@@ -170,20 +170,20 @@ pub struct Bootstrap {
 
 impl Bootstrap {
     pub async fn bootstrap(&mut self) -> Result<(), Error> {
-        // Conectar a nodos bootstrap
+        // Connect to bootstrap nodes
         for bootstrap_addr in &self.bootstrap_nodes {
             if let Ok(connection) = self.connect_to_node(*bootstrap_addr).await {
-                // Encontrar nodos cercanos
+                // Find nearby nodes
                 let closest_nodes = self.find_closest_nodes(connection).await?;
                 
-                // Agregar nodos a la tabla de routing
+                // Add nodes to routing table
                 for node_info in closest_nodes {
                     self.node.routing_table.add_node(node_info);
                 }
             }
         }
         
-        // Realizar búsqueda de nodos cercanos
+        // Perform search for nearby nodes
         self.find_closest_nodes_to_self().await?;
         
         Ok(())
@@ -220,11 +220,11 @@ impl Bootstrap {
 
 ## 📢 Protocolo Gossip
 
-### **Implementación Gossip**
+### **Gossip Implementation**
 
 #### **Gossip Protocol**
 ```rust
-// Implementación del protocolo Gossip
+// Gossip protocol implementation
 pub struct GossipProtocol {
     pub node_id: NodeId,
     pub peers: HashMap<NodeId, PeerInfo>,
@@ -325,11 +325,11 @@ impl GossipMessage {
 
 ## 🔒 QUIC/Noise Protocol
 
-### **Implementación QUIC**
+### **QUIC Implementation**
 
 #### **QUIC Connection**
 ```rust
-// Implementación de conexión QUIC
+// QUIC connection implementation
 pub struct QuicConnection {
     pub connection: quinn::Connection,
     pub streams: HashMap<StreamId, QuicStream>,
@@ -377,7 +377,7 @@ impl QuicConnection {
 
 #### **Noise Protocol**
 ```rust
-// Implementación de Noise Protocol
+// Noise Protocol implementation
 pub struct NoiseProtocol {
     pub handshake_state: Option<HandshakeState>,
     pub transport_state: Option<TransportState>,
@@ -442,7 +442,7 @@ impl NoiseProtocol {
 }
 ```
 
-## 🌍 Análisis Geográfico
+## 🌍 Geographic Analysis
 
 ### **Geographic Optimization**
 
@@ -617,13 +617,13 @@ impl IntelligentLoadBalancer {
 }
 ```
 
-## 📊 Monitoreo de Red
+## 📊 Network Monitoring
 
 ### **Network Metrics**
 
 #### **Performance Monitoring**
 ```rust
-// Monitoreo de rendimiento de red
+// Network performance monitoring
 pub struct NetworkMonitor {
     pub metrics: NetworkMetrics,
     pub health_checker: HealthChecker,
@@ -677,7 +677,7 @@ impl NetworkMonitor {
 
 #### **Peer Health Monitoring**
 ```rust
-// Monitoreo de salud de peers
+// Peer health monitoring
 pub struct PeerHealthMonitor {
     pub health_scores: HashMap<NodeId, f64>,
     pub last_seen: HashMap<NodeId, Instant>,
@@ -715,7 +715,7 @@ impl PeerHealthMonitor {
 }
 ```
 
-## 🚀 Futuro de la Red P2P
+## 🚀 Future of P2P Network
 
 ### **Roadmap de Red**
 
@@ -726,10 +726,10 @@ impl PeerHealthMonitor {
 - Peer discovery
 
 #### **Fase 2: Avanzado** 🚧
-- Análisis geográfico
+        - Geographic analysis
 - IA integrada
 - Optimización dinámica
-- Monitoreo avanzado
+        - Advanced monitoring
 
 #### **Fase 3: Revolucionario** 📋
 - Red cuántica
@@ -743,7 +743,7 @@ impl PeerHealthMonitor {
 - **Entrelazamiento cuántico**
 - **Comunicación cuántica**
 - **Routing cuántico**
-- **Seguridad cuántica**
+        - **Quantum security**
 
 #### **Consciencia de Red**
 - **Auto-conocimiento**

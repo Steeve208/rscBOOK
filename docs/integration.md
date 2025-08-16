@@ -1,52 +1,52 @@
-# Integración con RSC Chain
+# RSC Chain Integration
 
-## Visión General
+## Overview
 
-RSC Chain proporciona múltiples opciones de integración para conectar aplicaciones, servicios y plataformas con la blockchain. Nuestras herramientas de integración están diseñadas para ser flexibles, seguras y fáciles de usar, permitiendo una adopción rápida y eficiente.
+RSC Chain provides multiple integration options to connect applications, services, and platforms with the blockchain. Our integration tools are designed to be flexible, secure, and easy to use, enabling rapid and efficient adoption.
 
-## Arquitectura de Integración
+## Integration Architecture
 
-### Componentes de Integración
+### Integration Components
 
 ```rust
-// Arquitectura de integración de RSC Chain
+// RSC Chain integration architecture
 pub struct IntegrationArchitecture {
-    pub api_gateway: APIGateway,           // Puerta de entrada principal
-    pub webhook_system: WebhookSystem,     // Sistema de notificaciones
-    pub sdk_libraries: Vec<SDKLibrary>,    // Bibliotecas de desarrollo
-    pub bridge_connectors: Vec<Bridge>,    // Conectores de puente
-    pub oracle_network: OracleNetwork,     // Red de oráculos
-    pub event_stream: EventStream,         // Flujo de eventos
+    pub api_gateway: APIGateway,           // Main entry point
+    pub webhook_system: WebhookSystem,     // Notification system
+    pub sdk_libraries: Vec<SDKLibrary>,    // Development libraries
+    pub bridge_connectors: Vec<Bridge>,    // Bridge connectors
+    pub oracle_network: OracleNetwork,     // Oracle network
+    pub event_stream: EventStream,         // Event stream
 }
 ```
 
-### Capas de Integración
+### Integration Layers
 
 ```rust
-// Capas de integración disponibles
+// Available integration layers
 pub enum IntegrationLayer {
-    // Capa de aplicación
+    // Application layer
     Application {
         rest_api: RESTAPI,
         graphql_api: GraphQLAPI,
         websocket_api: WebSocketAPI,
     },
     
-    // Capa de protocolo
+    // Protocol layer
     Protocol {
         json_rpc: JSONRPC,
         grpc: gRPC,
         http2: HTTP2,
     },
     
-    // Capa de transporte
+    // Transport layer
     Transport {
         tcp: TCP,
         udp: UDP,
         quic: QUIC,
     },
     
-    // Capa de seguridad
+    // Security layer
     Security {
         tls: TLS,
         authentication: Authentication,
@@ -55,12 +55,12 @@ pub enum IntegrationLayer {
 }
 ```
 
-## APIs de Integración
+## Integration APIs
 
 ### REST API
 
 ```rust
-// Endpoints principales de la REST API
+// Main REST API endpoints
 pub struct RESTAPI {
     pub base_url: String,
     pub version: String,
@@ -78,18 +78,18 @@ pub struct APIEndpoint {
     pub examples: Vec<Example>,
 }
 
-// Ejemplos de endpoints
+// Endpoint examples
 impl RESTAPI {
     pub fn get_blockchain_status(&self) -> APIEndpoint {
         APIEndpoint {
             path: "/api/v1/blockchain/status".to_string(),
             method: HTTPMethod::GET,
-            description: "Obtener estado actual de la blockchain".to_string(),
+            description: "Get current blockchain status".to_string(),
             parameters: vec![],
             responses: vec![
                 Response {
                     code: 200,
-                    description: "Estado de la blockchain".to_string(),
+                    description: "Blockchain status".to_string(),
                     schema: "BlockchainStatus".to_string(),
                 }
             ],
@@ -113,36 +113,36 @@ Authorization: Bearer YOUR_API_KEY"#.to_string(),
         APIEndpoint {
             path: "/api/v1/transactions".to_string(),
             method: HTTPMethod::POST,
-            description: "Crear una nueva transacción".to_string(),
+            description: "Create a new transaction".to_string(),
             parameters: vec![
                 Parameter {
                     name: "from".to_string(),
                     type_: "string".to_string(),
                     required: true,
-                    description: "Dirección del remitente".to_string(),
+                    description: "Sender address".to_string(),
                 },
                 Parameter {
                     name: "to".to_string(),
                     type_: "string".to_string(),
                     required: true,
-                    description: "Dirección del destinatario".to_string(),
+                    description: "Recipient address".to_string(),
                 },
                 Parameter {
                     name: "amount".to_string(),
                     type_: "string".to_string(),
                     required: true,
-                    description: "Cantidad a transferir en wei".to_string(),
+                    description: "Amount to transfer in wei".to_string(),
                 },
             ],
             responses: vec![
                 Response {
                     code: 201,
-                    description: "Transacción creada exitosamente".to_string(),
+                    description: "Transaction created successfully".to_string(),
                     schema: "Transaction".to_string(),
                 },
                 Response {
                     code: 400,
-                    description: "Datos de transacción inválidos".to_string(),
+                    description: "Invalid transaction data".to_string(),
                     schema: "Error".to_string(),
                 },
             ],
@@ -176,7 +176,7 @@ Authorization: Bearer YOUR_API_KEY
 ### WebSocket API
 
 ```rust
-// API WebSocket para eventos en tiempo real
+// WebSocket API for real-time events
 pub struct WebSocketAPI {
     pub endpoint: String,
     pub protocols: Vec<String>,
@@ -195,7 +195,7 @@ impl WebSocketAPI {
     pub fn new_block_event(&self) -> WebSocketEvent {
         WebSocketEvent {
             name: "new_block".to_string(),
-            description: "Emitido cuando se mina un nuevo bloque".to_string(),
+            description: "Emitted when a new block is mined".to_string(),
             payload_schema: "Block".to_string(),
             subscription_method: "subscribe_blocks".to_string(),
         }
@@ -204,7 +204,7 @@ impl WebSocketAPI {
     pub fn transaction_confirmed_event(&self) -> WebSocketEvent {
         WebSocketEvent {
             name: "transaction_confirmed".to_string(),
-            description: "Emitido cuando una transacción es confirmada".to_string(),
+            description: "Emitted when a transaction is confirmed".to_string(),
             payload_schema: "Transaction".to_string(),
             subscription_method: "subscribe_transactions".to_string(),
         }
@@ -213,21 +213,21 @@ impl WebSocketAPI {
     pub fn price_update_event(&self) -> WebSocketEvent {
         WebSocketEvent {
             name: "price_update".to_string(),
-            description: "Actualización de precios de tokens".to_string(),
+            description: "Price updates for tokens".to_string(),
             payload_schema: "PriceUpdate".to_string(),
             subscription_method: "subscribe_prices".to_string(),
         }
     }
 }
 
-// Ejemplo de uso WebSocket
+// WebSocket example usage
 pub fn websocket_example() {
     let ws_url = "wss://api.rsc-chain.com/ws";
     
-    // Conectar al WebSocket
+    // Connect to WebSocket
     let mut ws = WebSocket::connect(ws_url).await?;
     
-    // Suscribirse a eventos de bloques
+    // Subscribe to block events
     let subscribe_msg = json!({
         "method": "subscribe_blocks",
         "params": {},
@@ -235,7 +235,7 @@ pub fn websocket_example() {
     });
     ws.send(Message::Text(subscribe_msg.to_string())).await?;
     
-    // Escuchar eventos
+    // Listen for events
     while let Some(msg) = ws.next().await {
         match msg {
             Ok(Message::Text(text)) => {
@@ -243,11 +243,11 @@ pub fn websocket_example() {
                 match event.name.as_str() {
                     "new_block" => {
                         let block: Block = serde_json::from_value(event.payload)?;
-                        println!("Nuevo bloque: {}", block.hash);
+                        println!("New block: {}", block.hash);
                     },
                     "transaction_confirmed" => {
                         let tx: Transaction = serde_json::from_value(event.payload)?;
-                        println!("Transacción confirmada: {}", tx.hash);
+                        println!("Transaction confirmed: {}", tx.hash);
                     },
                     _ => {}
                 }
@@ -261,7 +261,7 @@ pub fn websocket_example() {
 ### GraphQL API
 
 ```rust
-// API GraphQL para consultas complejas
+// GraphQL API for complex queries
 pub struct GraphQLAPI {
     pub endpoint: String,
     pub schema: GraphQLSchema,
@@ -276,7 +276,7 @@ pub struct GraphQLSchema {
     pub subscriptions: Vec<Subscription>,
 }
 
-// Ejemplo de schema GraphQL
+// GraphQL schema example
 impl GraphQLAPI {
     pub fn blockchain_schema(&self) -> GraphQLSchema {
         GraphQLSchema {
@@ -304,7 +304,7 @@ impl GraphQLAPI {
             queries: vec![
                 Query {
                     name: "block".to_string(),
-                    description: "Obtener bloque por hash o altura".to_string(),
+                    description: "Get block by hash or height".to_string(),
                     arguments: vec![
                         Argument { name: "hash".to_string(), type_: "String".to_string() },
                         Argument { name: "height".to_string(), type_: "Int".to_string() },
@@ -313,7 +313,7 @@ impl GraphQLAPI {
                 },
                 Query {
                     name: "transaction".to_string(),
-                    description: "Obtener transacción por hash".to_string(),
+                    description: "Get transaction by hash".to_string(),
                     arguments: vec![
                         Argument { name: "hash".to_string(), type_: "String!".to_string() },
                     ],
@@ -323,7 +323,7 @@ impl GraphQLAPI {
             mutations: vec![
                 Mutation {
                     name: "sendTransaction".to_string(),
-                    description: "Enviar una nueva transacción".to_string(),
+                    description: "Send a new transaction".to_string(),
                     arguments: vec![
                         Argument { name: "from".to_string(), type_: "String!".to_string() },
                         Argument { name: "to".to_string(), type_: "String!".to_string() },
@@ -335,7 +335,7 @@ impl GraphQLAPI {
             subscriptions: vec![
                 Subscription {
                     name: "newBlock".to_string(),
-                    description: "Suscribirse a nuevos bloques".to_string(),
+                    description: "Subscribe to new blocks".to_string(),
                     return_type: "Block".to_string(),
                 },
             ],
@@ -343,7 +343,7 @@ impl GraphQLAPI {
     }
 }
 
-// Ejemplo de consulta GraphQL
+// GraphQL example query
 pub fn graphql_example() {
     let query = r#"
         query GetBlock($hash: String!) {
@@ -367,16 +367,16 @@ pub fn graphql_example() {
     });
     
     let response = graphql_client.query(query, variables).await?;
-    println!("Bloque: {:?}", response.data);
+    println!("Block: {:?}", response.data);
 }
 ```
 
-## SDKs y Bibliotecas
+## SDKs and Libraries
 
 ### JavaScript/TypeScript SDK
 
 ```typescript
-// SDK de JavaScript/TypeScript
+// JavaScript/TypeScript SDK
 import { RSCChain } from '@rsc-chain/sdk';
 
 class RSCChainSDK {
@@ -390,7 +390,7 @@ class RSCChainSDK {
         });
     }
     
-    // Gestión de wallets
+    // Wallet management
     async createWallet(): Promise<Wallet> {
         return await this.client.wallet.create();
     }
@@ -403,7 +403,7 @@ class RSCChainSDK {
         return await this.client.wallet.getBalance(address);
     }
     
-    // Transacciones
+    // Transactions
     async sendTransaction(tx: TransactionRequest): Promise<Transaction> {
         return await this.client.transactions.send(tx);
     }
@@ -425,7 +425,7 @@ class RSCChainSDK {
         return await this.client.contracts.call(contract, method, params);
     }
     
-    // Eventos
+    // Events
     async subscribeToEvents(eventType: string, callback: EventCallback): Promise<Subscription> {
         return await this.client.events.subscribe(eventType, callback);
     }
@@ -435,14 +435,14 @@ class RSCChainSDK {
     }
 }
 
-// Ejemplo de uso del SDK
+// SDK example usage
 const sdk = new RSCChainSDK({
     endpoint: 'https://api.rsc-chain.com',
     apiKey: 'your-api-key',
     network: 'mainnet'
 });
 
-// Crear wallet y enviar transacción
+// Create wallet and send transaction
 const wallet = await sdk.createWallet();
 const tx = await sdk.sendTransaction({
     from: wallet.address,
@@ -451,17 +451,17 @@ const tx = await sdk.sendTransaction({
     gas: '21000'
 });
 
-console.log('Transacción enviada:', tx.hash);
+console.log('Transaction sent:', tx.hash);
 
-// Esperar confirmación
+// Wait for confirmation
 const confirmedTx = await sdk.waitForConfirmation(tx.hash);
-console.log('Transacción confirmada:', confirmedTx);
+console.log('Transaction confirmed:', confirmedTx);
 ```
 
 ### Python SDK
 
 ```python
-# SDK de Python
+# Python SDK
 from rsc_chain import RSCChain, Wallet, Transaction
 from typing import Optional, List, Dict, Any
 
@@ -473,62 +473,62 @@ class RSCChainPythonSDK:
             network=config['network']
         )
     
-    # Gestión de wallets
+    # Wallet management
     def create_wallet(self) -> Wallet:
-        """Crear una nueva wallet"""
+        """Create a new wallet"""
         return self.client.wallet.create()
     
     def import_wallet(self, private_key: str) -> Wallet:
-        """Importar wallet desde clave privada"""
+        """Import wallet from private key"""
         return self.client.wallet.import(private_key)
     
     def get_balance(self, address: str) -> Dict[str, Any]:
-        """Obtener balance de una dirección"""
+        """Get balance of an address"""
         return self.client.wallet.get_balance(address)
     
-    # Transacciones
+    # Transactions
     def send_transaction(self, tx_data: Dict[str, Any]) -> Transaction:
-        """Enviar una transacción"""
+        """Send a transaction"""
         return self.client.transactions.send(tx_data)
     
     def get_transaction(self, tx_hash: str) -> Transaction:
-        """Obtener transacción por hash"""
+        """Get transaction by hash"""
         return self.client.transactions.get(tx_hash)
     
     def wait_for_confirmation(self, tx_hash: str, confirmations: int = 1) -> Transaction:
-        """Esperar confirmación de transacción"""
+        """Wait for transaction confirmation"""
         return self.client.transactions.wait_for_confirmation(tx_hash, confirmations)
     
     # Smart Contracts
     def deploy_contract(self, contract_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Desplegar smart contract"""
+        """Deploy smart contract"""
         return self.client.contracts.deploy(contract_data)
     
     def call_contract(self, contract_address: str, method: str, params: List[Any]) -> Any:
-        """Llamar método de smart contract"""
+        """Call smart contract method"""
         return self.client.contracts.call(contract_address, method, params)
     
-    # Eventos
+    # Events
     def subscribe_to_events(self, event_type: str, callback) -> str:
-        """Suscribirse a eventos"""
+        """Subscribe to events"""
         return self.client.events.subscribe(event_type, callback)
     
     def unsubscribe(self, subscription_id: str) -> None:
-        """Cancelar suscripción"""
+        """Cancel subscription"""
         self.client.events.unsubscribe(subscription_id)
 
-# Ejemplo de uso
+# SDK example usage
 sdk = RSCChainPythonSDK({
     'endpoint': 'https://api.rsc-chain.com',
     'api_key': 'your-api-key',
     'network': 'mainnet'
 })
 
-# Crear wallet
+# Create wallet
 wallet = sdk.create_wallet()
-print(f"Wallet creada: {wallet.address}")
+print(f"Wallet created: {wallet.address}")
 
-# Enviar transacción
+# Send transaction
 tx = sdk.send_transaction({
     'from': wallet.address,
     'to': '0x1234567890123456789012345678901234567890',
@@ -536,17 +536,17 @@ tx = sdk.send_transaction({
     'gas': '21000'
 })
 
-print(f"Transacción enviada: {tx.hash}")
+print(f"Transaction sent: {tx.hash}")
 
-# Esperar confirmación
+# Wait for confirmation
 confirmed_tx = sdk.wait_for_confirmation(tx.hash)
-print(f"Transacción confirmada: {confirmed_tx}")
+print(f"Transaction confirmed: {confirmed_tx}")
 ```
 
 ### Rust SDK
 
 ```rust
-// SDK de Rust
+// Rust SDK
 use rsc_chain_sdk::{RSCChain, Config, Wallet, Transaction, Error};
 use async_trait::async_trait;
 
@@ -560,7 +560,7 @@ impl RSCChainRustSDK {
         Ok(Self { client })
     }
     
-    // Gestión de wallets
+    // Wallet management
     pub async fn create_wallet(&self) -> Result<Wallet, Error> {
         self.client.wallet().create().await
     }
@@ -573,7 +573,7 @@ impl RSCChainRustSDK {
         self.client.wallet().get_balance(address).await
     }
     
-    // Transacciones
+    // Transactions
     pub async fn send_transaction(&self, tx: TransactionRequest) -> Result<Transaction, Error> {
         self.client.transactions().send(tx).await
     }
@@ -595,13 +595,13 @@ impl RSCChainRustSDK {
         self.client.contracts().call(contract, method, params).await
     }
     
-    // Eventos
+    // Events
     pub async fn subscribe_to_events(&self, event_type: &str) -> Result<EventStream, Error> {
         self.client.events().subscribe(event_type).await
     }
 }
 
-// Ejemplo de uso
+// SDK example usage
 #[tokio::main]
 async fn main() -> Result<(), Error> {
     let config = Config::new()
@@ -611,11 +611,11 @@ async fn main() -> Result<(), Error> {
     
     let sdk = RSCChainRustSDK::new(config)?;
     
-    // Crear wallet
+    // Create wallet
     let wallet = sdk.create_wallet().await?;
-    println!("Wallet creada: {}", wallet.address());
+    println!("Wallet created: {}", wallet.address());
     
-    // Enviar transacción
+    // Send transaction
     let tx_request = TransactionRequest::new()
         .from(wallet.address())
         .to("0x1234567890123456789012345678901234567890")
@@ -623,11 +623,11 @@ async fn main() -> Result<(), Error> {
         .gas("21000");
     
     let tx = sdk.send_transaction(tx_request).await?;
-    println!("Transacción enviada: {}", tx.hash());
+    println!("Transaction sent: {}", tx.hash());
     
-    // Esperar confirmación
+    // Wait for confirmation
     let confirmed_tx = sdk.wait_for_confirmation(&tx.hash(), 1).await?;
-    println!("Transacción confirmada: {}", confirmed_tx.hash());
+    println!("Transaction confirmed: {}", confirmed_tx.hash());
     
     Ok(())
 }
@@ -635,10 +635,10 @@ async fn main() -> Result<(), Error> {
 
 ## Webhooks
 
-### Configuración de Webhooks
+### Webhook Configuration
 
 ```rust
-// Sistema de webhooks
+// Webhook system
 pub struct WebhookSystem {
     pub endpoints: Vec<WebhookEndpoint>,
     pub events: Vec<WebhookEvent>,
@@ -665,10 +665,10 @@ pub struct WebhookEvent {
 
 impl WebhookSystem {
     pub async fn register_endpoint(&mut self, endpoint: WebhookEndpoint) -> Result<(), WebhookError> {
-        // Validar URL
+        // Validate URL
         self.validate_url(&endpoint.url)?;
         
-        // Generar secret si no se proporciona
+        // Generate secret if not provided
         let secret = if endpoint.secret.is_empty() {
             self.generate_secret()
         } else {
@@ -693,7 +693,7 @@ impl WebhookSystem {
             ..event
         };
         
-        // Enviar a todos los endpoints suscritos
+        // Send to all subscribed endpoints
         for endpoint in &self.endpoints {
             if endpoint.events.contains(&webhook_event.type_) {
                 self.send_to_endpoint(endpoint, &webhook_event).await?;
@@ -723,35 +723,35 @@ impl WebhookSystem {
     }
 }
 
-// Tipos de eventos de webhook
+// Webhook event types
 pub enum WebhookEventType {
-    // Eventos de blockchain
+    // Blockchain events
     BlockMined,
     TransactionConfirmed,
     TransactionFailed,
     
-    // Eventos de wallet
+    // Wallet events
     WalletCreated,
     BalanceChanged,
     
-    // Eventos de smart contract
+    // Smart contract events
     ContractDeployed,
     ContractEvent,
     
-    // Eventos de red
+    // Network events
     PeerConnected,
     PeerDisconnected,
     
-    // Eventos de seguridad
+    // Security events
     SecurityAlert,
     SuspiciousActivity,
 }
 ```
 
-### Ejemplo de Webhook
+### Webhook Example
 
 ```python
-# Ejemplo de servidor webhook
+# Webhook example server
 from flask import Flask, request, jsonify
 import hmac
 import hashlib
@@ -762,7 +762,7 @@ app = Flask(__name__)
 WEBHOOK_SECRET = "your-webhook-secret"
 
 def verify_signature(payload, signature):
-    """Verificar firma del webhook"""
+    """Verify webhook signature"""
     expected_signature = hmac.new(
         WEBHOOK_SECRET.encode('utf-8'),
         payload.encode('utf-8'),
@@ -773,16 +773,16 @@ def verify_signature(payload, signature):
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    # Obtener datos del webhook
+    # Get webhook data
     payload = request.get_data(as_text=True)
     signature = request.headers.get('X-RSC-Signature')
     event_type = request.headers.get('X-RSC-Event')
     
-    # Verificar firma
+    # Verify signature
     if not verify_signature(payload, signature):
         return jsonify({'error': 'Invalid signature'}), 401
     
-    # Procesar evento
+    # Process event
     event_data = json.loads(payload)
     
     if event_type == 'block.mined':
@@ -795,32 +795,32 @@ def webhook():
     return jsonify({'status': 'success'}), 200
 
 def handle_block_mined(data):
-    """Manejar evento de bloque minado"""
-    print(f"Nuevo bloque minado: {data['hash']}")
-    print(f"Altura: {data['height']}")
-    print(f"Transacciones: {len(data['transactions'])}")
+    """Handle block mined event"""
+    print(f"New block mined: {data['hash']}")
+    print(f"Height: {data['height']}")
+    print(f"Transactions: {len(data['transactions'])}")
 
 def handle_transaction_confirmed(data):
-    """Manejar evento de transacción confirmada"""
-    print(f"Transacción confirmada: {data['hash']}")
-    print(f"De: {data['from']}")
-    print(f"Para: {data['to']}")
-    print(f"Monto: {data['amount']}")
+    """Handle transaction confirmed event"""
+    print(f"Transaction confirmed: {data['hash']}")
+    print(f"From: {data['from']}")
+    print(f"To: {data['to']}")
+    print(f"Amount: {data['amount']}")
 
 def handle_wallet_created(data):
-    """Manejar evento de wallet creada"""
-    print(f"Nueva wallet creada: {data['address']}")
+    """Handle wallet created event"""
+    print(f"New wallet created: {data['address']}")
 
 if __name__ == '__main__':
     app.run(port=5000)
 ```
 
-## Puentes (Bridges)
+## Bridges
 
-### Puente Ethereum
+### Ethereum Bridge
 
 ```rust
-// Puente con Ethereum
+// Ethereum bridge
 pub struct EthereumBridge {
     pub ethereum_client: Web3<Http>,
     pub rsc_client: RSCChainClient,
@@ -830,16 +830,16 @@ pub struct EthereumBridge {
 
 impl EthereumBridge {
     pub async fn lock_eth(&self, amount: U256, recipient: Address) -> Result<TxHash, BridgeError> {
-        // 1. Bloquear ETH en Ethereum
+        // 1. Lock ETH on Ethereum
         let lock_tx = self.bridge_contract
             .method("lock", (amount, recipient))?
             .send()
             .await?;
         
-        // 2. Esperar confirmación en Ethereum
+        // 2. Wait for Ethereum confirmation
         let receipt = lock_tx.await?;
         
-        // 3. Emitir tokens RSC en RSC Chain
+        // 3. Mint RSC tokens on RSC Chain
         let mint_tx = self.rsc_client
             .mint_bridged_tokens(amount, recipient)
             .await?;
@@ -848,12 +848,12 @@ impl EthereumBridge {
     }
     
     pub async fn unlock_eth(&self, amount: U256, recipient: Address) -> Result<TxHash, BridgeError> {
-        // 1. Quemar tokens RSC
+        // 1. Burn RSC tokens
         let burn_tx = self.rsc_client
             .burn_bridged_tokens(amount, recipient)
             .await?;
         
-        // 2. Desbloquear ETH en Ethereum
+        // 2. Unlock ETH on Ethereum
         let unlock_tx = self.bridge_contract
             .method("unlock", (amount, recipient))?
             .send()
@@ -863,7 +863,7 @@ impl EthereumBridge {
     }
     
     pub async fn validate_transfer(&self, transfer: BridgeTransfer) -> Result<bool, BridgeError> {
-        // Validar transferencia con validadores
+        // Validate transfer with validators
         let mut validations = 0;
         let required_validations = (self.validators.len() * 2) / 3 + 1;
         
@@ -878,10 +878,10 @@ impl EthereumBridge {
 }
 ```
 
-### Puente Bitcoin
+### Bitcoin Bridge
 
 ```rust
-// Puente con Bitcoin
+// Bitcoin bridge
 pub struct BitcoinBridge {
     pub bitcoin_client: BitcoinClient,
     pub rsc_client: RSCChainClient,
@@ -891,18 +891,18 @@ pub struct BitcoinBridge {
 
 impl BitcoinBridge {
     pub async fn lock_btc(&self, amount: u64, recipient: Address) -> Result<TxHash, BridgeError> {
-        // 1. Crear dirección multisig
+        // 1. Create multisig address
         let multisig_address = self.multisig_wallet.create_address().await?;
         
-        // 2. Enviar BTC a dirección multisig
+        // 2. Send BTC to multisig address
         let btc_tx = self.bitcoin_client
             .send_to_address(multisig_address, amount)
             .await?;
         
-        // 3. Esperar confirmaciones de Bitcoin
+        // 3. Wait for Bitcoin confirmations
         self.bitcoin_client.wait_for_confirmations(&btc_tx, 6).await?;
         
-        // 4. Emitir tokens RSC
+        // 4. Mint RSC tokens
         let mint_tx = self.rsc_client
             .mint_bridged_tokens(amount, recipient)
             .await?;
@@ -911,12 +911,12 @@ impl BitcoinBridge {
     }
     
     pub async fn unlock_btc(&self, amount: u64, recipient: String) -> Result<TxHash, BridgeError> {
-        // 1. Quemar tokens RSC
+        // 1. Burn RSC tokens
         let burn_tx = self.rsc_client
             .burn_bridged_tokens(amount, recipient.clone())
             .await?;
         
-        // 2. Enviar BTC desde multisig
+        // 2. Send BTC from multisig
         let btc_tx = self.multisig_wallet
             .send_bitcoin(amount, recipient)
             .await?;
@@ -926,12 +926,12 @@ impl BitcoinBridge {
 }
 ```
 
-## Oráculos
+## Oracles
 
-### Red de Oráculos
+### Decentralized Oracle Network
 
 ```rust
-// Sistema de oráculos descentralizados
+// Decentralized oracle network
 pub struct OracleNetwork {
     pub oracles: Vec<Oracle>,
     pub data_sources: Vec<DataSource>,
@@ -961,14 +961,14 @@ impl OracleNetwork {
     pub async fn get_price(&self, asset: &str) -> Result<Price, OracleError> {
         let mut prices = Vec::new();
         
-        // Obtener precios de múltiples oráculos
+        // Get prices from multiple oracles
         for oracle in &self.oracles {
             if let Ok(price) = oracle.get_price(asset).await {
                 prices.push(price);
             }
         }
         
-        // Agregar precios usando método de consenso
+        // Aggregate prices using consensus method
         self.aggregate_prices(prices)
     }
     
@@ -1001,11 +1001,11 @@ impl OracleNetwork {
             return Err(OracleError::NoDataAvailable);
         }
         
-        // Ordenar precios
+        // Sort prices
         let mut sorted_prices: Vec<f64> = prices.iter().map(|p| p.value).collect();
         sorted_prices.sort_by(|a, b| a.partial_cmp(b).unwrap());
         
-        // Calcular mediana (resistente a outliers)
+        // Calculate median (resistant to outliers)
         let median = if sorted_prices.len() % 2 == 0 {
             let mid = sorted_prices.len() / 2;
             (sorted_prices[mid - 1] + sorted_prices[mid]) / 2.0
@@ -1023,12 +1023,12 @@ impl OracleNetwork {
 }
 ```
 
-## Herramientas de Integración
+## Integration Tools
 
 ### CLI Tool
 
 ```rust
-// Herramienta de línea de comandos
+// Command line tool
 use clap::{App, Arg, SubCommand};
 
 pub struct RSCChainCLI {
@@ -1046,34 +1046,34 @@ impl RSCChainCLI {
             .version("1.0")
             .about("RSC Chain Command Line Interface")
             .subcommand(SubCommand::with_name("wallet")
-                .about("Gestión de wallets")
+                .about("Wallet management")
                 .subcommand(SubCommand::with_name("create")
-                    .about("Crear nueva wallet"))
+                    .about("Create new wallet"))
                 .subcommand(SubCommand::with_name("balance")
-                    .about("Obtener balance")
+                    .about("Get balance")
                     .arg(Arg::with_name("address")
                         .required(true)
-                        .help("Dirección de la wallet"))))
+                        .help("Wallet address"))))
             .subcommand(SubCommand::with_name("transaction")
-                .about("Gestión de transacciones")
+                .about("Transaction management")
                 .subcommand(SubCommand::with_name("send")
-                    .about("Enviar transacción")
+                    .about("Send transaction")
                     .arg(Arg::with_name("from")
                         .required(true)
-                        .help("Dirección del remitente"))
+                        .help("Sender address"))
                     .arg(Arg::with_name("to")
                         .required(true)
-                        .help("Dirección del destinatario"))
+                        .help("Recipient address"))
                     .arg(Arg::with_name("amount")
                         .required(true)
-                        .help("Cantidad a enviar"))))
+                        .help("Amount to send"))))
             .subcommand(SubCommand::with_name("block")
-                .about("Información de bloques")
+                .about("Block information")
                 .subcommand(SubCommand::with_name("info")
-                    .about("Información del bloque")
+                    .about("Block info")
                     .arg(Arg::with_name("hash")
                         .required(true)
-                        .help("Hash del bloque"))));
+                        .help("Block hash"))));
         
         let matches = app.get_matches();
         
@@ -1084,7 +1084,7 @@ impl RSCChainCLI {
                 match wallet_matches.subcommand() {
                     ("create", Some(_)) => {
                         let wallet = cli.client.create_wallet().await?;
-                        println!("Wallet creada: {}", wallet.address());
+                        println!("Wallet created: {}", wallet.address());
                     },
                     ("balance", Some(balance_matches)) => {
                         let address = balance_matches.value_of("address").unwrap();
@@ -1107,7 +1107,7 @@ impl RSCChainCLI {
                             amount: amount.to_string(),
                         }).await?;
                         
-                        println!("Transacción enviada: {}", tx.hash());
+                        println!("Transaction sent: {}", tx.hash());
                     },
                     _ => {}
                 }
@@ -1123,7 +1123,7 @@ impl RSCChainCLI {
 ### Testing Framework
 
 ```rust
-// Framework de testing para integraciones
+// Testing framework for integrations
 pub struct IntegrationTestFramework {
     pub test_environment: TestEnvironment,
     pub test_cases: Vec<TestCase>,
@@ -1181,32 +1181,32 @@ impl IntegrationTestFramework {
     }
 }
 
-// Ejemplo de test de integración
+// Integration test example
 #[tokio::test]
 async fn test_wallet_integration() {
     let framework = IntegrationTestFramework::new();
     
     let test_case = TestCase {
         name: "wallet_creation_and_transaction".to_string(),
-        description: "Crear wallet y enviar transacción".to_string(),
+        description: "Create wallet and send transaction".to_string(),
         setup: Box::new(|| {
-            // Configurar entorno de prueba
+            // Configure test environment
             Ok(())
         }),
         test: Box::new(|| {
-            // Crear wallet
+            // Create wallet
             let wallet = create_test_wallet()?;
             
-            // Enviar transacción
+            // Send transaction
             let tx = send_test_transaction(&wallet)?;
             
-            // Verificar transacción
+            // Verify transaction
             assert!(tx.status == "confirmed");
             
             Ok(())
         }),
         teardown: Box::new(|| {
-            // Limpiar entorno de prueba
+            // Clean up test environment
             Ok(())
         }),
     };
@@ -1220,4 +1220,4 @@ async fn test_wallet_integration() {
 
 ---
 
-*Esta documentación de integración se actualiza regularmente. Para ejemplos más específicos y casos de uso, consulte la documentación de la API.*
+*This integration documentation is updated regularly. For more specific examples and use cases, refer to the API documentation.*

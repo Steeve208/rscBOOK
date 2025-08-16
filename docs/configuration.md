@@ -1,8 +1,8 @@
-# 🔧 Configuración
+# 🔧 Configuration
 
-## Configuración Básica
+## Basic Configuration
 
-### Archivo de Configuración Principal
+### Main Configuration File
 ```yaml
 # config/default.yaml
 network:
@@ -26,7 +26,7 @@ ai:
   inference_threads: 4
 ```
 
-### Variables de Entorno
+### Environment Variables
 ```bash
 # .env
 RSC_CHAIN_NETWORK_HOST=0.0.0.0
@@ -36,9 +36,9 @@ RSC_CHAIN_STORAGE_ENGINE=rocksdb
 RSC_CHAIN_AI_ENABLED=true
 ```
 
-## Configuración de Red
+## Network Configuration
 
-### Configuración P2P
+### P2P Configuration
 ```yaml
 p2p:
   discovery:
@@ -53,7 +53,7 @@ p2p:
     max_connections: 100
 ```
 
-### Configuración de Firewall
+### Firewall Configuration
 ```yaml
 firewall:
   l7_enabled: true
@@ -66,7 +66,7 @@ firewall:
     - "10.0.0.50"
 ```
 
-## Configuración de Consenso
+## Consensus Configuration
 
 ### Proof of Work
 ```yaml
@@ -95,7 +95,7 @@ vrf:
   epoch_length: 100
 ```
 
-## Configuración de Almacenamiento
+## Storage Configuration
 
 ### RocksDB
 ```yaml
@@ -122,7 +122,7 @@ cache:
     l3: "2GB"
 ```
 
-## Configuración de IA
+## IA Configuration
 
 ### Modelos de Machine Learning
 ```yaml
@@ -149,7 +149,7 @@ federated_learning:
   privacy_budget: 1.0
 ```
 
-## Configuración de API
+## API Configuration
 
 ### REST API
 ```yaml
@@ -174,7 +174,7 @@ websocket:
   max_message_size: "1MB"
 ```
 
-## Configuración de Monitoreo
+## Monitoring Configuration
 
 ### Métricas
 ```yaml
@@ -208,7 +208,7 @@ alerts:
       severity: "warning"
 ```
 
-## Configuración de Seguridad
+## Security Configuration
 
 ### Criptografía
 ```yaml
@@ -238,7 +238,7 @@ auth:
     max_keys_per_user: 5
 ```
 
-## Configuración de Desarrollo
+## Development Configuration
 
 ### Testing
 ```yaml
@@ -261,46 +261,46 @@ debug:
   trace: false
 ```
 
-## Validación de Configuración
+## Configuration Validation
 
-### Verificar Configuración
+### Verify Configuration
 ```bash
-# Validar archivo de configuración
+# Validate configuration file
 cargo run -- validate-config
 
-# Verificar variables de entorno
+# Check environment variables
 cargo run -- check-env
 
-# Probar configuración
+# Test configuration
 cargo run -- test-config
 ```
 
-### Configuración por Entorno
+### Configuration by Environment
 ```bash
-# Desarrollo
+# Development
 cp config/development.yaml config/default.yaml
 
-# Producción
+# Production
 cp config/production.yaml config/default.yaml
 
 # Testing
 cp config/testing.yaml config/default.yaml
 ```
 
-## Próximos Pasos
+## Next Steps
 
-Una vez configurado el sistema, puedes proceder con los [Primeros Pasos](first-steps.md).
+Once configured, you can proceed with the [First Steps](first-steps.md).
 
-## Comandos de Configuración
+## Configuration Commands
 
-### Ver Configuración Actual
+### Show Current Configuration
 ```bash
 cargo run -- config show
 cargo run -- config validate
 cargo run -- config test
 ```
 
-### Modificar Configuración
+### Modify Configuration
 ```bash
 cargo run -- config set network.port 9090
 cargo run -- config set consensus.algorithm pos

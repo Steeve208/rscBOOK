@@ -1,0 +1,67 @@
+{
+  "name": "rsc-chain-gitbook",
+  "version": "3.0.0",
+  "description": "Professional blockchain documentation with mathematical foundations and 3D interactions",
+  "main": "book.json",
+  "scripts": {
+    "build": "gitbook build",
+    "serve": "gitbook serve",
+    "install": "gitbook install",
+    "pdf": "gitbook pdf",
+    "epub": "gitbook epub",
+    "mobi": "gitbook mobi"
+  },
+  "keywords": [
+    "blockchain",
+    "cryptography",
+    "mathematics",
+    "documentation",
+    "gitbook",
+    "rsc-chain",
+    "consensus",
+    "p2p",
+    "ai",
+    "post-quantum"
+  ],
+  "author": "RSC Chain Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Steeve208/rscBOOK.git"
+  },
+  "dependencies": {
+    "gitbook-cli": "^2.3.2"
+  },
+  "devDependencies": {
+    "gitbook-plugin-mathjax": "^2.0.0",
+    "gitbook-plugin-mermaid": "^2.0.0",
+    "gitbook-plugin-copy-code-button": "^0.0.2",
+    "gitbook-plugin-expandable-chapters": "^0.2.0",
+    "gitbook-plugin-page-toc-button": "^0.0.1",
+    "gitbook-plugin-prism": "^2.0.0",
+    "gitbook-plugin-splitter": "^0.0.8"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "gitbook": {
+    "version": "3.2.3",
+    "plugins": [
+      "theme-default",
+      "highlight",
+      "search",
+      "sharing",
+      "fontsettings",
+      "livereload",
+      "back-to-top-button",
+      "github",
+      "mathjax",
+      "mermaid",
+      "copy-code-button",
+      "expandable-chapters",
+      "page-toc-button",
+      "prism",
+      "splitter"
+    ]
+  }
+}

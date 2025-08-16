@@ -1,15 +1,15 @@
-# Desarrollo de RSC Chain
+# RSC Chain Development
 
-## Visión General
+## Overview
 
-RSC Chain es una blockchain de próxima generación construida en Rust que combina inteligencia artificial, criptografía post-cuántica y consenso híbrido para crear una plataforma descentralizada segura y escalable.
+RSC Chain is a next-generation blockchain built in Rust that combines artificial intelligence, post-quantum cryptography, and hybrid consensus to create a secure and scalable decentralized platform.
 
-## Arquitectura del Sistema
+## System Architecture
 
-### Componentes Principales
+### Main Components
 
 ```rust
-// Estructura principal del nodo RSC Chain
+// Main structure of RSC Chain node
 pub struct RSCNode {
     pub blockchain: Blockchain,
     pub consensus: ConsensusEngine,
@@ -20,7 +20,7 @@ pub struct RSCNode {
     pub security: SecurityEngine,
 }
 
-// Motor de consenso híbrido
+// Hybrid consensus engine
 pub struct ConsensusEngine {
     pub pow_engine: ProofOfWork,
     pub pos_engine: ProofOfStake,
@@ -29,29 +29,29 @@ pub struct ConsensusEngine {
 }
 ```
 
-### Estructura de Directorios
+### Directory Structure
 
 ```
 src/
-├── ai/                 # Inteligencia Artificial
+├── ai/                 # Artificial Intelligence
 │   ├── neural_networks.rs
 │   ├── federated_learning.rs
 │   ├── optimization.rs
 │   └── quantum_ai.rs
-├── consensus/          # Algoritmos de Consenso
+├── consensus/          # Consensus Algorithms
 │   ├── pow.rs
 │   ├── pos.rs
 │   ├── vrf.rs
 │   └── hybrid.rs
-├── crypto/            # Criptografía
+├── crypto/            # Cryptography
 │   ├── post_quantum.rs
 │   ├── zero_knowledge.rs
 │   └── encryption.rs
-├── network/           # Red P2P
+├── network/           # P2P Network
 │   ├── p2p.rs
 │   ├── kad.rs
 │   └── gossip.rs
-├── storage/           # Almacenamiento
+├── storage/           # Storage
 │   ├── rocksdb.rs
 │   ├── cache.rs
 │   └── backup.rs
@@ -61,57 +61,51 @@ src/
     └── graphql.rs
 ```
 
-## Configuración del Entorno de Desarrollo
+## Development Environment Setup
 
-### Requisitos del Sistema
+### System Requirements
 
 - **Rust**: 1.70+ (stable)
-- **Cargo**: Última versión
+- **Cargo**: Latest version
 - **Git**: 2.30+
-- **Docker**: 20.10+ (opcional)
-- **Node.js**: 18+ (para herramientas de desarrollo)
+- **Docker**: 20.10+ (optional)
+- **Node.js**: 18+ (for development tools)
 
-### Instalación de Dependencias
+### Dependency Installation
 
 ```bash
-# Instalar Rust
+# Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source ~/.cargo/env
 
-# Verificar instalación
+# Verify installation
 rustc --version
 cargo --version
 
-# Instalar herramientas adicionales
+# Install additional tools
 cargo install cargo-watch
 cargo install cargo-audit
 cargo install cargo-tarpaulin
 cargo install cargo-doc
 ```
 
-### Configuración del Proyecto
+### Project Configuration
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/Steeve208/rscBOOK.git
 cd rscBOOK
 
-# Instalar dependencias
+# Install dependencies
 cargo build
-
-# Ejecutar tests
-cargo test
-
-# Generar documentación
-cargo doc --open
 ```
 
-## Estándares de Código
+## Code Standards
 
-### Convenciones de Nomenclatura
+### Naming Conventions
 
 ```rust
-// Estructuras y Enums - PascalCase
+// Structures and Enums - PascalCase
 pub struct BlockchainNode;
 pub enum ConsensusType {
     ProofOfWork,
@@ -119,42 +113,42 @@ pub enum ConsensusType {
     Hybrid,
 }
 
-// Funciones y variables - snake_case
+// Functions and variables - snake_case
 pub fn create_block(transactions: Vec<Transaction>) -> Block {
     let block_header = BlockHeader::new();
     Block::new(block_header, transactions)
 }
 
-// Constantes - SCREAMING_SNAKE_CASE
+// Constants - SCREAMING_SNAKE_CASE
 pub const MAX_BLOCK_SIZE: usize = 1024 * 1024;
 pub const DIFFICULTY_ADJUSTMENT_INTERVAL: u64 = 2016;
 ```
 
-### Formato de Código
+### Code Formatting
 
 ```bash
-# Formatear código automáticamente
+# Format code automatically
 cargo fmt
 
-# Verificar estilo de código
+# Check code style
 cargo clippy
 
-# Verificar seguridad
+# Check security
 cargo audit
 ```
 
-### Documentación
+### Documentation
 
 ```rust
-/// Crea un nuevo bloque en la cadena
+/// Creates a new block in the chain
 /// 
-/// # Argumentos
+/// # Arguments
 /// 
-/// * `transactions` - Vector de transacciones a incluir en el bloque
-/// * `previous_hash` - Hash del bloque anterior
-/// * `timestamp` - Timestamp de creación del bloque
+/// * `transactions` - Vector of transactions to include in the block
+/// * `previous_hash` - Hash of the previous block
+/// * `timestamp` - Timestamp of block creation
 /// 
-/// # Ejemplos
+/// # Examples
 /// 
 /// ```
 /// use rsc_chain::blockchain::Block;
@@ -164,24 +158,24 @@ cargo audit
 /// assert_eq!(block.transactions.len(), 0);
 /// ```
 /// 
-/// # Errores
+/// # Errors
 /// 
-/// Esta función puede fallar si:
-/// - Las transacciones están vacías
-/// - El hash anterior es inválido
-/// - El timestamp es futuro
+/// This function can fail if:
+/// - Transactions are empty
+/// - Previous hash is invalid
+/// - Timestamp is in the future
 pub fn create_block(
     transactions: Vec<Transaction>,
     previous_hash: Hash,
     timestamp: u64,
 ) -> Result<Block, BlockError> {
-    // Implementación...
+    // Implementation...
 }
 ```
 
-## Manejo de Errores
+## Error Handling
 
-### Estructura de Errores
+### Error Structure
 
 ```rust
 use thiserror::Error;
@@ -204,7 +198,7 @@ pub enum BlockchainError {
     ConsensusError(#[from] ConsensusError),
 }
 
-// Uso en funciones
+// Usage in functions
 pub fn validate_block(block: &Block) -> Result<(), BlockchainError> {
     if !block.verify_hash() {
         return Err(BlockchainError::InvalidHash(
@@ -222,7 +216,7 @@ pub fn validate_block(block: &Block) -> Result<(), BlockchainError> {
 }
 ```
 
-### Logging y Monitoreo
+### Logging and Monitoring
 
 ```rust
 use tracing::{info, warn, error, debug};
@@ -245,7 +239,7 @@ pub fn process_transaction(tx: Transaction) -> Result<(), TransactionError> {
 
 ## Testing
 
-### Tests Unitarios
+### Unit Tests
 
 ```rust
 #[cfg(test)]
@@ -279,20 +273,20 @@ mod tests {
     fn test_blockchain_consistency() {
         let mut blockchain = Blockchain::new();
         
-        // Agregar bloques
+        // Add blocks
         for i in 0..10 {
             let block = create_test_block(i);
             blockchain.add_block(block).unwrap();
         }
         
-        // Verificar consistencia
+        // Verify consistency
         assert!(blockchain.is_consistent());
         assert_eq!(blockchain.height(), 10);
     }
 }
 ```
 
-### Tests de Integración
+### Integration Tests
 
 ```rust
 // tests/integration_test.rs
@@ -300,24 +294,24 @@ use rsc_chain::{Blockchain, Node, Network};
 
 #[tokio::test]
 async fn test_network_sync() {
-    // Crear nodos de prueba
+    // Create test nodes
     let mut node1 = Node::new_test_node().await;
     let mut node2 = Node::new_test_node().await;
     
-    // Conectar nodos
+    // Connect nodes
     node1.connect_to(&node2.address()).await.unwrap();
     
-    // Agregar transacción al nodo 1
+    // Add transaction to node 1
     let tx = Transaction::new("alice", "bob", 100);
     node1.add_transaction(tx.clone()).await.unwrap();
     
-    // Verificar que la transacción se propaga al nodo 2
+    // Verify that the transaction propagates to node 2
     tokio::time::sleep(Duration::from_millis(100)).await;
     assert!(node2.has_transaction(&tx.id()));
 }
 ```
 
-### Tests de Rendimiento
+### Performance Tests
 
 ```rust
 use criterion::{criterion_group, criterion_main, Criterion};
@@ -423,9 +417,9 @@ EXPOSE 8080
 CMD ["rsc-chain"]
 ```
 
-## Monitoreo y Debugging
+## Performance Monitoring and Debugging
 
-### Métricas de Rendimiento
+### Performance Metrics
 
 ```rust
 use metrics::{counter, gauge, histogram};
@@ -455,12 +449,12 @@ impl PerformanceMetrics {
 ### Profiling
 
 ```bash
-# Profiling con perf
+# Profiling with perf
 cargo build --release
 perf record --call-graph=dwarf ./target/release/rsc-chain
 perf report
 
-# Profiling con flamegraph
+# Profiling with flamegraph
 cargo install flamegraph
 cargo flamegraph
 
@@ -469,20 +463,20 @@ cargo install cargo-valgrind
 cargo valgrind --tool=memcheck
 ```
 
-## Seguridad
+## Security
 
-### Auditoría de Código
+### Code Auditing
 
 ```bash
-# Análisis estático
+# Static analysis
 cargo audit
 cargo clippy -- -D warnings
 
-# Análisis de dependencias
+# Dependency analysis
 cargo tree
 cargo outdated
 
-# Análisis de seguridad
+# Security analysis
 cargo install cargo-audit
 cargo audit
 ```
@@ -502,7 +496,7 @@ proptest! {
     
     #[test]
     fn test_block_validation_properties(block in any::<Block>()) {
-        // Propiedades que siempre deben cumplirse
+        // Properties that must always be met
         prop_assert!(block.hash().len() == 32);
         prop_assert!(block.timestamp() > 0);
         prop_assert!(block.transactions.len() <= MAX_TRANSACTIONS_PER_BLOCK);
@@ -510,25 +504,25 @@ proptest! {
 }
 ```
 
-## Documentación
+## Documentation
 
-### Generación de Documentación
+### Documentation Generation
 
 ```bash
-# Generar documentación
+# Generate documentation
 cargo doc --no-deps --open
 
-# Generar documentación con ejemplos
+# Generate documentation with examples
 cargo test --doc
 
-# Generar documentación de API
+# Generate API documentation
 cargo doc --document-private-items
 ```
 
-### Ejemplos de Código
+### Code Examples
 
 ```rust
-/// Ejemplo de uso del cliente RSC Chain
+/// Example of RSC Chain client usage
 /// 
 /// ```rust
 /// use rsc_chain::client::RSCClient;
@@ -537,11 +531,11 @@ cargo doc --document-private-items
 /// async fn main() -> Result<(), Box<dyn std::error::Error>> {
 ///     let client = RSCClient::new("http://localhost:8080").await?;
 ///     
-///     // Obtener información del blockchain
+///     // Get blockchain information
 ///     let info = client.get_blockchain_info().await?;
 ///     println!("Blockchain height: {}", info.height);
 ///     
-///     // Enviar transacción
+///     // Send transaction
 ///     let tx = Transaction::new("alice", "bob", 100);
 ///     let tx_hash = client.send_transaction(tx).await?;
 ///     println!("Transaction sent: {}", tx_hash);
@@ -550,55 +544,55 @@ cargo doc --document-private-items
 /// }
 /// ```
 pub struct RSCClient {
-    // Implementación...
+    // Implementation...
 }
 ```
 
-## Contribución
+## Contribution
 
-### Flujo de Trabajo
+### Workflow
 
-1. **Fork** del repositorio
-2. Crear **branch** para feature: `git checkout -b feature/nueva-funcionalidad`
-3. Hacer **commit** de cambios: `git commit -am 'Agregar nueva funcionalidad'`
-4. Hacer **push** al branch: `git push origin feature/nueva-funcionalidad`
-5. Crear **Pull Request**
+1. **Fork** the repository
+2. Create **branch** for feature: `git checkout -b feature/new-functionality`
+3. Make **commit** of changes: `git commit -am 'Add new functionality'`
+4. Push **branch** to origin: `git push origin feature/new-functionality`
+5. Create **Pull Request**
 
-### Checklist de Pull Request
+### Pull Request Checklist
 
-- [ ] Tests pasan
-- [ ] Código formateado con `cargo fmt`
-- [ ] Sin warnings de clippy
-- [ ] Documentación actualizada
-- [ ] Changelog actualizado
-- [ ] Revisión de seguridad realizada
+- [ ] Tests pass
+- [ ] Code formatted with `cargo fmt`
+- [ ] No clippy warnings
+- [ ] Documentation updated
+- [ ] Changelog updated
+- [ ] Security review performed
 
-### Código de Conducta
+### Code of Conduct
 
-- Respetar a todos los contribuyentes
-- Mantener discusiones constructivas
-- Seguir las mejores prácticas de seguridad
-- Documentar cambios significativos
-- Probar cambios antes de enviar PR
+- Respect all contributors
+- Maintain constructive discussions
+- Follow best security practices
+- Document significant changes
+- Test changes before sending PR
 
-## Recursos Adicionales
+## Additional Resources
 
-### Enlaces Útiles
+### Useful Links
 
 - [Rust Book](https://doc.rust-lang.org/book/)
 - [Rust Reference](https://doc.rust-lang.org/reference/)
 - [Cargo Book](https://doc.rust-lang.org/cargo/)
 - [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
 
-### Herramientas Recomendadas
+### Recommended Tools
 
-- **IDE**: VS Code con rust-analyzer
-- **Debugger**: LLDB o GDB
+- **IDE**: VS Code with rust-analyzer
+- **Debugger**: LLDB or GDB
 - **Profiler**: perf, flamegraph
 - **Testing**: cargo test, proptest, criterion
 - **Documentation**: cargo doc, mdBook
 
-### Comunidad
+### Community
 
 - **Discord**: [RSC Chain Community](https://discord.gg/rscchain)
 - **GitHub**: [Issues](https://github.com/Steeve208/rscBOOK/issues)

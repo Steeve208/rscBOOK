@@ -1,15 +1,15 @@
-# Referencia Técnica de RSC Chain
+# RSC Chain Technical Reference
 
-## Visión General
+## Overview
 
-Esta sección proporciona la referencia técnica completa de RSC Chain, incluyendo especificaciones de APIs, estructuras de datos, protocolos y estándares utilizados en la plataforma.
+This section provides the complete technical reference of RSC Chain, including API specifications, data structures, protocols, and standards used in the platform.
 
-## Especificaciones Técnicas
+## Technical Specifications
 
-### Arquitectura del Sistema
+### System Architecture
 
 ```rust
-// Arquitectura principal de RSC Chain
+// Main architecture of RSC Chain
 pub struct RSCChainArchitecture {
     pub consensus_layer: ConsensusLayer,
     pub network_layer: NetworkLayer,
@@ -40,29 +40,29 @@ pub struct StorageLayer {
 }
 ```
 
-### Especificaciones de Blockchain
+### Blockchain Specifications
 
 ```rust
-// Especificaciones del bloque
+// Block specifications
 pub struct BlockSpec {
-    pub max_size: usize,           // Tamaño máximo del bloque (bytes)
-    pub max_transactions: usize,   // Máximo número de transacciones por bloque
-    pub target_time: Duration,     // Tiempo objetivo entre bloques
+    pub max_size: usize,           // Maximum block size (bytes)
+    pub max_transactions: usize,   // Maximum number of transactions per block
+    pub target_time: Duration,     // Target time between blocks
     pub difficulty_adjustment: DifficultyAdjustment,
     pub reward_structure: RewardStructure,
 }
 
 pub struct DifficultyAdjustment {
     pub algorithm: DifficultyAlgorithm,
-    pub adjustment_interval: u64,  // Bloques entre ajustes
-    pub target_variance: f64,      // Varianza objetivo
-    pub min_difficulty: u256,      // Dificultad mínima
-    pub max_difficulty: u256,      // Dificultad máxima
+    pub adjustment_interval: u64,  // Blocks between adjustments
+    pub target_variance: f64,      // Target variance
+    pub min_difficulty: u256,      // Minimum difficulty
+    pub max_difficulty: u256,      // Maximum difficulty
 }
 
 pub struct RewardStructure {
-    pub block_reward: u64,         // Recompensa por bloque (wei)
-    pub halving_interval: u64,     // Intervalo de halving (bloques)
+    pub block_reward: u64,         // Block reward (wei)
+    pub halving_interval: u64,     // Halving interval (blocks)
     pub transaction_fees: FeeStructure,
     pub validator_rewards: ValidatorRewards,
 }
@@ -75,19 +75,19 @@ pub struct RewardStructure {
 #### Blockchain Endpoints
 
 ```http
-# Estado de la blockchain
+# Blockchain status
 GET /api/v1/blockchain/status
 GET /api/v1/blockchain/info
 GET /api/v1/blockchain/peers
 GET /api/v1/blockchain/sync
 
-# Bloques
+# Blocks
 GET /api/v1/blocks
 GET /api/v1/blocks/{hash}
 GET /api/v1/blocks/{height}
 GET /api/v1/blocks/latest
 
-# Transacciones
+# Transactions
 GET /api/v1/transactions
 GET /api/v1/transactions/{hash}
 POST /api/v1/transactions
@@ -109,7 +109,7 @@ GET /api/v1/contracts/{address}/events
 #### Response Formats
 
 ```json
-// Respuesta de estado de blockchain
+// Blockchain status response
 {
   "status": "synced",
   "height": 12345,
@@ -129,7 +129,7 @@ GET /api/v1/contracts/{address}/events
   }
 }
 
-// Respuesta de bloque
+// Block response
 {
   "hash": "0x1234567890abcdef...",
   "height": 12345,
@@ -153,7 +153,7 @@ GET /api/v1/contracts/{address}/events
   "gas_limit": 30000000
 }
 
-// Respuesta de transacción
+// Transaction response
 {
   "hash": "0xabcdef1234567890...",
   "block_hash": "0x1234567890abcdef...",
@@ -173,7 +173,7 @@ GET /api/v1/contracts/{address}/events
 ### WebSocket API Events
 
 ```json
-// Evento de nuevo bloque
+// New block event
 {
   "event": "new_block",
   "data": {
@@ -185,7 +185,7 @@ GET /api/v1/contracts/{address}/events
   }
 }
 
-// Evento de transacción confirmada
+// Transaction confirmed event
 {
   "event": "transaction_confirmed",
   "data": {
@@ -196,7 +196,7 @@ GET /api/v1/contracts/{address}/events
   }
 }
 
-// Evento de actualización de precio
+// Price update event
 {
   "event": "price_update",
   "data": {
@@ -210,52 +210,52 @@ GET /api/v1/contracts/{address}/events
 }
 ```
 
-## Estructuras de Datos
+## Data Structures
 
-### Tipos de Datos Básicos
+### Basic Data Types
 
 ```rust
-// Tipos de datos fundamentales
-pub type Address = [u8; 20];           // Dirección de 20 bytes
-pub type Hash = [u8; 32];              // Hash de 32 bytes
-pub type BlockNumber = u64;            // Número de bloque
-pub type Timestamp = u64;              // Timestamp Unix
-pub type Gas = u64;                    // Unidades de gas
-pub type Wei = U256;                   // Unidad más pequeña de RSC
+// Fundamental data types
+pub type Address = [u8; 20];           // 20-byte address
+pub type Hash = [u8; 32];              // 32-byte hash
+pub type BlockNumber = u64;            // Block number
+pub type Timestamp = u64;              // Unix timestamp
+pub type Gas = u64;                    // Gas units
+pub type Wei = U256;                   // Smallest RSC unit
 
-// Direcciones especiales
+// Special addresses
 pub const ZERO_ADDRESS: Address = [0u8; 20];
 pub const SYSTEM_ADDRESS: Address = [0xffu8; 20];
 pub const CONTRACT_CREATION_ADDRESS: Address = [0u8; 20];
 
-// Constantes del sistema
+// System constants
 pub const MAX_BLOCK_SIZE: usize = 1024 * 1024;        // 1MB
 pub const MAX_TRANSACTIONS_PER_BLOCK: usize = 10000;
 pub const TARGET_BLOCK_TIME: Duration = Duration::from_secs(15);
 pub const DIFFICULTY_ADJUSTMENT_INTERVAL: u64 = 2016;
 ```
 
-### Estructuras de Bloques
+### Block Structures
 
 ```rust
-// Encabezado del bloque
+// Block header
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlockHeader {
-    pub parent_hash: Hash,           // Hash del bloque padre
-    pub number: BlockNumber,         // Número del bloque
-    pub timestamp: Timestamp,        // Timestamp del bloque
-    pub transactions_root: Hash,     // Root del árbol de transacciones
-    pub state_root: Hash,            // Root del estado
-    pub receipts_root: Hash,         // Root de los receipts
-    pub miner: Address,              // Dirección del minero
-    pub difficulty: U256,            // Dificultad del bloque
-    pub gas_limit: Gas,              // Límite de gas
-    pub gas_used: Gas,               // Gas utilizado
-    pub nonce: [u8; 8],              // Nonce del bloque
-    pub extra_data: Vec<u8>,         // Datos extra
+    pub parent_hash: Hash,           // Parent block hash
+    pub number: BlockNumber,         // Block number
+    pub timestamp: Timestamp,        // Block timestamp
+    pub transactions_root: Hash,     // Transactions tree root
+    pub state_root: Hash,            // State root
+    pub receipts_root: Hash,         // Receipts root
+    pub miner: Address,              // Miner address
+    pub difficulty: U256,            // Block difficulty
+    pub gas_limit: Gas,              // Gas limit
+    pub gas_used: Gas,               // Gas used
+    pub nonce: [u8; 8],              // Block nonce
+    pub extra_data: Vec<u8>,         // Extra data
 }
 
-// Bloque completo
+// Complete block
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Block {
     pub header: BlockHeader,
@@ -278,15 +278,15 @@ impl Block {
     }
     
     pub fn validate(&self) -> Result<(), BlockValidationError> {
-        // Validar encabezado
+        // Validate header
         self.header.validate()?;
         
-        // Validar transacciones
+        // Validate transactions
         for tx in &self.transactions {
             tx.validate()?;
         }
         
-        // Validar límites de gas
+        // Validate gas limits
         let total_gas: Gas = self.transactions.iter()
             .map(|tx| tx.gas_limit)
             .sum();
@@ -300,22 +300,22 @@ impl Block {
 }
 ```
 
-### Estructuras de Transacciones
+### Transaction Structures
 
 ```rust
-// Transacción
+// Transaction
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Transaction {
-    pub hash: Hash,                  // Hash de la transacción
-    pub nonce: u64,                  // Nonce del remitente
-    pub gas_price: Wei,              // Precio del gas
-    pub gas_limit: Gas,              // Límite de gas
-    pub to: Option<Address>,         // Dirección de destino (None para creación de contrato)
-    pub value: Wei,                  // Valor transferido
-    pub data: Vec<u8>,               // Datos de la transacción
-    pub v: u8,                       // Componente v de la firma
-    pub r: U256,                     // Componente r de la firma
-    pub s: U256,                     // Componente s de la firma
+    pub hash: Hash,                  // Transaction hash
+    pub nonce: u64,                  // Sender nonce
+    pub gas_price: Wei,              // Gas price
+    pub gas_limit: Gas,              // Gas limit
+    pub to: Option<Address>,         // Destination address (None for contract creation)
+    pub value: Wei,                  // Transferred value
+    pub data: Vec<u8>,               // Transaction data
+    pub v: u8,                       // Signature v component
+    pub r: U256,                     // Signature r component
+    pub s: U256,                     // Signature s component
 }
 
 impl Transaction {
@@ -360,12 +360,12 @@ impl Transaction {
     }
     
     pub fn validate(&self) -> Result<(), TransactionValidationError> {
-        // Validar nonce
+        // Validate nonce
         if self.nonce == 0 && !self.is_contract_creation() {
             return Err(TransactionValidationError::InvalidNonce);
         }
         
-        // Validar gas
+        // Validate gas
         if self.gas_limit == 0 {
             return Err(TransactionValidationError::InvalidGasLimit);
         }
@@ -374,7 +374,7 @@ impl Transaction {
             return Err(TransactionValidationError::InvalidGasPrice);
         }
         
-        // Validar firma
+        // Validate signature
         self.validate_signature()?;
         
         Ok(())
@@ -385,7 +385,7 @@ impl Transaction {
     }
     
     pub fn gas_cost(&self) -> Gas {
-        let base_cost = 21000; // Costo base
+        let base_cost = 21000; // Base cost
         let data_cost = self.data.iter()
             .map(|&byte| if byte == 0 { 4 } else { 16 })
             .sum::<Gas>();
@@ -394,17 +394,17 @@ impl Transaction {
 }
 ```
 
-### Estructuras de Estado
+### State Structures
 
 ```rust
-// Estado de la cuenta
+// Account state
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Account {
-    pub nonce: u64,                  // Nonce de la cuenta
-    pub balance: Wei,                // Balance en wei
-    pub storage_root: Hash,          // Root del almacenamiento
-    pub code_hash: Hash,             // Hash del código (si es contrato)
-    pub code: Option<Vec<u8>>,       // Código del contrato
+    pub nonce: u64,                  // Account nonce
+    pub balance: Wei,                // Balance in wei
+    pub storage_root: Hash,          // Storage root
+    pub code_hash: Hash,             // Code hash (if contract)
+    pub code: Option<Vec<u8>>,       // Contract code
 }
 
 impl Account {
@@ -427,7 +427,7 @@ impl Account {
     }
 }
 
-// Estado global
+// Global state
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GlobalState {
     pub accounts: HashMap<Address, Account>,
@@ -474,12 +474,12 @@ impl GlobalState {
 }
 ```
 
-## Protocolos de Red
+## Network Protocols
 
-### Protocolo P2P
+### P2P Protocol
 
 ```rust
-// Protocolo de comunicación P2P
+// P2P communication protocol
 pub struct P2PProtocol {
     pub version: u32,
     pub capabilities: Vec<Capability>,
@@ -492,18 +492,18 @@ pub enum P2PMessage {
     Hello(HelloMessage),
     Disconnect(DisconnectMessage),
     
-    // Sincronización
+    // Synchronization
     GetBlockHeaders(GetBlockHeadersMessage),
     BlockHeaders(BlockHeadersMessage),
     GetBlocks(GetBlocksMessage),
     Blocks(BlocksMessage),
     
-    // Transacciones
+    // Transactions
     NewTransaction(NewTransactionMessage),
     GetTransactions(GetTransactionsMessage),
     Transactions(TransactionsMessage),
     
-    // Estado
+    // State
     GetNodeData(GetNodeDataMessage),
     NodeData(NodeDataMessage),
     
@@ -540,16 +540,16 @@ impl P2PProtocol {
     pub fn encode_message(&self, message: &P2PMessage) -> Result<Vec<u8>, EncodingError> {
         let mut buffer = Vec::new();
         
-        // Escribir longitud del mensaje
+        // Write message length
         let message_bytes = bincode::serialize(message)?;
         let length = message_bytes.len() as u32;
         buffer.extend_from_slice(&length.to_be_bytes());
         
-        // Escribir tipo de mensaje
+        // Write message type
         let message_type = self.get_message_type(message);
         buffer.push(message_type);
         
-        // Escribir datos del mensaje
+        // Write message data
         buffer.extend_from_slice(&message_bytes);
         
         Ok(buffer)
@@ -560,13 +560,13 @@ impl P2PProtocol {
             return Err(DecodingError::InsufficientData);
         }
         
-        // Leer longitud
+        // Read length
         let length = u32::from_be_bytes([data[0], data[1], data[2], data[3]]);
         
-        // Leer tipo de mensaje
+        // Read message type
         let message_type = data[4];
         
-        // Leer datos del mensaje
+        // Read message data
         let message_data = &data[5..5+length as usize];
         
         let message = bincode::deserialize(message_data)?;
@@ -593,10 +593,10 @@ impl P2PProtocol {
 }
 ```
 
-### Protocolo de Consenso
+### Consensus Protocol
 
 ```rust
-// Protocolo de consenso
+// Consensus protocol
 pub struct ConsensusProtocol {
     pub algorithm: ConsensusAlgorithm,
     pub validators: Vec<Validator>,
@@ -630,54 +630,54 @@ impl ConsensusProtocol {
     pub async fn propose_block(&mut self, transactions: Vec<Transaction>) -> Result<Block, ConsensusError> {
         let proposer = self.block_proposer.get_current_proposer();
         
-        // Crear encabezado del bloque
+        // Create block header
         let header = BlockHeader {
             parent_hash: self.get_latest_block_hash(),
             number: self.get_latest_block_number() + 1,
             timestamp: self.get_current_timestamp(),
             transactions_root: self.calculate_transactions_root(&transactions),
-            state_root: Hash::default(), // Se calculará después
-            receipts_root: Hash::default(), // Se calculará después
+            state_root: Hash::default(), // Will be calculated later
+            receipts_root: Hash::default(), // Will be calculated later
             miner: proposer,
             difficulty: self.calculate_difficulty(),
             gas_limit: self.calculate_gas_limit(),
-            gas_used: 0, // Se calculará después
+            gas_used: 0, // Will be calculated later
             nonce: [0u8; 8],
             extra_data: Vec::new(),
         };
         
-        // Crear bloque
+        // Create block
         let mut block = Block {
             header,
             transactions,
             uncle_headers: Vec::new(),
         };
         
-        // Ejecutar transacciones
+        // Execute transactions
         let (state_root, receipts_root, gas_used) = self.execute_transactions(&mut block)?;
         
-        // Actualizar encabezado
+        // Update header
         block.header.state_root = state_root;
         block.header.receipts_root = receipts_root;
         block.header.gas_used = gas_used;
         
-        // Calcular hash del bloque
+        // Calculate block hash
         block.header.hash = block.hash();
         
         Ok(block)
     }
     
     pub async fn validate_block(&self, block: &Block) -> Result<bool, ConsensusError> {
-        // Validar estructura del bloque
+        // Validate block structure
         block.validate()?;
         
-        // Validar proposer
+        // Validate proposer
         let expected_proposer = self.block_proposer.get_proposer_for_block(block.header.number);
         if block.header.miner != expected_proposer {
             return Err(ConsensusError::InvalidProposer);
         }
         
-        // Validar timestamp
+        // Validate timestamp
         let current_time = self.get_current_timestamp();
         let time_diff = if current_time > block.header.timestamp {
             current_time - block.header.timestamp
@@ -685,17 +685,17 @@ impl ConsensusProtocol {
             block.header.timestamp - current_time
         };
         
-        if time_diff > 30 { // 30 segundos de tolerancia
+        if time_diff > 30 { // 30 seconds tolerance
             return Err(ConsensusError::InvalidTimestamp);
         }
         
-        // Validar dificultad
+        // Validate difficulty
         let expected_difficulty = self.calculate_difficulty();
         if block.header.difficulty != expected_difficulty {
             return Err(ConsensusError::InvalidDifficulty);
         }
         
-        // Validar transacciones
+        // Validate transactions
         for tx in &block.transactions {
             tx.validate()?;
         }
@@ -704,18 +704,18 @@ impl ConsensusProtocol {
     }
     
     pub async fn finalize_block(&mut self, block: &Block) -> Result<(), ConsensusError> {
-        // Verificar finalidad según el algoritmo
+        // Verify finality according to algorithm
         match &self.algorithm {
             ConsensusAlgorithm::ProofOfWork => {
-                // En PoW, la finalidad se basa en la cadena más larga
+                // In PoW, finality is based on the longest chain
                 self.finalize_pow_block(block).await
             },
             ConsensusAlgorithm::ProofOfStake => {
-                // En PoS, la finalidad se basa en el stake
+                // In PoS, finality is based on stake
                 self.finalize_pos_block(block).await
             },
             ConsensusAlgorithm::Hybrid => {
-                // En híbrido, combinar ambos mecanismos
+                // In hybrid, combine both mechanisms
                 self.finalize_hybrid_block(block).await
             },
         }
@@ -723,12 +723,12 @@ impl ConsensusProtocol {
 }
 ```
 
-## Especificaciones de Seguridad
+## Security Specifications
 
-### Criptografía
+### Cryptography
 
 ```rust
-// Especificaciones criptográficas
+// Cryptographic specifications
 pub struct CryptographicSpecs {
     pub hash_functions: HashFunctions,
     pub signature_schemes: SignatureSchemes,
@@ -760,7 +760,7 @@ pub struct Secp256k1Spec {
     pub signature_size: usize,  // 64 bytes
 }
 
-// Implementación de funciones criptográficas
+// Implementation of cryptographic functions
 impl CryptographicSpecs {
     pub fn sha256_hash(&self, data: &[u8]) -> Hash {
         let mut hasher = sha2::Sha256::new();
@@ -810,10 +810,10 @@ impl CryptographicSpecs {
 }
 ```
 
-### Autenticación y Autorización
+### Authentication and Authorization
 
 ```rust
-// Sistema de autenticación
+// Authentication system
 pub struct AuthenticationSystem {
     pub methods: Vec<AuthMethod>,
     pub token_manager: TokenManager,
@@ -879,12 +879,12 @@ impl AuthenticationSystem {
 }
 ```
 
-## Especificaciones de Rendimiento
+## Performance Specifications
 
-### Métricas de Rendimiento
+### Performance Metrics
 
 ```rust
-// Métricas de rendimiento del sistema
+// System performance metrics
 pub struct PerformanceMetrics {
     pub throughput: ThroughputMetrics,
     pub latency: LatencyMetrics,
@@ -942,10 +942,10 @@ impl PerformanceMetrics {
 }
 ```
 
-### Optimizaciones
+### Optimizations
 
 ```rust
-// Optimizaciones de rendimiento
+// Performance optimizations
 pub struct PerformanceOptimizations {
     pub caching: CacheOptimizations,
     pub compression: CompressionOptimizations,
@@ -975,7 +975,7 @@ pub enum CompressionAlgorithm {
 
 impl PerformanceOptimizations {
     pub fn optimize_transaction_processing(&self, transactions: &[Transaction]) -> Vec<Transaction> {
-        // Ordenar transacciones por gas price para maximizar fees
+        // Sort transactions by gas price to maximize fees
         let mut sorted_txs = transactions.to_vec();
         sorted_txs.sort_by(|a, b| b.gas_price.cmp(&a.gas_price));
         sorted_txs
@@ -1032,4 +1032,5 @@ impl PerformanceOptimizations {
 
 ---
 
-*Esta referencia técnica se actualiza regularmente. Para la versión más reciente, consulte la documentación oficial de RSC Chain.*
+*This technical reference is updated regularly. For the latest version, please consult the official RSC Chain documentation.*
+

@@ -1,48 +1,48 @@
-# 📋 Requisitos del Sistema
+# 📋 System Requirements
 
-## Requisitos Mínimos
+## Minimum Requirements
 
 ### Hardware
-- **CPU**: Procesador de 64 bits, 2 núcleos o más
-- **RAM**: Mínimo 4GB, recomendado 8GB o más
-- **Almacenamiento**: 50GB de espacio libre en disco
-- **Red**: Conexión a Internet estable
+- **CPU**: 64-bit processor, 2 cores or more
+- **RAM**: Minimum 4GB, recommended 8GB or more
+- **Storage**: 50GB free disk space
+- **Network**: Stable internet connection
 
 ### Software
-- **Sistema Operativo**: 
+- **Operating System**: 
   - Windows 10/11 (64-bit)
-  - macOS 10.15 o superior
+  - macOS 10.15 or higher
   - Linux (Ubuntu 20.04+, CentOS 8+, Debian 11+)
-- **Rust**: Versión 1.70.0 o superior
-- **Git**: Versión 2.30.0 o superior
+- **Rust**: Version 1.70.0 or higher
+- **Git**: Version 2.30.0 or higher
 
-## Requisitos Recomendados
+## Recommended Requirements
 
 ### Hardware
-- **CPU**: Procesador de 64 bits, 4 núcleos o más
-- **RAM**: 16GB o más
-- **Almacenamiento**: SSD de 100GB o más
-- **Red**: Conexión de alta velocidad (100 Mbps+)
+- **CPU**: 64-bit processor, 4 cores or more
+- **RAM**: 16GB or more
+- **Storage**: 100GB SSD or more
+- **Network**: High-speed connection (100 Mbps+)
 
 ### Software
-- **Rust**: Última versión estable
-- **Docker**: Para ejecución en contenedores
-- **Node.js**: Versión 18.0.0 o superior (para herramientas de desarrollo)
+- **Rust**: Latest stable version
+- **Docker**: For container execution
+- **Node.js**: Version 18.0.0 or higher (for development tools)
 
-## Verificación de Requisitos
+## Requirements Verification
 
-### Verificar Rust
+### Verify Rust
 ```bash
 rustc --version
 cargo --version
 ```
 
-### Verificar Git
+### Verify Git
 ```bash
 git --version
 ```
 
-### Verificar Espacio en Disco
+### Verify Disk Space
 ```bash
 # Windows
 dir
@@ -51,64 +51,64 @@ dir
 df -h
 ```
 
-## Instalación de Dependencias
+## Dependency Installation
 
 ### Windows
 ```powershell
-# Instalar Rust
+# Install Rust
 winget install Rustlang.Rust.MSVC
 
-# Instalar Git
+# Install Git
 winget install Git.Git
 ```
 
 ### macOS
 ```bash
-# Instalar Rust
+# Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Instalar Git
+# Install Git
 brew install git
 ```
 
 ### Linux (Ubuntu/Debian)
 ```bash
-# Instalar Rust
+# Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# Instalar Git
+# Install Git
 sudo apt update
 sudo apt install git
 ```
 
-## Configuración Inicial
+## Initial Configuration
 
-### Configurar Git
+### Configure Git
 ```bash
-git config --global user.name "Tu Nombre"
-git config --global user.email "tu.email@ejemplo.com"
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
 ```
 
-### Configurar Rust
+### Configure Rust
 ```bash
 rustup default stable
 rustup update
 ```
 
-## Solución de Problemas
+## Troubleshooting
 
-### Error: "rustc no se reconoce como comando"
-- Reinicia la terminal después de instalar Rust
-- Verifica que Rust esté en el PATH del sistema
+### Error: "rustc is not recognized as a command"
+- Restart terminal after installing Rust
+- Verify Rust is in the system PATH
 
-### Error: "git no se reconoce como comando"
-- Reinicia la terminal después de instalar Git
-- Verifica que Git esté en el PATH del sistema
+### Error: "git is not recognized as a command"
+- Restart terminal after installing Git
+- Verify Git is in the system PATH
 
-### Error: "Espacio insuficiente en disco"
-- Libera espacio eliminando archivos temporales
-- Considera usar un disco con más capacidad
+### Error: "Insufficient disk space"
+- Free up space by removing temporary files
+- Consider using a disk with more capacity
 
-## Próximos Pasos
+## Next Steps
 
-Una vez que hayas verificado que tu sistema cumple con todos los requisitos, puedes proceder con la [Instalación](installation.md) de RSC Chain.
+Once you've verified that your system meets all requirements, you can proceed with the [Installation](installation.md) of RSC Chain.

@@ -1,0 +1,11 @@
+<!-- Include custom JavaScript for 3D interactions -->
+<script src="{{ "assets/js/3d-interactions.js"|resolveFile }}"></script>
+
+<!-- Initialize 3D interactions -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof RSCChain3DInteractions !== 'undefined') {
+        new RSCChain3DInteractions();
+    }
+});
+</script>

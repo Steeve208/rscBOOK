@@ -1,22 +1,22 @@
-# Contribuir a RSC Chain
+# Contributing to RSC Chain
 
-## Visión General
+## Overview
 
-RSC Chain es un proyecto de código abierto que prospera gracias a las contribuciones de la comunidad global. Agradecemos todas las formas de contribución, desde reportes de bugs hasta nuevas funcionalidades y mejoras en la documentación.
+RSC Chain is an open-source project that thrives thanks to contributions from the global community. We appreciate all forms of contribution, from bug reports to new features and documentation improvements.
 
-## Cómo Contribuir
+## How to Contribute
 
-### Tipos de Contribuciones
+### Types of Contributions
 
-1. **Reportes de Bugs**: Identificar y reportar problemas
-2. **Nuevas Funcionalidades**: Proponer e implementar características
-3. **Mejoras de Código**: Optimizaciones y refactoring
-4. **Documentación**: Mejorar guías y documentación técnica
-5. **Testing**: Añadir tests y mejorar cobertura
-6. **Traducciones**: Traducir documentación a otros idiomas
-7. **Diseño**: Mejorar UI/UX y experiencia de usuario
+1. **Bug Reports**: Identify and report problems
+2. **New Features**: Propose and implement features
+3. **Code Improvements**: Optimizations and refactoring
+4. **Documentation**: Improve guides and technical documentation
+5. **Testing**: Add tests and improve coverage
+6. **Translations**: Translate documentation to other languages
+7. **Design**: Improve UI/UX and user experience
 
-### Proceso de Contribución
+### Contribution Process
 
 ```mermaid
 graph TD
@@ -32,43 +32,43 @@ graph TD
     J --> K[Merge to Main]
 ```
 
-## Configuración del Entorno de Desarrollo
+## Development Environment Setup
 
-### Requisitos Previos
+### Prerequisites
 
 ```bash
-# Instalar Rust
+# Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source ~/.cargo/env
 
-# Verificar instalación
+# Verify installation
 rustc --version
 cargo --version
 
-# Instalar herramientas adicionales
+# Install additional tools
 cargo install cargo-audit
 cargo install cargo-tarpaulin
 cargo install cargo-watch
 ```
 
-### Configuración del Repositorio
+### Repository Setup
 
 ```bash
-# Fork del repositorio en GitHub
-# Luego clonar tu fork
-git clone https://github.com/TU_USUARIO/rsc-chain.git
+# Fork the repository on GitHub
+# Then clone your fork
+git clone https://github.com/YOUR_USERNAME/rsc-chain.git
 cd rsc-chain
 
-# Añadir el repositorio original como upstream
+# Add the original repository as upstream
 git remote add upstream https://github.com/rsc-chain/rsc-chain.git
 
-# Verificar remotes
+# Verify remotes
 git remote -v
 ```
 
-### Configuración del IDE
+### IDE Configuration
 
-#### VS Code (Recomendado)
+#### VS Code (Recommended)
 
 ```json
 {
@@ -87,7 +87,7 @@ git remote -v
 }
 ```
 
-#### Extensiones Esenciales
+#### Essential Extensions
 
 - rust-analyzer
 - CodeLLDB
@@ -97,12 +97,12 @@ git remote -v
 - REST Client
 - Markdown All in One
 
-## Estándares de Código
+## Code Standards
 
-### Convenciones de Nomenclatura
+### Naming Conventions
 
 ```rust
-// Estructuras y Enums - PascalCase
+// Structures and Enums - PascalCase
 pub struct BlockchainNode;
 pub enum ConsensusType {
     ProofOfWork,
@@ -110,43 +110,43 @@ pub enum ConsensusType {
     Hybrid,
 }
 
-// Funciones y Variables - snake_case
+// Functions and Variables - snake_case
 pub fn create_transaction() -> Result<Transaction, Error> {
     let transaction_hash = calculate_hash();
     Ok(transaction_hash)
 }
 
-// Constantes - SCREAMING_SNAKE_CASE
+// Constants - SCREAMING_SNAKE_CASE
 pub const MAX_BLOCK_SIZE: usize = 1024;
 pub const DEFAULT_GAS_LIMIT: u64 = 21_000;
 
-// Tipos - PascalCase
+// Types - PascalCase
 pub type BlockHash = [u8; 32];
 pub type Address = [u8; 20];
 ```
 
-### Formato de Código
+### Code Formatting
 
 ```bash
-# Formatear código automáticamente
+# Format code automatically
 cargo fmt
 
-# Verificar formato
+# Verify formatting
 cargo fmt -- --check
 
-# Linting con Clippy
+# Linting with Clippy
 cargo clippy --all-targets --all-features -- -D warnings
 
-# Verificar seguridad
+# Verify security
 cargo audit
 ```
 
-### Documentación
+### Documentation
 
 ```rust
-/// Representa un bloque en la blockchain RSC Chain
+/// Represents a block in the RSC Chain blockchain
 /// 
-/// # Ejemplos
+/// # Examples
 /// 
 /// ```
 /// use rsc_chain::blockchain::Block;
@@ -157,23 +157,23 @@ cargo audit
 /// );
 /// ```
 pub struct Block {
-    /// Encabezado del bloque que contiene metadatos
+    /// Block header containing metadata
     pub header: BlockHeader,
-    /// Lista de transacciones incluidas en el bloque
+    /// Transactions included in the block
     pub transactions: Vec<Transaction>,
 }
 
 impl Block {
-    /// Crea un nuevo bloque con el encabezado y transacciones especificados
+    /// Creates a new block with the specified header and transactions
     /// 
     /// # Arguments
-    /// * `header` - Encabezado del bloque
-    /// * `transactions` - Vector de transacciones
+    /// * `header` - Block header
+    /// * `transactions` - Vector of transactions
     /// 
     /// # Returns
-    /// Una nueva instancia de Block
+    /// A new Block instance
     /// 
-    /// # Ejemplos
+    /// # Examples
     /// 
     /// ```
     /// # use rsc_chain::blockchain::{Block, BlockHeader, Hash};
@@ -187,51 +187,51 @@ impl Block {
         }
     }
     
-    /// Calcula el hash del bloque
+    /// Calculates the hash of the block
     /// 
     /// # Returns
-    /// Hash SHA-256 del bloque
+    /// SHA-256 hash of the block
     pub fn hash(&self) -> Hash {
-        // Implementación del hash
+        // Hash implementation
         Hash::zero() // Placeholder
     }
 }
 ```
 
-### Manejo de Errores
+### Error Handling
 
 ```rust
 use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum BlockchainError {
-    #[error("Bloque inválido: {0}")]
+    #[error("Invalid block: {0}")]
     InvalidBlock(String),
     
-    #[error("Transacción inválida: {0}")]
+    #[error("Invalid transaction: {0}")]
     InvalidTransaction(String),
     
-    #[error("Error de consenso: {0}")]
+    #[error("Consensus error: {0}")]
     ConsensusError(String),
     
-    #[error("Error de red: {0}")]
+    #[error("Network error: {0}")]
     NetworkError(#[from] std::io::Error),
     
-    #[error("Error de base de datos: {0}")]
+    #[error("Database error: {0}")]
     DatabaseError(#[from] rocksdb::Error),
 }
 
-// Uso en funciones
+// Usage in functions
 pub fn validate_block(block: &Block) -> Result<(), BlockchainError> {
     if block.header.height == 0 {
         return Err(BlockchainError::InvalidBlock(
-            "Altura del bloque no puede ser cero".to_string()
+            "Block height cannot be zero".to_string()
         ));
     }
     
     if block.transactions.is_empty() {
         return Err(BlockchainError::InvalidBlock(
-            "Bloque debe contener al menos una transacción".to_string()
+            "Block must contain at least one transaction".to_string()
         ));
     }
     
@@ -241,7 +241,7 @@ pub fn validate_block(block: &Block) -> Result<(), BlockchainError> {
 
 ## Testing
 
-### Testing Unitario
+### Unit Testing
 
 ```rust
 #[cfg(test)]
@@ -269,7 +269,7 @@ mod tests {
         assert!(result.is_err());
         
         if let Err(BlockchainError::InvalidBlock(msg)) = result {
-            assert!(msg.contains("Altura del bloque no puede ser cero"));
+            assert!(msg.contains("Block height cannot be zero"));
         }
     }
     
@@ -288,7 +288,7 @@ mod tests {
 }
 ```
 
-### Testing de Integración
+### Integration Testing
 
 ```rust
 // tests/integration_test.rs
@@ -300,11 +300,11 @@ async fn test_blockchain_consensus() {
     let mut blockchain = Blockchain::new();
     let consensus = ConsensusEngine::new();
     
-    // Crear bloque genesis
+    // Create genesis block
     let genesis_block = Block::genesis();
     blockchain.add_block(genesis_block).unwrap();
     
-    // Crear transacción
+    // Create transaction
     let transaction = Transaction::new(
         Address::from([0x01; 20]),
         Address::from([0x02; 20]),
@@ -312,16 +312,16 @@ async fn test_blockchain_consensus() {
         vec![]
     );
     
-    // Procesar transacción
+    // Process transaction
     let result = consensus.process_transaction(&mut blockchain, transaction).await;
     assert!(result.is_ok());
     
-    // Verificar que se creó un nuevo bloque
+    // Verify new block was created
     assert_eq!(blockchain.height(), 2);
 }
 ```
 
-### Testing de Performance
+### Performance Testing
 
 ```rust
 use criterion::{criterion_group, criterion_main, Criterion, BenchmarkId};
@@ -357,7 +357,7 @@ criterion_group!(benches, benchmark_block_validation);
 criterion_main!(benches);
 ```
 
-### Testing de Seguridad
+### Security Testing
 
 ```rust
 #[cfg(test)]
@@ -379,7 +379,7 @@ mod security_tests {
                 vec![]
             );
             
-            // No debe hacer panic
+            // Should not panic
             let _ = transaction.validate();
         }
     }
@@ -388,179 +388,179 @@ mod security_tests {
     fn test_sql_injection_prevention() {
         let malicious_input = "'; DROP TABLE blocks; --";
         
-        // Verificar que el input malicioso no causa problemas
+        // Verify that malicious input does not cause issues
         let result = sanitize_input(malicious_input);
         assert_ne!(result, malicious_input);
     }
 }
 ```
 
-## Proceso de Pull Request
+## Pull Request Process
 
-### Crear una Rama de Feature
+### Create a Feature Branch
 
 ```bash
-# Asegurarse de estar en main y actualizado
+# Ensure you are on main and up-to-date
 git checkout main
 git pull upstream main
 
-# Crear nueva rama
-git checkout -b feature/nueva-funcionalidad
+# Create new branch
+git checkout -b feature/new-feature
 
-# O para bug fixes
-git checkout -b fix/nombre-del-bug
+# Or for bug fixes
+git checkout -b fix/bug-name
 ```
 
-### Hacer Cambios
+### Make Changes
 
 ```bash
-# Hacer cambios en el código
-# Escribir tests
-# Actualizar documentación
+# Make changes to the code
+# Write tests
+# Update documentation
 
-# Verificar que todo compila
+# Verify everything compiles
 cargo check
 
-# Ejecutar tests
+# Run tests
 cargo test
 
-# Verificar formato
+# Verify formatting
 cargo fmt -- --check
 
-# Verificar linting
+# Verify linting
 cargo clippy --all-targets --all-features -- -D warnings
 ```
 
 ### Commits
 
 ```bash
-# Commits atómicos y descriptivos
+# Atomic and descriptive commits
 git add .
-git commit -m "feat: añadir validación de transacciones
+git commit -m "feat: add transaction validation
 
-- Implementar validación de firma digital
-- Añadir verificación de balance
-- Incluir tests unitarios
-- Actualizar documentación
+- Implement digital signature validation
+- Add balance verification
+- Include unit tests
+- Update documentation
 
 Closes #123"
 
-# Tipos de commits recomendados:
-# feat: nueva funcionalidad
-# fix: corrección de bug
-# docs: cambios en documentación
-# style: cambios de formato
-# refactor: refactoring de código
-# test: añadir o modificar tests
-# chore: tareas de mantenimiento
+# Recommended commit types:
+# feat: new functionality
+# fix: bug fix
+# docs: documentation changes
+# style: formatting changes
+# refactor: code refactoring
+# test: add or modify tests
+# chore: maintenance tasks
 ```
 
-### Push y Pull Request
+### Push and Pull Request
 
 ```bash
-# Push a tu fork
-git push origin feature/nueva-funcionalidad
+# Push to your fork
+git push origin feature/new-feature
 
-# Crear Pull Request en GitHub
-# Usar la plantilla de PR
+# Create Pull Request on GitHub
+# Use the PR template
 ```
 
-### Plantilla de Pull Request
+### Pull Request Template
 
 ```markdown
-## Descripción
-Breve descripción de los cambios realizados.
+## Description
+Brief description of the changes made.
 
-## Tipo de Cambio
-- [ ] Bug fix (cambio que corrige un problema)
-- [ ] Nueva funcionalidad (cambio que añade funcionalidad)
-- [ ] Breaking change (cambio que rompe funcionalidad existente)
-- [ ] Documentación (cambio en documentación)
+## Type of Change
+- [ ] Bug fix (change that fixes a problem)
+- [ ] New functionality (change that adds functionality)
+- [ ] Breaking change (change that breaks existing functionality)
+- [ ] Documentation (change in documentation)
 
 ## Testing
-- [ ] Tests unitarios añadidos/actualizados
-- [ ] Tests de integración añadidos/actualizados
-- [ ] Tests de performance ejecutados
-- [ ] Todos los tests pasan localmente
+- [ ] Unit tests added/updated
+- [ ] Integration tests added/updated
+- [ ] Performance tests executed
+- [ ] All tests pass locally
 
 ## Checklist
-- [ ] Código sigue los estándares del proyecto
-- [ ] Documentación actualizada
-- [ ] Commits siguen las convenciones
-- [ ] No hay warnings de Clippy
-- [ ] Cargo audit pasa sin errores
+- [ ] Code follows project standards
+- [ ] Documentation updated
+- [ ] Commits follow conventions
+- [ ] No Clippy warnings
+- [ ] Cargo audit passes without errors
 
-## Screenshots (si aplica)
-Añadir screenshots para cambios de UI.
+## Screenshots (if applicable)
+Add screenshots for UI changes.
 
-## Información Adicional
-Cualquier información adicional relevante.
+## Additional Information
+Any additional relevant information.
 ```
 
 ## Code Review
 
-### Proceso de Review
+### Review Process
 
-1. **Revisión Automática**: CI/CD verifica tests y calidad
-2. **Revisión Manual**: Al menos un maintainer debe aprobar
-3. **Feedback**: Comentarios constructivos en el PR
-4. **Iteración**: Hacer cambios basados en feedback
-5. **Aprobación**: Merge cuando esté listo
+1. **Automated Review**: CI/CD verifies tests and quality
+2. **Manual Review**: At least one maintainer must approve
+3. **Feedback**: Constructive comments in the PR
+4. **Iteration**: Make changes based on feedback
+5. **Approval**: Merge when ready
 
-### Criterios de Aprobación
+### Approval Criteria
 
-- ✅ Código compila sin errores
-- ✅ Todos los tests pasan
-- ✅ Cobertura de tests adecuada
-- ✅ Documentación actualizada
-- ✅ Sin warnings de Clippy
-- ✅ Código formateado correctamente
-- ✅ Manejo de errores apropiado
-- ✅ Performance aceptable
-- ✅ Seguridad verificada
+- ✅ Code compiles without errors
+- ✅ All tests pass
+- ✅ Adequate test coverage
+- ✅ Documentation updated
+- ✅ No Clippy warnings
+- ✅ Code formatted correctly
+- ✅ Error handling appropriate
+- ✅ Performance acceptable
+- ✅ Security verified
 
-### Comentarios de Review
+### Review Comments
 
 ```markdown
-# Ejemplos de comentarios constructivos
+# Examples of constructive comments
 
-## Positivo
-👍 Excelente implementación! El código es claro y bien documentado.
+## Positive
+👍 Excellent implementation! The code is clear and well-documented.
 
-## Sugerencias
-💡 Considera usar `Option<T>` en lugar de `Result<T, ()>` para este caso.
+## Suggestions
+💡 Consider using `Option<T>` instead of `Result<T, ()>` for this case.
 
-## Problemas
-🐛 Hay un potencial race condition en esta función.
+## Problems
+🐛 There is a potential race condition in this function.
 
-## Preguntas
-❓ ¿Por qué elegiste este enfoque en lugar de...?
+## Questions
+❓ Why did you choose this approach over...?
 ```
 
-## Reportes de Bugs
+## Bug Reports
 
-### Plantilla de Bug Report
+### Bug Report Template
 
 ```markdown
-## Descripción del Bug
-Descripción clara y concisa del problema.
+## Description of the Bug
+Clear and concise description of the problem.
 
-## Pasos para Reproducir
-1. Ir a '...'
-2. Hacer clic en '...'
-3. Scroll hasta '...'
-4. Ver error
+## Steps to Reproduce
+1. Go to '...'
+2. Click on '...'
+3. Scroll to '...'
+4. See error
 
-## Comportamiento Esperado
-Lo que debería pasar.
+## Expected Behavior
+What should happen.
 
-## Comportamiento Actual
-Lo que realmente pasa.
+## Actual Behavior
+What actually happens.
 
 ## Screenshots
-Si aplica, añadir screenshots.
+If applicable, add screenshots.
 
-## Información del Sistema
+## System Information
 - OS: [e.g. Ubuntu 20.04]
 - Rust Version: [e.g. 1.70.0]
 - RSC Chain Version: [e.g. 0.1.0]
@@ -570,95 +570,95 @@ Si aplica, añadir screenshots.
 [Paste logs here]
 ```
 
-## Contexto Adicional
-Cualquier información adicional relevante.
+## Additional Context
+Any additional relevant information.
 ```
 
 ### Bug Triage
 
 ```rust
-// Prioridades de bugs
+// Bug Priorities
 pub enum BugPriority {
-    Critical,    // Bloquea funcionalidad principal
-    High,        // Funcionalidad importante afectada
-    Medium,      // Funcionalidad secundaria afectada
-    Low,         // Mejora menor
+    Critical,    // Blocks main functionality
+    High,        // Important functionality affected
+    Medium,      // Secondary functionality affected
+    Low,         // Minor improvement
 }
 
-// Estados de bugs
+// Bug States
 pub enum BugStatus {
-    Open,        // Nuevo bug reportado
-    InProgress,  // En desarrollo
-    Review,      // En revisión
-    Resolved,    // Solucionado
-    Closed,      // Cerrado
-    Won'tFix,    // No se solucionará
+    Open,        // New bug reported
+    InProgress,  // In development
+    Review,      // Under review
+    Resolved,    // Solved
+    Closed,      // Closed
+    Won'tFix,    // Won't be fixed
 }
 ```
 
-## Propuestas de Funcionalidades
+## Feature Proposals
 
-### Plantilla de Feature Request
+### Feature Request Template
 
 ```markdown
-## Resumen
-Descripción clara de la funcionalidad deseada.
+## Summary
+Clear description of the desired functionality.
 
-## Motivación
-Por qué esta funcionalidad es necesaria.
+## Motivation
+Why this functionality is necessary.
 
-## Propuesta
-Descripción detallada de la implementación propuesta.
+## Proposal
+Detailed description of the proposed implementation.
 
-## Alternativas Consideradas
-Otras opciones que se consideraron.
+## Alternatives Considered
+Other options considered.
 
-## Impacto
-- Usuarios afectados
-- Cambios en API
+## Impact
+- Users affected
+- API changes
 - Performance
-- Seguridad
+- Security
 
 ## Timeline
-Estimación de tiempo para implementación.
+Estimated time for implementation.
 
-## Recursos Necesarios
-- Desarrolladores
-- Infraestructura
+## Required Resources
+- Developers
+- Infrastructure
 - Testing
 ```
 
-### Proceso de Aprobación
+### Approval Process
 
-1. **Discusión**: Debate en GitHub Issues
-2. **RFC**: Request for Comments si es necesario
-3. **Diseño**: Documentación técnica detallada
-4. **Implementación**: Desarrollo iterativo
-5. **Testing**: Tests exhaustivos
-6. **Review**: Code review riguroso
-7. **Merge**: Integración a main
+1. **Discussion**: Debate on GitHub Issues
+2. **RFC**: Request for Comments if necessary
+3. **Design**: Detailed technical documentation
+4. **Implementation**: Iterative development
+5. **Testing**: Comprehensive tests
+6. **Review**: Rigorous code review
+7. **Merge**: Integration into main
 
-## Comunidad
+## Community
 
-### Canales de Comunicación
+### Communication Channels
 
-- **GitHub Issues**: Bugs y feature requests
-- **GitHub Discussions**: Preguntas generales
-- **Discord**: Chat en tiempo real
-- **Telegram**: Notificaciones y anuncios
-- **Email**: Contacto privado
+- **GitHub Issues**: Bugs and feature requests
+- **GitHub Discussions**: General questions
+- **Discord**: Real-time chat
+- **Telegram**: Notifications and announcements
+- **Email**: Private contact
 
-### Eventos
+### Events
 
-- **Hackathons**: Eventos de desarrollo
-- **Meetups**: Encuentros locales
-- **Conferencias**: Presentaciones técnicas
-- **Workshops**: Sesiones de aprendizaje
+- **Hackathons**: Development events
+- **Meetups**: Local meetups
+- **Conferences**: Technical presentations
+- **Workshops**: Learning sessions
 
-### Reconocimiento
+### Recognition
 
 ```rust
-// Contribuidores destacados
+// Notable Contributors
 pub struct Contributor {
     pub name: String,
     pub contributions: Vec<Contribution>,
@@ -675,50 +675,50 @@ pub enum Badge {
 }
 ```
 
-## Recursos de Aprendizaje
+## Learning Resources
 
-### Documentación
+### Documentation
 
 - [Rust Book](https://doc.rust-lang.org/book/)
 - [Rust Reference](https://doc.rust-lang.org/reference/)
 - [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
 - [RSC Chain Architecture](https://docs.rsc-chain.com/architecture)
 
-### Herramientas
+### Tools
 
 - [Rust Playground](https://play.rust-lang.org/)
 - [Rust Analyzer](https://rust-analyzer.github.io/)
 - [Clippy](https://github.com/rust-lang/rust-clippy)
 - [Criterion](https://github.com/bheisler/criterion.rs)
 
-### Comunidad Rust
+### Rust Community
 
 - [Rust Forum](https://users.rust-lang.org/)
 - [Reddit r/rust](https://www.reddit.com/r/rust/)
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/rust)
 
-## Código de Conducta
+## Code of Conduct
 
-### Principios
+### Principles
 
-- **Respeto**: Tratar a todos con respeto
-- **Inclusión**: Fomentar participación diversa
-- **Colaboración**: Trabajar juntos constructivamente
-- **Excelencia**: Buscar la mejor calidad posible
+- **Respect**: Treat everyone with respect
+- **Inclusion**: Encourage diverse participation
+- **Collaboration**: Work together constructively
+- **Excellence**: Strive for the best possible quality
 
-### Reportes
+### Reporting
 
-Para reportar violaciones del código de conducta:
+To report violations of the code of conduct:
 - Email: conduct@rsc-chain.com
-- Discord: DM a moderadores
-- GitHub: Issue privado
+- Discord: DM moderators
+- GitHub: Private issue
 
-### Consecuencias
+### Consequences
 
-- Advertencia
-- Suspensión temporal
-- Expulsión permanente
+- Warning
+- Temporary suspension
+- Permanent expulsion
 
 ---
 
-*Gracias por contribuir a RSC Chain! Tu trabajo hace que la blockchain sea mejor para todos.*
+*Thank you for contributing to RSC Chain! Your work makes the blockchain better for everyone.*

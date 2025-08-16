@@ -1,41 +1,41 @@
-# Guías de RSC Chain
+# RSC Chain Guides
 
-## Visión General
+## Overview
 
-Esta sección proporciona guías paso a paso y tutoriales detallados para utilizar RSC Chain. Desde la configuración inicial hasta el desarrollo de aplicaciones avanzadas, estas guías te ayudarán a aprovechar al máximo la plataforma.
+This section provides step-by-step guides and detailed tutorials for using RSC Chain. From initial setup to advanced application development, these guides will help you make the most of the platform.
 
-## Guías de Inicio Rápido
+## Quick Start Guides
 
-### Configuración Inicial
+### Initial Setup
 
-#### Instalación de RSC Chain
+#### RSC Chain Installation
 
 ```bash
-# 1. Verificar requisitos del sistema
-rustc --version  # Debe ser 1.70+
-cargo --version  # Debe estar incluido con Rust
+# 1. Verify system requirements
+rustc --version  # Must be 1.70+
+cargo --version  # Must be included with Rust
 
-# 2. Clonar el repositorio
+# 2. Clone the repository
 git clone https://github.com/rsc-chain/rsc-chain.git
 cd rsc-chain
 
-# 3. Compilar el proyecto
+# 3. Compile the project
 cargo build --release
 
-# 4. Verificar la instalación
+# 4. Verify installation
 ./target/release/rsc-node --version
 ```
 
-#### Configuración del Entorno
+#### Environment Configuration
 
 ```bash
-# 1. Crear archivo de configuración
+# 1. Create configuration file
 cp config/default.yaml config/local.yaml
 
-# 2. Editar configuración local
+# 2. Edit local configuration
 nano config/local.yaml
 
-# Configuración básica:
+# Basic configuration:
 network:
   name: "local"
   port: 8545
@@ -51,53 +51,53 @@ consensus:
   block_time: 15
   difficulty_adjustment: true
 
-# 3. Crear directorio de datos
+# 3. Create data directory
 mkdir -p data
 ```
 
-#### Ejecutar Nodo Local
+#### Run Local Node
 
 ```bash
-# 1. Iniciar nodo en modo desarrollo
+# 1. Start node in development mode
 ./target/release/rsc-node --config config/local.yaml --dev
 
-# 2. Verificar que el nodo esté funcionando
+# 2. Verify that the node is running
 curl -X POST -H "Content-Type: application/json" \
   --data '{"jsonrpc":"2.0","method":"rsc_blockNumber","params":[],"id":1}' \
   http://localhost:8546
 
-# Respuesta esperada:
+# Expected response:
 # {"jsonrpc":"2.0","result":"0x0","id":1}
 ```
 
-### Crear tu Primera Wallet
+### Create Your First Wallet
 
-#### Usando la CLI
+#### Using the CLI
 
 ```bash
-# 1. Crear nueva wallet
+# 1. Create new wallet
 ./target/release/rsc-cli wallet create
 
-# Salida:
-# Wallet creada exitosamente
-# Dirección: 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6
-# Clave privada: 0x1234567890abcdef...
-# Frase mnemónica: word1 word2 word3 ...
+# Output:
+# Wallet created successfully
+# Address: 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6
+# Private key: 0x1234567890abcdef...
+# Mnemonic phrase: word1 word2 word3 ...
 
-# 2. Verificar balance
+# 2. Check balance
 ./target/release/rsc-cli wallet balance 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6
 
-# 3. Obtener tokens de prueba (solo en testnet)
+# 3. Get test tokens (testnet only)
 ./target/release/rsc-cli faucet request 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6
 ```
 
-#### Usando el SDK de JavaScript
+#### Using the JavaScript SDK
 
 ```javascript
-// 1. Instalar SDK
+// 1. Install SDK
 npm install @rsc-chain/sdk
 
-// 2. Crear wallet
+// 2. Create wallet
 import { RSCChain } from '@rsc-chain/sdk';
 
 const rsc = new RSCChain({
@@ -105,27 +105,27 @@ const rsc = new RSCChain({
     network: 'local'
 });
 
-// Crear wallet
+// Create wallet
 const wallet = await rsc.wallet.create();
-console.log('Wallet creada:', wallet.address);
+console.log('Wallet created:', wallet.address);
 
-// Obtener balance
+// Get balance
 const balance = await rsc.wallet.getBalance(wallet.address);
 console.log('Balance:', balance.toString());
 
-// Exportar wallet
+// Export wallet
 const privateKey = wallet.exportPrivateKey();
 const mnemonic = wallet.exportMnemonic();
-console.log('Clave privada:', privateKey);
-console.log('Frase mnemónica:', mnemonic);
+console.log('Private key:', privateKey);
+console.log('Mnemonic phrase:', mnemonic);
 ```
 
-### Enviar tu Primera Transacción
+### Send Your First Transaction
 
-#### Transacción Básica
+#### Basic Transaction
 
 ```javascript
-// 1. Crear transacción
+// 1. Create transaction
 const transaction = await rsc.transactions.create({
     from: wallet.address,
     to: '0x1234567890123456789012345678901234567890',
@@ -133,26 +133,26 @@ const transaction = await rsc.transactions.create({
     gas: '21000'
 });
 
-console.log('Transacción creada:', transaction.hash);
+console.log('Transaction created:', transaction.hash);
 
-// 2. Esperar confirmación
+// 2. Wait for confirmation
 const receipt = await rsc.transactions.waitForConfirmation(transaction.hash);
-console.log('Transacción confirmada:', receipt);
+console.log('Transaction confirmed:', receipt);
 
-// 3. Verificar en el explorador
-console.log(`Ver transacción: http://localhost:3000/tx/${transaction.hash}`);
+// 3. Verify on explorer
+console.log(`View transaction: http://localhost:3000/tx/${transaction.hash}`);
 ```
 
-#### Transacción con Datos (Smart Contract)
+#### Transaction with Data (Smart Contract)
 
 ```javascript
-// 1. Crear transacción con datos
+// 1. Create transaction with data
 const contractAddress = '0x1234567890123456789012345678901234567890';
 const functionSignature = 'transfer(address,uint256)';
 const recipient = '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6';
 const amount = '1000000000000000000'; // 1 token
 
-// Codificar datos de la función
+// Encode function data
 const data = rsc.utils.encodeFunctionData(functionSignature, [recipient, amount]);
 
 const transaction = await rsc.transactions.create({
@@ -162,14 +162,14 @@ const transaction = await rsc.transactions.create({
     gas: '100000'
 });
 
-console.log('Transacción de contrato creada:', transaction.hash);
+console.log('Smart contract transaction created:', transaction.hash);
 ```
 
-## Guías de Desarrollo
+## Development Guides
 
-### Configurar Entorno de Desarrollo
+### Configure Development Environment
 
-#### Configuración del IDE
+#### IDE Configuration
 
 ```json
 // .vscode/settings.json
@@ -197,13 +197,13 @@ console.log('Transacción de contrato creada:', transaction.hash);
 }
 ```
 
-#### Configuración de Git Hooks
+#### Git Hooks Configuration
 
 ```bash
-# 1. Instalar pre-commit
+# 1. Install pre-commit
 pip install pre-commit
 
-# 2. Crear .pre-commit-config.yaml
+# 2. Create .pre-commit-config.yaml
 cat > .pre-commit-config.yaml << EOF
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -236,30 +236,30 @@ repos:
         pass_filenames: false
 EOF
 
-# 3. Instalar hooks
+# 3. Install hooks
 pre-commit install
 ```
 
-### Crear tu Primera dApp
+### Create Your First dApp
 
-#### Estructura del Proyecto
+#### Project Structure
 
 ```bash
-# 1. Crear estructura del proyecto
+# 1. Create project structure
 mkdir my-dapp
 cd my-dapp
 
-# 2. Inicializar proyecto
+# 2. Initialize project
 npm init -y
 
-# 3. Instalar dependencias
+# 3. Install dependencies
 npm install @rsc-chain/sdk ethers hardhat @openzeppelin/contracts
 
-# 4. Configurar Hardhat
+# 4. Configure Hardhat
 npx hardhat init
 ```
 
-#### Configuración de Hardhat
+#### Hardhat Configuration
 
 ```javascript
 // hardhat.config.js
@@ -270,7 +270,7 @@ module.exports = {
   networks: {
     rsc_local: {
       url: "http://localhost:8546",
-      accounts: ["0x1234567890abcdef..."], // Tu clave privada
+      accounts: ["0x1234567890abcdef..."], // Your private key
       chainId: 1337
     },
     rsc_testnet: {
@@ -282,7 +282,7 @@ module.exports = {
 };
 ```
 
-#### Smart Contract Básico
+#### Basic Smart Contract
 
 ```solidity
 // contracts/SimpleToken.sol
@@ -310,25 +310,25 @@ contract SimpleToken is ERC20, Ownable {
 }
 ```
 
-#### Desplegar Contrato
+#### Deploy Contract
 
 ```javascript
 // scripts/deploy.js
 const hre = require("hardhat");
 
 async function main() {
-  // 1. Obtener el contrato
+  // 1. Get contract
   const SimpleToken = await hre.ethers.getContractFactory("SimpleToken");
   
-  // 2. Desplegar contrato
-  const token = await SimpleToken.deploy("Mi Token", "MTK");
+  // 2. Deploy contract
+  const token = await SimpleToken.deploy("My Token", "MTK");
   await token.waitForDeployment();
   
   const address = await token.getAddress();
-  console.log("Token desplegado en:", address);
+  console.log("Token deployed at:", address);
   
-  // 3. Verificar en explorador
-  console.log(`Ver contrato: http://localhost:3000/contract/${address}`);
+  // 3. Verify on explorer
+  console.log(`View contract: http://localhost:3000/contract/${address}`);
 }
 
 main()
@@ -340,43 +340,43 @@ main()
 ```
 
 ```bash
-# Desplegar contrato
+# Deploy contract
 npx hardhat run scripts/deploy.js --network rsc_local
 ```
 
-#### Frontend Básico
+#### Basic Frontend
 
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi dApp</title>
+    <title>My dApp</title>
     <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
 </head>
 <body>
-    <h1>Mi dApp en RSC Chain</h1>
+    <h1>My dApp on RSC Chain</h1>
     
     <div>
-        <h2>Conectar Wallet</h2>
-        <button onclick="connectWallet()">Conectar</button>
+        <h2>Connect Wallet</h2>
+        <button onclick="connectWallet()">Connect</button>
         <p id="wallet-address"></p>
     </div>
     
     <div>
-        <h2>Balance de Token</h2>
-        <input type="text" id="token-address" placeholder="Dirección del token">
-        <button onclick="getBalance()">Obtener Balance</button>
+        <h2>Token Balance</h2>
+        <input type="text" id="token-address" placeholder="Token address">
+        <button onclick="getBalance()">Get Balance</button>
         <p id="token-balance"></p>
     </div>
     
     <div>
-        <h2>Transferir Tokens</h2>
-        <input type="text" id="recipient" placeholder="Dirección del destinatario">
-        <input type="number" id="amount" placeholder="Cantidad">
-        <button onclick="transfer()">Transferir</button>
+        <h2>Transfer Tokens</h2>
+        <input type="text" id="recipient" placeholder="Recipient address">
+        <input type="number" id="amount" placeholder="Amount">
+        <button onclick="transfer()">Transfer</button>
     </div>
 
     <script src="app.js"></script>
@@ -390,19 +390,19 @@ let provider, signer, tokenContract;
 
 async function connectWallet() {
     try {
-        // Conectar a MetaMask
+        // Connect to MetaMask
         if (typeof window.ethereum !== 'undefined') {
             await window.ethereum.request({ method: 'eth_requestAccounts' });
             provider = new ethers.providers.Web3Provider(window.ethereum);
             signer = provider.getSigner();
             
             const address = await signer.getAddress();
-            document.getElementById('wallet-address').textContent = `Conectado: ${address}`;
+            document.getElementById('wallet-address').textContent = `Connected: ${address}`;
         } else {
-            alert('Por favor instala MetaMask');
+            alert('Please install MetaMask');
         }
     } catch (error) {
-        console.error('Error conectando wallet:', error);
+        console.error('Error connecting wallet:', error);
     }
 }
 
@@ -410,11 +410,11 @@ async function getBalance() {
     try {
         const tokenAddress = document.getElementById('token-address').value;
         if (!tokenAddress) {
-            alert('Por favor ingresa la dirección del token');
+            alert('Please enter the token address');
             return;
         }
         
-        // ABI básico para ERC20
+        // Basic ABI for ERC20
         const abi = [
             "function balanceOf(address owner) view returns (uint256)",
             "function decimals() view returns (uint8)",
@@ -432,7 +432,7 @@ async function getBalance() {
         document.getElementById('token-balance').textContent = 
             `Balance: ${formattedBalance} ${symbol}`;
     } catch (error) {
-        console.error('Error obteniendo balance:', error);
+        console.error('Error getting balance:', error);
     }
 }
 
@@ -442,7 +442,7 @@ async function transfer() {
         const amount = document.getElementById('amount').value;
         
         if (!recipient || !amount) {
-            alert('Por favor completa todos los campos');
+            alert('Please fill in all fields');
             return;
         }
         
@@ -452,18 +452,18 @@ async function transfer() {
         const tx = await tokenContract.transfer(recipient, amountWei);
         await tx.wait();
         
-        alert('Transferencia exitosa!');
-        getBalance(); // Actualizar balance
+        alert('Transfer successful!');
+        getBalance(); // Update balance
     } catch (error) {
-        console.error('Error en transferencia:', error);
-        alert('Error en transferencia: ' + error.message);
+        console.error('Error in transfer:', error);
+        alert('Error in transfer: ' + error.message);
     }
 }
 ```
 
-### Integración con APIs
+### API Integration
 
-#### Configurar API Client
+#### Configure API Client
 
 ```javascript
 // api-client.js
@@ -514,7 +514,7 @@ class RSCAPIClient {
 export default RSCAPIClient;
 ```
 
-#### Ejemplo de Uso de API
+#### Example API Usage
 
 ```javascript
 // example-usage.js
@@ -526,20 +526,20 @@ const client = new RSCAPIClient({
     network: 'mainnet'
 });
 
-// Obtener información de la blockchain
+// Get blockchain status
 async function getBlockchainStatus() {
     try {
         const info = await client.getBlockchainInfo();
-        console.log('Estado de la blockchain:', info);
+        console.log('Blockchain status:', info);
         
         const latestBlock = await client.getLatestBlock();
-        console.log('Último bloque:', latestBlock);
+        console.log('Latest block:', latestBlock);
     } catch (error) {
-        console.error('Error obteniendo información:', error);
+        console.error('Error getting information:', error);
     }
 }
 
-// Enviar transacción
+// Send transaction
 async function sendTransaction() {
     try {
         const tx = await client.sendTransaction({
@@ -549,38 +549,38 @@ async function sendTransaction() {
             gas: '21000'
         });
         
-        console.log('Transacción enviada:', tx.hash);
+        console.log('Transaction sent:', tx.hash);
         
-        // Esperar confirmación
+        // Wait for confirmation
         const receipt = await client.waitForConfirmation(tx.hash);
-        console.log('Transacción confirmada:', receipt);
+        console.log('Transaction confirmed:', receipt);
     } catch (error) {
-        console.error('Error enviando transacción:', error);
+        console.error('Error sending transaction:', error);
     }
 }
 
-// Suscribirse a eventos
+// Subscribe to events
 async function subscribeToEvents() {
     try {
         const subscription = await client.subscribeToEvents('new_block', (block) => {
-            console.log('Nuevo bloque:', block);
+            console.log('New block:', block);
         });
         
-        console.log('Suscripción creada:', subscription.id);
+        console.log('Subscription created:', subscription.id);
     } catch (error) {
-        console.error('Error suscribiéndose a eventos:', error);
+        console.error('Error subscribing to events:', error);
     }
 }
 
-// Ejecutar ejemplos
+// Run examples
 getBlockchainStatus();
 sendTransaction();
 subscribeToEvents();
 ```
 
-## Guías Avanzadas
+## Advanced Guides
 
-### Optimización de Smart Contracts
+### Smart Contract Optimization
 
 #### Gas Optimization
 
@@ -592,10 +592,10 @@ pragma solidity ^0.8.19;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract OptimizedToken is ERC20 {
-    // Usar uint256 en lugar de uint para optimizar gas
+    // Use uint256 instead of uint for gas optimization
     uint256 private _totalSupply;
     
-    // Empaquetar variables en structs para optimizar storage
+    // Pack variables into structs for gas optimization
     struct UserInfo {
         uint128 balance;
         uint128 lastUpdate;
@@ -613,7 +613,7 @@ contract OptimizedToken is ERC20 {
         });
     }
     
-    // Función optimizada para transferencia
+    // Optimized transfer function
     function transfer(address to, uint256 amount) 
         public 
         override 
@@ -627,17 +627,17 @@ contract OptimizedToken is ERC20 {
         
         require(fromInfo.balance >= amount, "Insufficient balance");
         
-        // Actualizar balances
+        // Update balances
         fromInfo.balance = uint128(fromInfo.balance - amount);
         toInfo.balance = uint128(toInfo.balance + amount);
         
-        // Emitir evento
+        // Emit event
         emit Transfer(msg.sender, to, amount);
         
         return true;
     }
     
-    // Función view optimizada
+    // Optimized view function
     function balanceOf(address account) 
         public 
         view 
@@ -734,7 +734,7 @@ contract SecureToken is ReentrancyGuard, Pausable, AccessControl {
         _unpause();
     }
     
-    // Función de emergencia
+    // Emergency withdrawal
     function emergencyWithdraw(address token, address to) 
         public 
         onlyRole(DEFAULT_ADMIN_ROLE) 
@@ -749,9 +749,9 @@ contract SecureToken is ReentrancyGuard, Pausable, AccessControl {
 }
 ```
 
-### Testing Avanzado
+### Advanced Testing
 
-#### Testing de Smart Contracts
+#### Smart Contract Testing
 
 ```javascript
 // test/SecureToken.test.js
@@ -842,7 +842,7 @@ describe("SecureToken", function () {
 });
 ```
 
-#### Testing de Integración
+#### Integration Testing
 
 ```javascript
 // test/integration.test.js
@@ -854,7 +854,7 @@ describe("Integration Tests", function () {
     let rsc, token, owner, user1, user2;
     
     before(async function () {
-        // Conectar a RSC Chain
+        // Connect to RSC Chain
         rsc = new RSCChain({
             endpoint: "http://localhost:8546",
             network: "local"
@@ -864,7 +864,7 @@ describe("Integration Tests", function () {
     });
     
     beforeEach(async function () {
-        // Desplegar contrato antes de cada test
+        // Deploy contract before each test
         const SecureToken = await ethers.getContractFactory("SecureToken");
         token = await SecureToken.deploy("Test Token", "TEST");
         await token.deployed();
@@ -875,7 +875,7 @@ describe("Integration Tests", function () {
         const mintAmount = ethers.utils.parseEther("1000");
         await token.mint(user1.address, mintAmount);
         
-        // 2. Verificar balance en blockchain
+        // 2. Verify balance on blockchain
         const balance = await rsc.contracts.call(
             token.address,
             ["function balanceOf(address) view returns (uint256)"],
@@ -889,14 +889,14 @@ describe("Integration Tests", function () {
         const transferAmount = ethers.utils.parseEther("100");
         await token.connect(user1).transfer(user2.address, transferAmount);
         
-        // 4. Verificar transferencia
+        // 4. Verify transfer
         const user1Balance = await token.balanceOf(user1.address);
         const user2Balance = await token.balanceOf(user2.address);
         
         expect(user1Balance).to.equal(ethers.utils.parseEther("900"));
         expect(user2Balance).to.equal(transferAmount);
         
-        // 5. Verificar evento en blockchain
+        // 5. Verify event on blockchain
         const events = await rsc.events.getContractEvents(
             token.address,
             "Transfer",
@@ -910,12 +910,12 @@ describe("Integration Tests", function () {
     });
     
     it("Should handle multiple concurrent transactions", async function () {
-        // Mint tokens a múltiples usuarios
+        // Mint tokens to multiple users
         const mintAmount = ethers.utils.parseEther("100");
         await token.mint(user1.address, mintAmount);
         await token.mint(user2.address, mintAmount);
         
-        // Ejecutar transferencias concurrentes
+        // Execute concurrent transfers
         const promises = [];
         for (let i = 0; i < 5; i++) {
             promises.push(
@@ -925,7 +925,7 @@ describe("Integration Tests", function () {
         
         await Promise.all(promises);
         
-        // Verificar balances finales
+        // Verify final balances
         const user1Balance = await token.balanceOf(user1.address);
         const user2Balance = await token.balanceOf(user2.address);
         
@@ -935,9 +935,9 @@ describe("Integration Tests", function () {
 });
 ```
 
-### Despliegue en Producción
+### Production Deployment
 
-#### Configuración de Producción
+#### Production Configuration
 
 ```javascript
 // hardhat.config.prod.js
@@ -970,73 +970,73 @@ module.exports = {
 };
 ```
 
-#### Script de Despliegue
+#### Deployment Script
 
 ```javascript
 // scripts/deploy-prod.js
 const hre = require("hardhat");
 
 async function main() {
-    console.log("Iniciando despliegue en producción...");
+    console.log("Starting production deployment...");
     
-    // 1. Verificar configuración
+    // 1. Verify configuration
     const network = await hre.ethers.provider.getNetwork();
-    console.log("Red:", network.name);
+    console.log("Network:", network.name);
     console.log("Chain ID:", network.chainId);
     
-    // 2. Obtener balance
+    // 2. Get balance
     const [deployer] = await hre.ethers.getSigners();
     const balance = await deployer.getBalance();
-    console.log("Balance del deployer:", hre.ethers.utils.formatEther(balance), "RSC");
+    console.log("Deployer balance:", hre.ethers.utils.formatEther(balance), "RSC");
     
     if (balance.lt(hre.ethers.utils.parseEther("0.1"))) {
-        throw new Error("Balance insuficiente para despliegue");
+        throw new Error("Insufficient balance for deployment");
     }
     
-    // 3. Desplegar contrato
-    console.log("Desplegando contrato...");
+    // 3. Deploy contract
+    console.log("Deploying contract...");
     const SecureToken = await hre.ethers.getContractFactory("SecureToken");
     const token = await SecureToken.deploy("Production Token", "PROD");
     
-    console.log("Esperando confirmación...");
+    console.log("Waiting for confirmation...");
     await token.deployed();
     
-    console.log("Contrato desplegado en:", token.address);
+    console.log("Contract deployed at:", token.address);
     
-    // 4. Verificar contrato
-    console.log("Verificando contrato...");
+    // 4. Verify contract
+    console.log("Verifying contract...");
     try {
         await hre.run("verify:verify", {
             address: token.address,
             constructorArguments: ["Production Token", "PROD"],
         });
-        console.log("Contrato verificado exitosamente");
+        console.log("Contract verified successfully");
     } catch (error) {
-        console.log("Error en verificación:", error.message);
+        console.log("Verification error:", error.message);
     }
     
-    // 5. Configurar roles
-    console.log("Configurando roles...");
+    // 5. Configure roles
+    console.log("Configuring roles...");
     const minterRole = await token.MINTER_ROLE();
     const pauserRole = await token.PAUSER_ROLE();
     
-    // Asignar roles a múltiples direcciones para redundancia
+    // Assign roles to multiple addresses for redundancy
     const backupAddresses = process.env.BACKUP_ADDRESSES?.split(",") || [];
     
     for (const address of backupAddresses) {
         await token.grantRole(minterRole, address);
         await token.grantRole(pauserRole, address);
-        console.log("Roles asignados a:", address);
+        console.log("Roles assigned to:", address);
     }
     
-    // 6. Mint tokens iniciales
+    // 6. Mint initial tokens
     const initialSupply = hre.ethers.utils.parseEther("1000000"); // 1M tokens
     await token.mint(deployer.address, initialSupply);
-    console.log("Tokens iniciales minteados");
+    console.log("Initial tokens minted");
     
-    console.log("Despliegue completado exitosamente!");
-    console.log("Contrato:", token.address);
-    console.log("Explorador:", `https://explorer.rsc-chain.com/contract/${token.address}`);
+    console.log("Deployment completed successfully!");
+    console.log("Contract:", token.address);
+    console.log("Explorer:", `https://explorer.rsc-chain.com/contract/${token.address}`);
 }
 
 main()
@@ -1047,7 +1047,7 @@ main()
     });
 ```
 
-#### Monitoreo de Producción
+#### Production Monitoring
 
 ```javascript
 // scripts/monitor.js
@@ -1066,22 +1066,22 @@ class ProductionMonitor {
     }
     
     async startMonitoring() {
-        console.log("Iniciando monitoreo de producción...");
+        console.log("Starting production monitoring...");
         
-        // Monitorear eventos de contratos
+        // Monitor contract events
         for (const [address, contract] of this.contracts) {
             await this.monitorContractEvents(address, contract);
         }
         
-        // Monitorear transacciones sospechosas
+        // Monitor suspicious transactions
         await this.monitorSuspiciousTransactions();
         
-        // Monitorear métricas de red
+        // Monitor network metrics
         await this.monitorNetworkMetrics();
     }
     
     async monitorContractEvents(address, contract) {
-        console.log(`Monitoreando eventos de ${contract.name}...`);
+        console.log(`Monitoring ${contract.name} events...`);
         
         this.rsc.events.subscribe('contract_event', (event) => {
             if (event.address.toLowerCase() === address.toLowerCase()) {
@@ -1091,9 +1091,9 @@ class ProductionMonitor {
     }
     
     async handleContractEvent(contract, event) {
-        console.log(`Evento en ${contract.name}:`, event);
+        console.log(`Event in ${contract.name}:`, event);
         
-        // Verificar eventos críticos
+        // Check critical events
         if (event.event === 'Transfer' && event.args.value > ethers.utils.parseEther("10000")) {
             this.alert('Large Transfer', {
                 contract: contract.name,
@@ -1113,7 +1113,7 @@ class ProductionMonitor {
     
     async monitorSuspiciousTransactions() {
         this.rsc.events.subscribe('transaction', (tx) => {
-            // Verificar transacciones con gas muy alto
+            // Check transactions with very high gas
             if (tx.gasUsed > 1000000) {
                 this.alert('High Gas Transaction', {
                     hash: tx.hash,
@@ -1122,7 +1122,7 @@ class ProductionMonitor {
                 });
             }
             
-            // Verificar transacciones fallidas
+            // Check failed transactions
             if (tx.status === 0) {
                 this.alert('Failed Transaction', {
                     hash: tx.hash,
@@ -1138,7 +1138,7 @@ class ProductionMonitor {
             try {
                 const info = await this.rsc.blockchain.getInfo();
                 
-                // Verificar latencia de red
+                // Check network latency
                 if (info.blockTime > 20) {
                     this.alert('High Network Latency', {
                         blockTime: info.blockTime,
@@ -1146,7 +1146,7 @@ class ProductionMonitor {
                     });
                 }
                 
-                // Verificar número de peers
+                // Check peer count
                 if (info.peers < 10) {
                     this.alert('Low Peer Count', {
                         peers: info.peers,
@@ -1159,7 +1159,7 @@ class ProductionMonitor {
                     timestamp: new Date().toISOString()
                 });
             }
-        }, 60000); // Cada minuto
+        }, 60000); // Every minute
     }
     
     alert(type, data) {
@@ -1170,34 +1170,34 @@ class ProductionMonitor {
         };
         
         this.alerts.push(alert);
-        console.log('ALERTA:', alert);
+        console.log('ALERT:', alert);
         
-        // Enviar notificación (email, Slack, etc.)
+        // Send notification (email, Slack, etc.)
         this.sendNotification(alert);
     }
     
     async sendNotification(alert) {
-        // Implementar envío de notificaciones
+        // Implement notification sending
         // Email, Slack, Discord, etc.
-        console.log('Enviando notificación:', alert);
+        console.log('Sending notification:', alert);
     }
 }
 
-// Uso del monitor
+// Use the monitor
 async function main() {
     const monitor = new ProductionMonitor({
         endpoint: process.env.RSC_MAINNET_URL,
         network: 'mainnet'
     });
     
-    // Agregar contratos a monitorear
+    // Add contracts to monitor
     await monitor.addContract(
         process.env.TOKEN_CONTRACT_ADDRESS,
         "Production Token",
         ["event Transfer(address indexed from, address indexed to, uint256 value)"]
     );
     
-    // Iniciar monitoreo
+    // Start monitoring
     await monitor.startMonitoring();
 }
 
@@ -1208,4 +1208,4 @@ if (require.main === module) {
 
 ---
 
-*Estas guías te proporcionan una base sólida para comenzar con RSC Chain. Recuerda consultar la documentación oficial para obtener información más detallada y actualizada.*
+*These guides provide a solid foundation for getting started with RSC Chain. Remember to consult the official documentation for more detailed and up-to-date information.*

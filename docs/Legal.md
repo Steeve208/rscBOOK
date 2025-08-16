@@ -1,109 +1,109 @@
-# Aspectos Legales de RSC Chain
+# Legal Aspects of RSC Chain
 
-## Visión General
+## Overview
 
-RSC Chain opera dentro del marco legal establecido, cumpliendo con regulaciones internacionales y protegiendo los derechos de todos los participantes en el ecosistema. Esta documentación proporciona información legal esencial para usuarios, desarrolladores e inversores.
+RSC Chain operates within the established legal framework, complying with international regulations and protecting the rights of all participants in the ecosystem. This documentation provides essential legal information for users, developers, and investors.
 
-## Marco Legal
+## Legal Framework
 
-### Regulaciones Aplicables
+### Applicable Regulations
 
 ```rust
-// Marco legal de RSC Chain
+// RSC Chain legal framework
 pub struct LegalFramework {
-    pub jurisdiction: String,           // Jurisdicción principal
-    pub regulations: Vec<Regulation>,   // Regulaciones aplicables
-    pub compliance: ComplianceStatus,   // Estado de cumplimiento
-    pub licenses: Vec<License>,         // Licencias obtenidas
+    pub jurisdiction: String,           // Primary jurisdiction
+    pub regulations: Vec<Regulation>,   // Applicable regulations
+    pub compliance: ComplianceStatus,   // Compliance status
+    pub licenses: Vec<License>,         // Obtained licenses
 }
 
 pub enum Regulation {
-    // Regulaciones financieras
+    // Financial regulations
     AML,           // Anti-Money Laundering
     KYC,           // Know Your Customer
     CFT,           // Counter-Terrorism Financing
     
-    // Regulaciones de datos
+    // Data regulations
     GDPR,          // General Data Protection Regulation
     CCPA,          // California Consumer Privacy Act
     LGPD,          // Lei Geral de Proteção de Dados
     
-    // Regulaciones de blockchain
+    // Blockchain regulations
     MiCA,          // Markets in Crypto-Assets
     DORA,          // Digital Operational Resilience Act
 }
 ```
 
-### Cumplimiento Regulatorio
+### Regulatory Compliance
 
-RSC Chain mantiene un programa integral de cumplimiento que incluye:
+RSC Chain maintains a comprehensive compliance program that includes:
 
-1. **AML/KYC**: Verificación de identidad y monitoreo de transacciones
-2. **GDPR**: Protección de datos personales de usuarios europeos
-3. **MiCA**: Cumplimiento con regulaciones de activos criptográficos
-4. **Auditorías**: Revisiones regulares por firmas independientes
+1. **AML/KYC**: Identity verification and transaction monitoring
+2. **GDPR**: Protection of European users' personal data
+3. **MiCA**: Compliance with crypto-asset regulations
+4. **Audits**: Regular reviews by independent firms
 
-## Términos de Servicio
+## Terms of Service
 
-### Aceptación de Términos
+### Acceptance of Terms
 
-Al utilizar RSC Chain, usted acepta los siguientes términos:
+By using RSC Chain, you accept the following terms:
 
 ```markdown
-## 1. Definiciones
+## 1. Definitions
 
-- **RSC Chain**: La plataforma blockchain descentralizada
-- **Usuario**: Cualquier persona que utilice la plataforma
-- **Servicios**: Todas las funcionalidades proporcionadas por RSC Chain
-- **Contenido**: Cualquier dato, información o material subido a la plataforma
+- **RSC Chain**: The decentralized blockchain platform
+- **User**: Any person using the platform
+- **Services**: All functionalities provided by RSC Chain
+- **Content**: Any data, information, or material uploaded to the platform
 
-## 2. Uso Aceptable
+## 2. Acceptable Use
 
-### Permisos
-- Uso personal y comercial legítimo
-- Desarrollo de aplicaciones descentralizadas
-- Participación en consenso y minería
-- Intercambio de tokens y activos digitales
+### Permissions
+- Legitimate personal and commercial use
+- Development of decentralized applications
+- Participation in consensus and mining
+- Exchange of tokens and digital assets
 
-### Prohibiciones
-- Actividades ilegales o fraudulentas
-- Lavado de dinero o financiamiento terrorista
-- Violación de derechos de propiedad intelectual
-- Ataques a la red o manipulación de precios
-- Uso de malware o exploits de seguridad
+### Prohibitions
+- Illegal or fraudulent activities
+- Money laundering or terrorist financing
+- Violation of intellectual property rights
+- Network attacks or price manipulation
+- Use of malware or security exploits
 
-## 3. Responsabilidades del Usuario
+## 3. User Responsibilities
 
-### Seguridad
-- Mantener claves privadas seguras
-- No compartir credenciales de acceso
-- Reportar vulnerabilidades de seguridad
-- Actualizar software regularmente
+### Security
+- Keep private keys secure
+- Do not share access credentials
+- Report security vulnerabilities
+- Update software regularly
 
-### Cumplimiento Legal
-- Cumplir con leyes locales aplicables
-- Pagar impuestos correspondientes
-- No usar para evasión fiscal
-- Respetar sanciones internacionales
+### Legal Compliance
+- Comply with applicable local laws
+- Pay corresponding taxes
+- Do not use for tax evasion
+- Respect international sanctions
 
-## 4. Limitaciones de Responsabilidad
+## 4. Liability Limitations
 
-### Exclusiones
-- Pérdidas por volatilidad de precios
-- Daños por ataques cibernéticos
-- Pérdidas por errores de usuario
-- Interrupciones del servicio
+### Exclusions
+- Losses due to price volatility
+- Damages from cyber attacks
+- Losses due to user errors
+- Service interruptions
 
-### Limitaciones
-- Responsabilidad máxima limitada a $1,000 USD
-- No responsabilidad por daños indirectos
-- No garantías de disponibilidad continua
+### Limitations
+- Maximum liability limited to $1,000 USD
+- No liability for indirect damages
+- No guarantees of continuous availability
 ```
 
-### Modificaciones de Términos
+### Modifications of Terms
 
 ```rust
-// Sistema de notificación de cambios en términos
+// System for notifying changes in terms
 pub struct TermsUpdate {
     pub version: String,
     pub effective_date: DateTime<Utc>,
@@ -113,9 +113,9 @@ pub struct TermsUpdate {
 }
 
 pub enum TermChange {
-    Minor(String),      // Cambios menores, notificación automática
-    Major(String),      // Cambios mayores, aceptación requerida
-    Critical(String),   // Cambios críticos, aceptación inmediata
+    Minor(String),      // Minor changes, automatic notification
+    Major(String),      // Major changes, acceptance required
+    Critical(String),   // Critical changes, immediate acceptance
 }
 
 impl TermsUpdate {
@@ -133,14 +133,14 @@ impl TermsUpdate {
 }
 ```
 
-## Política de Privacidad
+## Privacy Policy
 
-### Recopilación de Datos
+### Data Collection
 
 ```rust
-// Tipos de datos recopilados
+// Types of data collected
 pub enum DataType {
-    // Datos de identificación
+    // Identification data
     PersonalInfo {
         name: String,
         email: String,
@@ -148,7 +148,7 @@ pub enum DataType {
         address: Option<Address>,
     },
     
-    // Datos de transacciones
+    // Transaction data
     TransactionData {
         tx_hash: Hash,
         amount: U256,
@@ -157,7 +157,7 @@ pub enum DataType {
         recipient: Address,
     },
     
-    // Datos técnicos
+    // Technical data
     TechnicalData {
         ip_address: IpAddr,
         user_agent: String,
@@ -165,7 +165,7 @@ pub enum DataType {
         usage_patterns: Vec<UsagePattern>,
     },
     
-    // Datos de blockchain
+    // Blockchain data
     BlockchainData {
         wallet_addresses: Vec<Address>,
         transaction_history: Vec<Transaction>,
@@ -175,40 +175,40 @@ pub enum DataType {
 }
 ```
 
-### Uso de Datos
+### Data Usage
 
 ```rust
-// Propósitos de uso de datos
+// Purposes of data usage
 pub enum DataPurpose {
-    // Servicios esenciales
-    ServiceProvision,      // Proporcionar servicios blockchain
-    Security,              // Seguridad y prevención de fraudes
-    Compliance,            // Cumplimiento regulatorio
+    // Essential services
+    ServiceProvision,      // Providing blockchain services
+    Security,              // Security and fraud prevention
+    Compliance,            // Regulatory compliance
     
-    // Mejoras del servicio
-    Analytics,             // Análisis y optimización
-    Research,              // Investigación y desarrollo
-    Personalization,       // Personalización de experiencia
+    // Service improvements
+    Analytics,             // Analytics and optimization
+    Research,              // Research and development
+    Personalization,       // Personalization of experience
     
-    // Comunicación
-    Notifications,         // Notificaciones importantes
-    Marketing,             // Marketing (con consentimiento)
-    Support,               // Soporte al cliente
+    // Communication
+    Notifications,         // Important notifications
+    Marketing,             // Marketing (with consent)
+    Support,               // Customer support
 }
 ```
 
-### Derechos del Usuario
+### User Rights
 
 ```rust
-// Derechos de protección de datos
+// Data protection rights
 pub enum DataRights {
-    Access,         // Acceso a datos personales
-    Rectification,  // Corrección de datos inexactos
-    Erasure,        // Eliminación de datos ("derecho al olvido")
-    Portability,    // Portabilidad de datos
-    Restriction,    // Restricción del procesamiento
-    Objection,      // Objeción al procesamiento
-    Withdrawal,     // Retiro del consentimiento
+    Access,         // Access to personal data
+    Rectification,  // Correction of inaccurate data
+    Erasure,        // Deletion of data ("right to be forgotten")
+    Portability,    // Data portability
+    Restriction,    // Processing restriction
+    Objection,      // Objection to processing
+    Withdrawal,     // Withdrawal of consent
 }
 
 impl DataRights {
@@ -217,16 +217,16 @@ impl DataRights {
             DataRights::Access => self.grant_access(user_id),
             DataRights::Erasure => self.erase_data(user_id),
             DataRights::Portability => self.export_data(user_id),
-            // ... otros derechos
+            // ... other rights
         }
     }
 }
 ```
 
-### Retención de Datos
+### Data Retention
 
 ```rust
-// Políticas de retención
+// Retention policies
 pub struct DataRetentionPolicy {
     pub data_type: DataType,
     pub retention_period: Duration,
@@ -235,28 +235,28 @@ pub struct DataRetentionPolicy {
 }
 
 pub enum LegalBasis {
-    Consent,           // Consentimiento explícito
-    Contract,          // Ejecución de contrato
-    LegalObligation,   // Obligación legal
-    LegitimateInterest, // Interés legítimo
-    VitalInterest,     // Interés vital
-    PublicTask,        // Tarea pública
+    Consent,           // Explicit consent
+    Contract,          // Contract execution
+    LegalObligation,   // Legal obligation
+    LegitimateInterest, // Legitimate interest
+    VitalInterest,     // Vital interest
+    PublicTask,        // Public task
 }
 
 pub enum DeletionTrigger {
-    Automatic,         // Eliminación automática
-    UserRequest,       // Solicitud del usuario
-    LegalRequirement,  // Requerimiento legal
-    ServiceTermination, // Terminación del servicio
+    Automatic,         // Automatic deletion
+    UserRequest,       // User request
+    LegalRequirement,  // Legal requirement
+    ServiceTermination, // Service termination
 }
 ```
 
-## Licencias y Propiedad Intelectual
+## Licenses and Intellectual Property
 
-### Licencia de Software
+### Software License
 
 ```rust
-// Licencia MIT para RSC Chain
+// MIT License for RSC Chain
 pub const LICENSE_MIT: &str = r#"
 MIT License
 
@@ -282,10 +282,10 @@ SOFTWARE.
 "#;
 ```
 
-### Propiedad Intelectual
+### Intellectual Property
 
 ```rust
-// Gestión de propiedad intelectual
+// Intellectual property management
 pub struct IntellectualProperty {
     pub copyrights: Vec<Copyright>,
     pub trademarks: Vec<Trademark>,
@@ -318,12 +318,12 @@ pub struct Patent {
 }
 ```
 
-## Cumplimiento Financiero
+## Financial Compliance
 
 ### AML/KYC
 
 ```rust
-// Sistema de cumplimiento AML/KYC
+// AML/KYC compliance system
 pub struct ComplianceSystem {
     pub kyc_verification: KYCVerification,
     pub aml_monitoring: AMLMonitoring,
@@ -366,17 +366,17 @@ impl AMLMonitoring {
     pub fn assess_risk_factors(&self, tx: &Transaction) -> Vec<RiskFactor> {
         let mut factors = Vec::new();
         
-        // Verificar monto
+        // Check amount
         if tx.amount > self.large_transaction_threshold {
             factors.push(RiskFactor::LargeAmount);
         }
         
-        // Verificar países de alto riesgo
+        // Check high-risk countries
         if self.is_high_risk_country(&tx.sender) || self.is_high_risk_country(&tx.recipient) {
             factors.push(RiskFactor::HighRiskCountry);
         }
         
-        // Verificar patrones sospechosos
+        // Check suspicious patterns
         if self.detect_suspicious_pattern(tx) {
             factors.push(RiskFactor::SuspiciousPattern);
         }
@@ -386,10 +386,10 @@ impl AMLMonitoring {
 }
 ```
 
-### Reportes Regulatorios
+### Regulatory Reports
 
 ```rust
-// Sistema de reportes regulatorios
+// Regulatory reporting system
 pub struct RegulatoryReporting {
     pub report_types: Vec<ReportType>,
     pub filing_schedules: Vec<FilingSchedule>,
@@ -419,38 +419,38 @@ impl RegulatoryReporting {
             ReportType::SuspiciousActivityReport(sar) => self.file_sar(sar),
             ReportType::CurrencyTransactionReport(ctr) => self.file_ctr(ctr),
             ReportType::MarketsInCryptoAssets(mica) => self.file_mica(mica),
-            // ... otros tipos de reportes
+            // ... other report types
         }
     }
     
     pub fn file_sar(&self, sar: &SAR) -> Result<(), FilingError> {
-        // Validar datos del SAR
+        // Validate SAR data
         self.validate_sar_data(sar)?;
         
-        // Preparar reporte para envío
+        // Prepare report for submission
         let report_data = self.prepare_sar_report(sar);
         
-        // Enviar a autoridad competente
+        // Submit to competent authority
         self.submit_to_regulator(report_data, "SAR")
     }
 }
 ```
 
-## Resolución de Disputas
+## Dispute Resolution
 
-### Mecanismos de Resolución
+### Dispute Resolution Mechanisms
 
 ```rust
-// Sistema de resolución de disputas
+// Dispute resolution system
 pub enum DisputeResolution {
-    // Resolución directa
+    // Direct negotiation
     DirectNegotiation {
         parties: Vec<Party>,
         mediator: Option<Mediator>,
         timeline: Duration,
     },
     
-    // Arbitraje
+    // Arbitration
     Arbitration {
         arbitrator: Arbitrator,
         rules: ArbitrationRules,
@@ -458,14 +458,14 @@ pub enum DisputeResolution {
         language: String,
     },
     
-    // Medición
+    // Mediation
     Mediation {
         mediator: Mediator,
         process: MediationProcess,
         confidentiality: bool,
     },
     
-    // Litigio
+    // Litigation
     Litigation {
         court: Court,
         jurisdiction: String,
@@ -474,42 +474,42 @@ pub enum DisputeResolution {
 }
 ```
 
-### Cláusulas de Arbitraje
+### Arbitration Clauses
 
 ```markdown
-## Cláusula de Arbitraje
+## Arbitration Clause
 
-Cualquier disputa, controversia o reclamación que surja de o se relacione con estos Términos de Servicio, incluyendo su formación, validez, interpretación, ejecución o terminación, será resuelta mediante arbitraje vinculante de acuerdo con las siguientes disposiciones:
+Any dispute, controversy, or claim arising from or relating to these Terms of Service, including their formation, validity, interpretation, execution, or termination, shall be resolved by binding arbitration in accordance with the following provisions:
 
-### 1. Reglas de Arbitraje
-- Reglas de la Cámara de Comercio Internacional (ICC)
-- Sede del arbitraje: [Ciudad, País]
-- Idioma del arbitraje: Inglés
-- Número de árbitros: Uno (1)
+### 1. Arbitration Rules
+- Rules of the International Chamber of Commerce (ICC)
+- Seat of arbitration: [City, Country]
+- Language of arbitration: English
+- Number of arbitrators: One (1)
 
-### 2. Procedimiento
-- Notificación de disputa por escrito
-- Respuesta dentro de 30 días
-- Audiencia preliminar dentro de 60 días
-- Laudo final dentro de 6 meses
+### 2. Procedure
+- Notification of dispute by written notice
+- Response within 30 days
+- Preliminary hearing within 60 days
+- Final award within 6 months
 
-### 3. Costos
-- Cada parte paga sus propios costos legales
-- Costos del arbitraje compartidos equitativamente
-- Laudo puede incluir asignación de costos
+### 3. Costs
+- Each party pays its own legal costs
+- Shared equitable arbitration costs
+- Award may include cost allocation
 
-### 4. Ejecución
-- Laudo es final y vinculante
-- Ejecutable en cualquier jurisdicción competente
-- No apelación excepto por motivos limitados
+### 4. Enforcement
+- Award is final and binding
+- Executable in any competent jurisdiction
+- No appeal except for limited grounds
 ```
 
-## Impuestos
+## Taxes
 
-### Obligaciones Fiscales
+### Tax Obligations
 
 ```rust
-// Sistema de cumplimiento fiscal
+// Tax compliance system
 pub struct TaxCompliance {
     pub tax_jurisdictions: Vec<TaxJurisdiction>,
     pub reporting_obligations: Vec<ReportingObligation>,
@@ -526,11 +526,11 @@ pub struct TaxJurisdiction {
 }
 
 pub enum TaxType {
-    IncomeTax,          // Impuesto sobre la renta
-    CapitalGainsTax,    // Impuesto sobre ganancias de capital
-    ValueAddedTax,      // Impuesto al valor agregado
-    WithholdingTax,     // Retención en la fuente
-    DigitalServicesTax, // Impuesto a servicios digitales
+    IncomeTax,          // Income tax
+    CapitalGainsTax,    // Capital gains tax
+    ValueAddedTax,      // Value-added tax
+    WithholdingTax,     // Withholding tax
+    DigitalServicesTax, // Digital services tax
 }
 
 impl TaxCompliance {
@@ -568,10 +568,10 @@ impl TaxCompliance {
 }
 ```
 
-### Reportes de Impuestos
+### Tax Reports
 
 ```rust
-// Generación de reportes fiscales
+// Tax reporting system
 pub struct TaxReporting {
     pub forms: Vec<TaxForm>,
     pub schedules: Vec<TaxSchedule>,
@@ -614,12 +614,12 @@ impl TaxReporting {
 }
 ```
 
-## Seguridad Jurídica
+## Legal Security
 
-### Protección Legal
+### Legal Protection
 
 ```rust
-// Medidas de protección legal
+// Legal protection measures
 pub struct LegalProtection {
     pub insurance: Vec<InsurancePolicy>,
     pub indemnification: IndemnificationClause,
@@ -636,11 +636,11 @@ pub struct InsurancePolicy {
 }
 
 pub enum InsuranceType {
-    ProfessionalLiability,    // Responsabilidad profesional
-    CyberLiability,          // Responsabilidad cibernética
-    DirectorsAndOfficers,    // Directores y funcionarios
-    GeneralLiability,        // Responsabilidad general
-    ErrorsAndOmissions,      // Errores y omisiones
+    ProfessionalLiability,    // Professional liability
+    CyberLiability,          // Cyber liability
+    DirectorsAndOfficers,    // Directors and officers
+    GeneralLiability,        // General liability
+    ErrorsAndOmissions,      // Errors and omissions
 }
 
 pub struct IndemnificationClause {
@@ -668,12 +668,12 @@ impl LegalProtection {
 }
 ```
 
-## Contacto Legal
+## Legal Contact
 
-### Información de Contacto
+### Contact Information
 
 ```rust
-// Información de contacto legal
+// Legal contact information
 pub struct LegalContact {
     pub general_counsel: ContactInfo,
     pub compliance_officer: ContactInfo,
@@ -702,49 +702,49 @@ impl LegalContact {
 }
 ```
 
-### Formularios de Contacto
+### Contact Forms
 
 ```markdown
-## Formulario de Contacto Legal
+## Legal Contact Form
 
-### Información Personal
-- Nombre completo: _________________
+### Personal Information
+- Full Name: _________________
 - Email: ___________________________
-- Teléfono: ________________________
-- Organización: ____________________
+- Phone: ________________________
+- Organization: ____________________
 
-### Tipo de Consulta
-- [ ] Términos de Servicio
-- [ ] Política de Privacidad
-- [ ] Cumplimiento Regulatorio
-- [ ] Propiedad Intelectual
-- [ ] Resolución de Disputas
-- [ ] Impuestos
-- [ ] Otro: ________________________
+### Type of Inquiry
+- [ ] Terms of Service
+- [ ] Privacy Policy
+- [ ] Regulatory Compliance
+- [ ] Intellectual Property
+- [ ] Dispute Resolution
+- [ ] Taxes
+- [ ] Other: ________________________
 
-### Descripción de la Consulta
+### Description of Inquiry
 _________________________________
 _________________________________
 _________________________________
 
-### Documentos Adjuntos
-- [ ] Documentos legales
-- [ ] Evidencia de disputa
-- [ ] Información de cumplimiento
-- [ ] Otros: _______________________
+### Attached Documents
+- [ ] Legal documents
+- [ ] Dispute evidence
+- [ ] Compliance information
+- [ ] Other: _______________________
 
-### Confidencialidad
-- [ ] Marcar como confidencial
-- [ ] Requiere NDA
-- [ ] Urgente
+### Confidentiality
+- [ ] Mark as confidential
+- [ ] Requires NDA
+- [ ] Urgent
 
-### Consentimiento
-Al enviar este formulario, confirmo que:
-- [ ] He leído y acepto la Política de Privacidad
-- [ ] La información proporcionada es veraz
-- [ ] Autorizo el procesamiento de mis datos
+### Consent
+By submitting this form, I confirm that:
+- [ ] I have read and accepted the Privacy Policy
+- [ ] The information provided is true
+- [ ] I authorize the processing of my data
 ```
 
 ---
 
-*Esta documentación legal se actualiza regularmente. Para la versión más reciente, consulte con el departamento legal de RSC Chain.*
+*This legal documentation is updated regularly. For the latest version, please consult with the RSC Chain legal department.*

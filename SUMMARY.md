@@ -1,70 +1,75 @@
-# 📚 Tabla de Contenidos
+# 📚 Table of Contents
 
-* [🚀 Introducción](README.md)
+* [🚀 Introduction](README.md)
 
-## 🚀 Inicio Rápido
+## 🚀 Quick Start
 
-* [🎯 Inicio Rápido](docs/quick-start.md)
-* [📋 Requisitos del Sistema](docs/requirements.md)
-* [⚙️ Instalación](docs/installation.md)
-* [🔧 Configuración](docs/configuration.md)
+* [🎯 Quick Start](docs/quick-start.md)
+* [📋 System Requirements](docs/requirements.md)
+* [⚙️ Installation](docs/installation.md)
+* [🔧 Configuration](docs/configuration.md)
 
-## 🏗️ Arquitectura
+## 🧮 Mathematical Foundations
 
-* [🏛️ Visión General](docs/architecture.md)
+* [📐 Mathematical Foundations](docs/mathematical-foundations.md)
+* [⚙️ Blockchain Functions](docs/blockchain-functions.md)
 
-## 🤖 Inteligencia Artificial
+## 🏗️ Architecture
 
-* [🧠 Visión General](docs/ai.md)
+* [🏛️ Overview](docs/architecture.md)
 
-## 🔐 Seguridad
+## 🤖 Artificial Intelligence
 
-* [🛡️ Visión General](docs/security.md)
+* [🧠 Overview](docs/ai.md)
 
-## ⚡ Consenso
+## 🔐 Security
 
-* [⚡ Visión General](docs/consensus.md)
+* [🛡️ Overview](docs/security.md)
 
-## 🌐 Red P2P
+## ⚡ Consensus
 
-* [🌐 Visión General](docs/p2p.md)
+* [⚡ Overview](docs/consensus.md)
 
-## 💾 Almacenamiento
+## 🌐 P2P Network
 
-* [💾 Visión General](docs/storage.md)
+* [🌐 Overview](docs/p2p.md)
+
+## 💾 Storage
+
+* [💾 Overview](docs/storage.md)
 
 ## 🛠️ API
 
-* [🛠️ Visión General](docs/api.md)
+* [🛠️ Overview](docs/api.md)
 
-## 📊 Monitoreo
+## 📊 Monitoring
 
-* [📊 Visión General](docs/monitoring.md)
+* [📊 Overview](docs/monitoring.md)
 
-## 🔧 Desarrollo
+## 🔧 Development
 
-* [🔧 Visión General](docs/development.md)
+* [🔧 Overview](docs/development.md)
 
-## 📖 Guías
+## 📖 Guides
 
-* [📖 Guías de Desarrollo](docs/guides.md)
+* [📖 Development Guides](docs/guides.md)
 
-## 🔗 Integración
+## 🔗 Integration
 
-* [🔗 Visión General](docs/integration.md)
+* [🔗 Overview](docs/integration.md)
 
-## 📚 Referencia
+## 📚 Reference
 
-* [📚 Visión General](docs/reference.md)
+* [📚 Overview](docs/reference.md)
 
-## 💼 Casos de Uso
+## 💼 Use Cases
 
-* [💼 Visión General](docs/use-cases.md)
+* [💼 Overview](docs/use-cases.md)
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-* [🤝 Visión General](docs/contributing.md)
+* [🤝 Overview](docs/contributing.md)
 
 ## ⚖️ Legal
 
-* [⚖️ Aspectos Legales](docs/Legal.md)
+* [⚖️ Legal Aspects](docs/Legal.md)

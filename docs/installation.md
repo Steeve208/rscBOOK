@@ -1,79 +1,79 @@
-# ⚙️ Instalación
+# ⚙️ Installation
 
-## Instalación Rápida
+## Quick Installation
 
-### Clonar el Repositorio
+### Clone the Repository
 ```bash
 git clone https://github.com/Steeve208/rscBOOK.git
 cd rscBOOK
 ```
 
-### Instalación con Cargo
+### Installation with Cargo
 ```bash
 cargo build --release
 ```
 
-## Instalación Detallada
+## Detailed Installation
 
-### 1. Preparar el Entorno
+### 1. Prepare the Environment
 ```bash
-# Verificar que Rust esté instalado
+# Verify Rust is installed
 rustc --version
 
-# Actualizar Rust si es necesario
+# Update Rust if necessary
 rustup update
 ```
 
-### 2. Clonar y Configurar
+### 2. Clone and Configure
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/Steeve208/rscBOOK.git
 
-# Entrar al directorio
+# Enter the directory
 cd rscBOOK
 
-# Verificar la estructura
+# Verify the structure
 ls -la
 ```
 
-### 3. Compilar el Proyecto
+### 3. Compile the Project
 ```bash
-# Compilación de desarrollo
+# Development compilation
 cargo build
 
-# Compilación de producción
+# Production compilation
 cargo build --release
 
-# Ejecutar tests
+# Run tests
 cargo test
 ```
 
-## Instalación con Docker
+## Docker Installation
 
-### Usar Docker Compose
+### Use Docker Compose
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/Steeve208/rscBOOK.git
 cd rscBOOK
 
-# Construir y ejecutar con Docker
+# Build and run with Docker
 docker-compose up --build
 ```
 
-### Construir Imagen Personalizada
+### Build Custom Image
 ```bash
-# Construir la imagen
+# Build the image
 docker build -t rsc-chain .
 
-# Ejecutar el contenedor
+# Run the container
 docker run -p 8080:8080 rsc-chain
 ```
 
-## Instalación en Diferentes Sistemas
+## Installation on Different Systems
 
 ### Windows
 ```powershell
-# Usar PowerShell
+# Use PowerShell
 git clone https://github.com/Steeve208/rscBOOK.git
 cd rscBOOK
 cargo build --release
@@ -81,7 +81,7 @@ cargo build --release
 
 ### macOS
 ```bash
-# Usar Terminal
+# Use Terminal
 git clone https://github.com/Steeve208/rscBOOK.git
 cd rscBOOK
 cargo build --release
@@ -89,108 +89,108 @@ cargo build --release
 
 ### Linux
 ```bash
-# Usar Terminal
+# Use Terminal
 git clone https://github.com/Steeve208/rscBOOK.git
 cd rscBOOK
 cargo build --release
 ```
 
-## Verificación de la Instalación
+## Installation Verification
 
-### Verificar Binarios
+### Verify Binaries
 ```bash
-# Verificar que se crearon los binarios
+# Verify that binaries were created
 ls target/release/
 
-# Verificar la versión
+# Verify version
 ./target/release/rsc-chain --version
 ```
 
-### Verificar Dependencias
+### Verify Dependencies
 ```bash
-# Verificar dependencias de Rust
+# Verify Rust dependencies
 cargo tree
 
-# Verificar dependencias del sistema
+# Verify system dependencies
 cargo check
 ```
 
-## Configuración Post-Instalación
+## Post-Installation Configuration
 
-### Variables de Entorno
+### Environment Variables
 ```bash
-# Crear archivo de configuración
+# Create configuration file
 cp env.example .env
 
-# Editar configuración
+# Edit configuration
 nano .env
 ```
 
-### Configuración de Red
+### Network Configuration
 ```bash
-# Configurar puertos
+# Configure ports
 export RSC_CHAIN_PORT=8080
 export RSC_CHAIN_HOST=0.0.0.0
 ```
 
-## Solución de Problemas
+## Troubleshooting
 
-### Error de Compilación
+### Compilation Error
 ```bash
-# Limpiar build anterior
+# Clean previous build
 cargo clean
 
-# Actualizar dependencias
+# Update dependencies
 cargo update
 
-# Reintentar compilación
+# Retry compilation
 cargo build
 ```
 
-### Error de Dependencias
+### Dependency Error
 ```bash
-# Verificar versión de Rust
+# Verify Rust version
 rustc --version
 
-# Actualizar Rust
+# Update Rust
 rustup update
 
-# Verificar toolchain
+# Verify toolchain
 rustup show
 ```
 
-### Error de Permisos (Linux/macOS)
+### Permission Error (Linux/macOS)
 ```bash
-# Dar permisos de ejecución
+# Give execution permissions
 chmod +x target/release/rsc-chain
 
-# Verificar permisos
+# Verify permissions
 ls -la target/release/
 ```
 
-## Próximos Pasos
+## Next Steps
 
-Una vez completada la instalación, puedes proceder con la [Configuración](configuration.md) del sistema.
+Once the installation is complete, you can proceed with the [Configuration](configuration.md) of the system.
 
-## Comandos Útiles
+## Useful Commands
 
-### Desarrollo
+### Development
 ```bash
-cargo run          # Ejecutar en modo desarrollo
-cargo test         # Ejecutar tests
-cargo clippy       # Verificar código
-cargo fmt          # Formatear código
+cargo run          # Run in development mode
+cargo test         # Run tests
+cargo clippy       # Check code
+cargo fmt          # Format code
 ```
 
-### Producción
+### Production
 ```bash
-cargo build --release  # Compilar para producción
-cargo install --path . # Instalar globalmente
+cargo build --release  # Compile for production
+cargo install --path . # Install globally
 ```
 
-### Mantenimiento
+### Maintenance
 ```bash
-cargo clean        # Limpiar builds
-cargo update       # Actualizar dependencias
-cargo audit        # Verificar seguridad
+cargo clean        # Clean builds
+cargo update       # Update dependencies
+cargo audit        # Check security
 ```

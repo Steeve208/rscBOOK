@@ -1,81 +1,81 @@
-# 🚀 Inicio Rápido
+# 🚀 Quick Start
 
-> **Comienza con RSC Chain en menos de 5 minutos**
+> **Start with RSC Chain in less than 5 minutes**
 
-## 🎯 ¿Qué vas a aprender?
+## 🎯 What will you learn?
 
-En esta guía aprenderás a:
-- ✅ Instalar RSC Chain en tu sistema
-- ✅ Configurar el entorno de desarrollo
-- ✅ Iniciar tu primer nodo
-- ✅ Crear tu primera wallet
-- ✅ Enviar tu primera transacción
-- ✅ Explorar las capacidades de IA
+In this guide you will learn to:
+- ✅ Install RSC Chain on your system
+- ✅ Configure the development environment
+- ✅ Start your first node
+- ✅ Create your first wallet
+- ✅ Send your first transaction
+- ✅ Explore AI capabilities
 
-## 📋 Prerrequisitos
+## 📋 Prerequisites
 
-### Sistema Operativo
+### Operating System
 - **Windows**: Windows 10/11 (64-bit)
-- **macOS**: macOS 10.15 o superior
-- **Linux**: Ubuntu 20.04+, CentOS 8+, o similar
+- **macOS**: macOS 10.15 or higher
+- **Linux**: Ubuntu 20.04+, CentOS 8+, or similar
 
-### Hardware Mínimo
-- **CPU**: 4 cores (8 cores recomendado)
-- **RAM**: 8GB (16GB recomendado)
-- **Almacenamiento**: 100GB SSD
-- **Red**: Conexión a Internet estable
+### Minimum Hardware
+- **CPU**: 4 cores (8 cores recommended)
+- **RAM**: 8GB (16GB recommended)
+- **Storage**: 100GB SSD
+- **Network**: Stable internet connection
 
-### Software Requerido
-- **Rust**: 1.70+ ([Instalar Rust](https://rustup.rs/))
-- **Git**: 2.30+ ([Instalar Git](https://git-scm.com/))
-- **Docker**: 20.10+ (opcional, para desarrollo)
+### Required Software
+- **Rust**: 1.70+ ([Install Rust](https://rustup.rs/))
+- **Git**: 2.30+ ([Install Git](https://git-scm.com/))
+- **Docker**: 20.10+ (optional, for development)
 
-## ⚙️ Instalación
+## ⚙️ Installation
 
-### 1. Clonar el Repositorio
+### 1. Clone the Repository
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/rsc-chain/rsc-chain.git
 cd rsc-chain
 
-# Verificar que estás en la rama correcta
+# Verify you're on the correct branch
 git checkout main
 ```
 
-### 2. Instalar Dependencias
+### 2. Install Dependencies
 
 ```bash
-# Instalar dependencias de Rust
+# Install Rust dependencies
 cargo build --release
 
-# Verificar la instalación
+# Verify installation
 cargo run -- --help
 ```
 
-### 3. Configuración Inicial
+### 3. Initial Configuration
 
 ```bash
-# Crear archivo de configuración
+# Create configuration file
 cp config.example.json config.json
 
-# Editar configuración (opcional)
+# Edit configuration (optional)
 nano config.json
 ```
 
-## 🚀 Primeros Pasos
+## 🚀 First Steps
 
-### 1. Iniciar el Sistema
+### 1. Start the System
 
 ```bash
-# Iniciar RSC Chain
+# Start RSC Chain
 cargo run -- start
 
-# Verificar que está funcionando
+# Verify it's working
 cargo run -- status
 ```
 
-**Salida esperada:**
+**Expected output:**
 ```
 🚀 Starting ultra-advanced blockchain system...
 ✅ Storage manager started
@@ -88,17 +88,17 @@ cargo run -- status
 ✅ Ultra-advanced blockchain system started successfully!
 ```
 
-### 2. Crear tu Primera Wallet
+### 2. Create Your First Wallet
 
 ```bash
-# Crear una nueva wallet
-cargo run -- wallet create "Mi Primera Wallet" --password "mi_password_seguro"
+# Create a new wallet
+cargo run -- wallet create "My First Wallet" --password "my_secure_password"
 
-# Listar wallets
+# List wallets
 cargo run -- wallet list
 ```
 
-**Salida esperada:**
+**Expected output:**
 ```
 ✅ Wallet created successfully!
 Address: 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6
@@ -106,56 +106,56 @@ Balance: 0 RSC
 Staked: 0 RSC
 ```
 
-### 3. Obtener RSC Tokens (Testnet)
+### 3. Get RSC Tokens (Testnet)
 
 ```bash
-# Solicitar tokens de prueba
+# Request test tokens
 cargo run -- faucet request --address 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6
 
-# Verificar balance
+# Verify balance
 cargo run -- wallet info --address 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6
 ```
 
-### 4. Enviar tu Primera Transacción
+### 4. Send Your First Transaction
 
 ```bash
-# Enviar transacción
+# Send transaction
 cargo run -- wallet send \
   --from 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6 \
   --to 0x1234567890123456789012345678901234567890 \
   --amount 100 \
-  --password "mi_password_seguro"
+  --password "my_secure_password"
 
-# Verificar transacción
+# Verify transaction
 cargo run -- transaction info --hash <transaction_hash>
 ```
 
-## 🤖 Explorar las Capacidades de IA
+## 🤖 Explore AI Capabilities
 
-### 1. Verificar Estado de IA
+### 1. Check AI Status
 
 ```bash
-# Verificar estado del sistema de IA
+# Check AI system status
 cargo run -- ai status
 
-# Ver modelos disponibles
+# List available models
 cargo run -- ai models list
 ```
 
-### 2. Ejecutar Análisis Predictivo
+### 2. Run Predictive Analysis
 
 ```bash
-# Analizar patrones de transacciones
+# Analyze transaction patterns
 cargo run -- ai predict --input "transaction_patterns" --data "recent_transactions.json"
 
-# Optimizar rendimiento de red
+# Optimize network performance
 cargo run -- ai optimize --target "network_performance"
 ```
 
-### 3. Entrenar Modelo Personalizado
+### 3. Train Custom Model
 
 ```bash
-# Entrenar modelo con datos personalizados
+# Train model with custom data
 cargo run -- ai train \
   --model "custom_anomaly_detector" \
   --data "my_data.csv" \
@@ -163,197 +163,197 @@ cargo run -- ai train \
   --learning-rate 0.001
 ```
 
-## 🔍 Explorar la Red
+## 🔍 Explore the Network
 
-### 1. Ver Estado de la Red
+### 1. Check Network Status
 
 ```bash
-# Ver información de la red
+# Check network information
 cargo run -- network status
 
-# Listar peers conectados
+# List connected peers
 cargo run -- network peers
 ```
 
-### 2. Explorar Blockchain
+### 2. Explore Blockchain
 
 ```bash
-# Ver último bloque
+# View latest block
 cargo run -- blockchain latest
 
-# Ver estadísticas de la cadena
+# View chain statistics
 cargo run -- blockchain stats
 
-# Buscar transacciones
+# Search transactions
 cargo run -- transaction search --address 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6
 ```
 
-## 📊 Monitoreo y Métricas
+## 📊 Monitoring and Metrics
 
-### 1. Ver Métricas en Tiempo Real
+### 1. View Real-Time Metrics
 
 ```bash
-# Ver métricas del sistema
+# View system metrics
 cargo run -- monitor --realtime
 
-# Ver métricas específicas
+# View specific metrics
 cargo run -- monitor --metrics cpu,memory,network
 ```
 
-### 2. Configurar Alertas
+### 2. Configure Alerts
 
 ```bash
-# Configurar alerta de CPU
+# Configure CPU alert
 cargo run -- monitor alert --metric cpu --threshold 80 --action email
 
-# Ver alertas activas
+# List active alerts
 cargo run -- monitor alerts list
 ```
 
-## 🔧 Desarrollo
+## 🔧 Development
 
-### 1. Configurar Entorno de Desarrollo
+### 1. Configure Development Environment
 
 ```bash
-# Instalar herramientas de desarrollo
+# Install development tools
 cargo install cargo-watch
 cargo install cargo-audit
 
-# Configurar pre-commit hooks
+# Configure pre-commit hooks
 cargo run -- dev setup
 ```
 
-### 2. Ejecutar Tests
+### 2. Run Tests
 
 ```bash
-# Ejecutar todos los tests
+# Run all tests
 cargo test
 
-# Ejecutar tests específicos
+# Run specific tests
 cargo test --test consensus_tests
 
-# Ejecutar tests con coverage
+# Run tests with coverage
 cargo run -- dev test --coverage
 ```
 
 ### 3. Debugging
 
 ```bash
-# Ejecutar en modo debug
+# Run in debug mode
 RUST_LOG=debug cargo run -- start
 
-# Analizar logs
+# Analyze logs
 cargo run -- logs --level debug --follow
 ```
 
-## 🌐 Interfaz Web
+## 🌐 Web Interface
 
-### 1. Acceder a la API
+### 1. Access the API
 
 ```bash
-# La API estará disponible en:
+# The API will be available at:
 # http://localhost:3000
 
-# Documentación OpenAPI:
+# OpenAPI Documentation:
 # http://localhost:3000/docs
 
-# Explorador de bloques:
+# Block Explorer:
 # http://localhost:3000/explorer
 ```
 
-### 2. Usar WebSocket
+### 2. Use WebSocket
 
 ```javascript
-// Conectar a WebSocket
+// Connect to WebSocket
 const ws = new WebSocket('ws://localhost:3000/ws');
 
-// Suscribirse a eventos
+// Subscribe to events
 ws.send(JSON.stringify({
   type: 'subscribe',
   channel: 'blocks'
 }));
 
-// Recibir eventos
+// Receive events
 ws.onmessage = (event) => {
   const data = JSON.parse(event.data);
-  console.log('Nuevo bloque:', data);
+  console.log('New block:', data);
 };
 ```
 
-## 🚨 Solución de Problemas
+## 🚨 Troubleshooting
 
-### Problemas Comunes
+### Common Issues
 
-#### 1. Error de Puerto en Uso
+#### 1. Port in Use Error
 ```bash
-# Cambiar puerto
+# Change port
 cargo run -- start --port 3001
 ```
 
-#### 2. Error de Permisos
+#### 2. Permission Error
 ```bash
-# En Linux/macOS
+# On Linux/macOS
 sudo chown -R $USER:$USER ~/.rsc-chain
 ```
 
-#### 3. Error de Memoria
+#### 3. Memory Error
 ```bash
-# Reducir uso de memoria
+# Reduce memory usage
 cargo run -- start --memory-limit 4gb
 ```
 
-#### 4. Error de Red
+#### 4. Network Error
 ```bash
-# Verificar conectividad
+# Verify connectivity
 cargo run -- network test
 
-# Reiniciar red
+# Restart network
 cargo run -- network restart
 ```
 
-### Obtener Ayuda
+### Get Help
 
 ```bash
-# Ver ayuda general
+# View general help
 cargo run -- --help
 
-# Ver ayuda de comando específico
+# View specific command help
 cargo run -- wallet --help
 
-# Ver logs detallados
+# View detailed logs
 cargo run -- logs --level trace
 ```
 
-## 🎉 ¡Felicidades!
+## 🎉 Congratulations!
 
-¡Has completado el inicio rápido de RSC Chain! Ahora tienes:
+You have completed the Quick Start of RSC Chain! You now have:
 
-- ✅ Un nodo RSC Chain funcionando
-- ✅ Tu primera wallet creada
-- ✅ Una transacción enviada
-- ✅ Explorado las capacidades de IA
-- ✅ Monitoreado el sistema
+- ✅ A running RSC Chain node
+- ✅ Your first wallet created
+- ✅ A transaction sent
+- ✅ Explored AI capabilities
+- ✅ Monitored the system
 
-## 🚀 Próximos Pasos
+## 🚀 Next Steps
 
-Ahora que tienes lo básico, puedes:
+Now that you have the basics, you can:
 
-1. **[🏗️ Explorar la Arquitectura](architecture/overview.md)** - Entiende cómo funciona internamente
-2. **[🤖 Profundizar en IA](ai/overview.md)** - Aprende sobre las capacidades de inteligencia artificial
-3. **[🔐 Seguridad](security/overview.md)** - Conoce las medidas de seguridad avanzadas
-4. **[⚡ Consenso](consensus/overview.md)** - Entiende el mecanismo de consenso híbrido
-5. **[🌐 Red P2P](p2p/overview.md)** - Explora la red distribuida
-6. **[🛠️ Desarrollo](development/overview.md)** - Contribuye al proyecto
+1. **[🏗️ Explore Architecture](architecture/overview.md)** - Understand how it works internally
+2. **[🤖 Deepen in AI](ai/overview.md)** - Learn about AI capabilities
+3. **[🔐 Security](security/overview.md)** - Learn about advanced security measures
+4. **[⚡ Consensus](consensus/overview.md)** - Understand the hybrid consensus mechanism
+5. **[🌐 P2P Network](p2p/overview.md)** - Explore the distributed network
+6. **[🛠️ Development](development/overview.md)** - Contribute to the project
 
-## 📞 Soporte
+## 📞 Support
 
-Si tienes problemas o preguntas:
+If you have problems or questions:
 
-- **📖 Documentación**: [docs.rsc-chain.com](https://docs.rsc-chain.com)
+- **📖 Documentation**: [docs.rsc-chain.com](https://docs.rsc-chain.com)
 - **💬 Discord**: [RSC Chain Community](https://discord.gg/rsc-chain)
 - **🐦 Twitter**: [@RSCChain](https://twitter.com/RSCChain)
 - **📧 Email**: support@rsc-chain.com
 
 ---
 
-**¡Bienvenido al futuro de la blockchain!** 🚀✨
+**Welcome to the future of blockchain!** 🚀✨
